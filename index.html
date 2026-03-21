@@ -118,23 +118,19 @@
 
 
     /* ── TESTIMONIAL + FLOWER PANEL ── */
-    .testimonial-wrap{position:relative;background:var(--rose);overflow:hidden}
-    .testimonial-main{padding:80px 56px;display:flex;flex-direction:column;justify-content:center;position:relative;z-index:1}
+    .testimonial-wrap{position:relative;background:linear-gradient(135deg,var(--deep-rose) 0%,var(--rose) 50%,#d4848f 100%);overflow:hidden}
+    .testimonial-main{padding:80px 56px;display:flex;flex-direction:column;justify-content:center;position:relative;z-index:2}
     .testimonial-main blockquote{font-family:'Playfair Display',serif;font-size:clamp(1.1rem,2.2vw,1.45rem);font-style:italic;color:#fff;max-width:640px;line-height:1.85;margin-bottom:24px}
     .testimonial-main cite{font-size:.75rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--gold-lt)}
-    .testimonial-flower{position:absolute;right:0;top:0;bottom:0;width:280px;overflow:hidden;pointer-events:none}
-    .testimonial-flower-overlay{position:absolute;inset:0;background:
-      radial-gradient(ellipse 160px 220px at 75% 35%, rgba(242,196,206,.55) 0%, transparent 70%),
-      radial-gradient(ellipse 100px 140px at 55% 70%, rgba(201,168,76,.18) 0%, transparent 65%),
-      radial-gradient(ellipse 80px 100px at 90% 80%, rgba(242,196,206,.4) 0%, transparent 60%),
-      linear-gradient(to right, var(--rose) 0%, transparent 45%);
+    /* floating petals */
+    .petal{position:absolute;pointer-events:none;z-index:1;opacity:0;animation:petalFloat linear infinite}
+    @keyframes petalFloat{
+      0%{opacity:0;transform:translateY(110%) rotate(0deg) scale(0.6)}
+      10%{opacity:.55}
+      80%{opacity:.35}
+      100%{opacity:0;transform:translateY(-20px) rotate(360deg) scale(1)}
     }
-    .testimonial-flower::before{
-      content:"✿";font-size:9rem;position:absolute;top:10%;right:12%;color:rgba(255,255,255,.12);transform:rotate(-15deg);line-height:1
-    }
-    .testimonial-flower::after{
-      content:"❀";font-size:5rem;position:absolute;bottom:18%;right:28%;color:rgba(255,255,255,.09);transform:rotate(20deg);line-height:1
-    }
+    .testimonial-flower{display:none}
     .testimonial-quote-mark{font-family:'Great Vibes',cursive;font-size:8rem;color:rgba(255,255,255,.1);position:absolute;top:-10px;left:24px;line-height:1;pointer-events:none;z-index:0}
 
     /* ── BUILD YOUR OWN ── */
@@ -357,9 +353,27 @@
     <blockquote>"Lala did our event table and it was absolutely breathtaking — everyone kept saying it looked like something out of a magazine. <em>Puso su corazón en cada detalle.</em> She is truly gifted."</blockquote>
     <cite>— Happy Client · Spring Hill, FL</cite>
   </div>
-  <div class="testimonial-flower">
-    <div class="testimonial-flower-overlay"></div>
-  </div>
+  <span class="petal" style="width:28px;height:28px;left:72%;bottom:0;animation-duration:7s;animation-delay:0s">
+    <svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><ellipse cx="20" cy="12" rx="8" ry="13" fill="rgba(255,255,255,0.55)" transform="rotate(0 20 20)"/><ellipse cx="20" cy="12" rx="8" ry="13" fill="rgba(255,255,255,0.45)" transform="rotate(72 20 20)"/><ellipse cx="20" cy="12" rx="8" ry="13" fill="rgba(255,255,255,0.5)" transform="rotate(144 20 20)"/><ellipse cx="20" cy="12" rx="8" ry="13" fill="rgba(255,255,255,0.45)" transform="rotate(216 20 20)"/><ellipse cx="20" cy="12" rx="8" ry="13" fill="rgba(255,255,255,0.5)" transform="rotate(288 20 20)"/><circle cx="20" cy="20" r="4" fill="rgba(255,255,255,0.7)"/></svg>
+  </span>
+  <span class="petal" style="width:18px;height:18px;left:55%;bottom:0;animation-duration:9s;animation-delay:2s">
+    <svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><ellipse cx="20" cy="12" rx="8" ry="13" fill="rgba(255,255,255,0.4)" transform="rotate(0 20 20)"/><ellipse cx="20" cy="12" rx="8" ry="13" fill="rgba(255,255,255,0.35)" transform="rotate(72 20 20)"/><ellipse cx="20" cy="12" rx="8" ry="13" fill="rgba(255,255,255,0.4)" transform="rotate(144 20 20)"/><ellipse cx="20" cy="12" rx="8" ry="13" fill="rgba(255,255,255,0.35)" transform="rotate(216 20 20)"/><ellipse cx="20" cy="12" rx="8" ry="13" fill="rgba(255,255,255,0.4)" transform="rotate(288 20 20)"/><circle cx="20" cy="20" r="4" fill="rgba(255,255,255,0.6)"/></svg>
+  </span>
+  <span class="petal" style="width:36px;height:36px;left:83%;bottom:0;animation-duration:11s;animation-delay:1s">
+    <svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><ellipse cx="20" cy="12" rx="8" ry="13" fill="rgba(255,255,255,0.5)" transform="rotate(0 20 20)"/><ellipse cx="20" cy="12" rx="8" ry="13" fill="rgba(255,255,255,0.45)" transform="rotate(72 20 20)"/><ellipse cx="20" cy="12" rx="8" ry="13" fill="rgba(255,255,255,0.5)" transform="rotate(144 20 20)"/><ellipse cx="20" cy="12" rx="8" ry="13" fill="rgba(255,255,255,0.45)" transform="rotate(216 20 20)"/><ellipse cx="20" cy="12" rx="8" ry="13" fill="rgba(255,255,255,0.5)" transform="rotate(288 20 20)"/><circle cx="20" cy="20" r="4" fill="rgba(255,255,255,0.65)"/></svg>
+  </span>
+  <span class="petal" style="width:22px;height:22px;left:40%;bottom:0;animation-duration:8s;animation-delay:3.5s">
+    <svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><ellipse cx="20" cy="12" rx="8" ry="13" fill="rgba(255,255,255,0.45)" transform="rotate(0 20 20)"/><ellipse cx="20" cy="12" rx="8" ry="13" fill="rgba(255,255,255,0.4)" transform="rotate(72 20 20)"/><ellipse cx="20" cy="12" rx="8" ry="13" fill="rgba(255,255,255,0.45)" transform="rotate(144 20 20)"/><ellipse cx="20" cy="12" rx="8" ry="13" fill="rgba(255,255,255,0.4)" transform="rotate(216 20 20)"/><ellipse cx="20" cy="12" rx="8" ry="13" fill="rgba(255,255,255,0.45)" transform="rotate(288 20 20)"/><circle cx="20" cy="20" r="4" fill="rgba(255,255,255,0.6)"/></svg>
+  </span>
+  <span class="petal" style="width:16px;height:16px;left:91%;bottom:0;animation-duration:6.5s;animation-delay:5s">
+    <svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><ellipse cx="20" cy="12" rx="8" ry="13" fill="rgba(255,255,255,0.35)" transform="rotate(0 20 20)"/><ellipse cx="20" cy="12" rx="8" ry="13" fill="rgba(255,255,255,0.3)" transform="rotate(72 20 20)"/><ellipse cx="20" cy="12" rx="8" ry="13" fill="rgba(255,255,255,0.35)" transform="rotate(144 20 20)"/><ellipse cx="20" cy="12" rx="8" ry="13" fill="rgba(255,255,255,0.3)" transform="rotate(216 20 20)"/><ellipse cx="20" cy="12" rx="8" ry="13" fill="rgba(255,255,255,0.35)" transform="rotate(288 20 20)"/><circle cx="20" cy="20" r="4" fill="rgba(255,255,255,0.5)"/></svg>
+  </span>
+  <span class="petal" style="width:30px;height:30px;left:63%;bottom:0;animation-duration:10s;animation-delay:4s">
+    <svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><ellipse cx="20" cy="12" rx="8" ry="13" fill="rgba(255,255,255,0.5)" transform="rotate(0 20 20)"/><ellipse cx="20" cy="12" rx="8" ry="13" fill="rgba(255,255,255,0.45)" transform="rotate(72 20 20)"/><ellipse cx="20" cy="12" rx="8" ry="13" fill="rgba(255,255,255,0.5)" transform="rotate(144 20 20)"/><ellipse cx="20" cy="12" rx="8" ry="13" fill="rgba(255,255,255,0.45)" transform="rotate(216 20 20)"/><ellipse cx="20" cy="12" rx="8" ry="13" fill="rgba(255,255,255,0.5)" transform="rotate(288 20 20)"/><circle cx="20" cy="20" r="4" fill="rgba(255,255,255,0.65)"/></svg>
+  </span>
+  <span class="petal" style="width:20px;height:20px;left:78%;bottom:0;animation-duration:12s;animation-delay:6s">
+    <svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><ellipse cx="20" cy="12" rx="8" ry="13" fill="rgba(255,255,255,0.4)" transform="rotate(0 20 20)"/><ellipse cx="20" cy="12" rx="8" ry="13" fill="rgba(255,255,255,0.35)" transform="rotate(72 20 20)"/><ellipse cx="20" cy="12" rx="8" ry="13" fill="rgba(255,255,255,0.4)" transform="rotate(144 20 20)"/><ellipse cx="20" cy="12" rx="8" ry="13" fill="rgba(255,255,255,0.35)" transform="rotate(216 20 20)"/><ellipse cx="20" cy="12" rx="8" ry="13" fill="rgba(255,255,255,0.4)" transform="rotate(288 20 20)"/><circle cx="20" cy="20" r="4" fill="rgba(255,255,255,0.55)"/></svg>
+  </span>
 </div>
 
 <!-- BUILD YOUR OWN -->
