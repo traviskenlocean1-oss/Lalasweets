@@ -206,6 +206,18 @@
     .reveal{opacity:0;transform:translateY(28px);transition:opacity .75s ease,transform .75s ease}
     .reveal.visible{opacity:1;transform:translateY(0)}
 
+
+    /* ── LANG TOGGLE ── */
+    .lang-toggle{display:flex;align-items:center;gap:2px;background:var(--cream);border:1.5px solid var(--gold-lt);border-radius:20px;padding:3px;margin-left:16px}
+    .lang-btn{padding:5px 14px;border:none;background:transparent;font-family:'Lato',sans-serif;font-size:.7rem;font-weight:700;letter-spacing:.1em;cursor:pointer;border-radius:16px;color:var(--text-lt);transition:all .22s}
+    .lang-btn.active{background:var(--rose);color:#fff}
+    .t-es{display:none}
+    body.es .t-en{display:none}
+    body.es .t-es{display:unset}
+    body.es span.t-es{display:inline}
+    body.es p.t-es{display:block}
+    body.es div.t-es{display:block}
+    body.es li.t-es{display:list-item}
     /* ── RESPONSIVE ── */
     @media(max-width:960px){
       .about-inner,.order-inner{grid-template-columns:1fr;gap:48px}
@@ -234,6 +246,10 @@
     <li><a href="#build">Build Your Own</a></li>
     <li><a href="#order" class="nav-cta">Order Now</a></li>
   </ul>
+  <div class="lang-toggle">
+    <button class="lang-btn active" id="btnEN" onclick="setLang('en')">EN</button>
+    <button class="lang-btn" id="btnES" onclick="setLang('es')">ES</button>
+  </div>
 </nav>
 
 <!-- HERO -->
@@ -242,13 +258,13 @@
   <div class="hero-overlay"></div>
   <div class="hero-content">
     <div class="hero-script">Lala Sweet's &amp; Cake</div>
-    <div class="hero-subtitle">Spring Hill, Florida &nbsp;·&nbsp; Handcrafted with Amor</div>
+    <div class="hero-subtitle"><span class="t-en">Spring Hill, Florida &nbsp;·&nbsp; Handcrafted with Amor</span><span class="t-es">Spring Hill, Florida &nbsp;·&nbsp; Hecho con Amor</span></div>
     <div class="hero-divider"></div>
-    <p class="hero-tagline">Elegant desserts &amp; grazing tables for every celebration.<br><em style="font-family:'Playfair Display',serif;font-style:italic;color:var(--gold-lt)">Postres y mesas de charcutería hechos con amor.</em></p>
-    <a href="#gallery" class="btn btn-gold">See Our Work</a>
-    <a href="#order" class="btn btn-outline">Order Now</a>
+    <p class="hero-tagline"><span class="t-en">Elegant desserts &amp; grazing tables for every celebration.</span><span class="t-es">Postres y mesas de charcutería para cada celebración.</span></p>
+    <a href="#gallery" class="btn btn-gold"><span class="t-en">See Our Work</span><span class="t-es">Ver Nuestro Trabajo</span></a>
+    <a href="#order" class="btn btn-outline"><span class="t-en">Order Now</span><span class="t-es">Ordenar Ahora</span></a>
   </div>
-  <div class="hero-scroll" onclick="document.getElementById('about').scrollIntoView({behavior:'smooth'})">↓ &nbsp; Scroll</div>
+  <div class="hero-scroll" style="cursor:pointer" onclick="document.getElementById('about').scrollIntoView({behavior:'smooth'})">↓ &nbsp; Scroll</div>
 </section>
 
 <!-- ABOUT -->
@@ -260,15 +276,15 @@
       <div class="about-badge">Hecha<br>con<br><span>Amor</span></div>
     </div>
     <div class="about-text reveal">
-      <div class="section-kicker">Our Story · Nuestra Historia</div>
-      <h2>Hecha con Amor</h2>
-      <h3>Hispanic Heritage · Spring Hill, Florida</h3>
-      <p>At Lala Sweet's &amp; Cake, every treat is an expression of love rooted in Hispanic tradition. <em>Cada postre es una expresión de amor.</em> From our signature tres leches cups and golden quesitos to our stunning grazing tables — all crafted by hand.</p>
-      <p>Based right here in Spring Hill, FL, we bring the warmth of Latin culture to every event — birthdays, quinceañeras, baby showers, weddings, and more. <em>Ninguna celebración es demasiado grande ni demasiado íntima.</em></p>
+      <div class="section-kicker"><span class="t-en">Our Story</span><span class="t-es">Nuestra Historia</span></div>
+      <h2><span class="t-en">Made with Love</span><span class="t-es">Hecha con Amor</span></h2>
+      <h3><span class="t-en">Hispanic Heritage · Spring Hill, Florida</span><span class="t-es">Herencia Hispana · Spring Hill, Florida</span></h3>
+      <p class="t-en">At Lala Sweet's &amp; Cake, every treat is an expression of love rooted in Hispanic tradition. From our signature tres leches cups and golden quesitos to our stunning grazing tables — all crafted by hand.</p><p class="t-es">En Lala Sweet's &amp; Cake, cada postre es una expresión de amor arraigada en la tradición hispana. Desde nuestros vasitos de tres leches y quesitos dorados hasta nuestras mesas de charcutería — todo hecho a mano.</p>
+      <p class="t-en">Based right here in Spring Hill, FL, we bring the warmth of Latin culture to every event — birthdays, quinceañeras, baby showers, weddings, and more. No celebration is too big or too intimate.</p><p class="t-es">Ubicados aquí en Spring Hill, FL, llevamos la calidez de la cultura latina a cada evento — cumpleaños, quinceañeras, baby showers, bodas y más. Ninguna celebración es demasiado grande ni demasiado íntima.</p>
       <div class="about-facts">
-        <div class="about-fact"><div class="about-fact-num">100%</div><div class="about-fact-label">Handcrafted<br>Artesanal</div></div>
-        <div class="about-fact"><div class="about-fact-num">♡</div><div class="about-fact-label">Made with Love<br>Con Amor</div></div>
-        <div class="about-fact"><div class="about-fact-num">Spring<br>Hill</div><div class="about-fact-label">FL Based</div></div>
+        <div class="about-fact"><div class="about-fact-num">100%</div><div class="about-fact-label"><span class="t-en">Handcrafted</span><span class="t-es">Artesanal</span></div></div>
+        <div class="about-fact"><div class="about-fact-num">♡</div><div class="about-fact-label"><span class="t-en">Made with Love</span><span class="t-es">Con Amor</span></div></div>
+        <div class="about-fact"><div class="about-fact-num">Spring<br>Hill</div><div class="about-fact-label"><span class="t-en">FL Based</span><span class="t-es">Basados en FL</span></div></div>
       </div>
     </div>
   </div>
@@ -277,46 +293,210 @@
 <!-- MENU -->
 <section id="menu">
   <div class="section-header reveal">
-    <div class="section-kicker">What We Make · Lo Que Hacemos</div>
-    <div class="section-title">Our Specialties</div>
+    <div class="section-kicker"><span class="t-en">What We Make</span><span class="t-es">Lo Que Hacemos</span></div>
+    <div class="section-title"><span class="t-en">Our Full Menu</span><span class="t-es">Nuestro Menú Completo</span></div>
     <hr class="section-rule"/>
-    <p class="section-text">Hover any item to see sizes &amp; pricing. <em>Pasa el cursor para ver precios y porciones.</em></p>
+    <p class="section-text"><span class="t-en">Hover any item to see full pricing.</span><span class="t-es">Pasa el cursor para ver precios completos.</span></p>
   </div>
   <div class="menu-grid">
+
+    <!-- Bandejas de Charcutería -->
     <div class="menu-card reveal">
-      <div class="menu-card-front"><span class="menu-icon">🫶</span><h3>Grazing &amp; Charcuterie Tables</h3><span class="menu-es">Mesas de Charcutería</span><p>Stunning full-scale dessert &amp; savory grazing tables. <em style="font-family:'Playfair Display',serif;font-style:italic;color:var(--rose)">Perfectas para cualquier ocasión.</em></p><span class="menu-tag">Event Favorite · Favorito</span><div class="menu-hover-hint">↑ Hover for pricing</div></div>
-      <div class="menu-pricing"><div class="pricing-title">Sizes &amp; Pricing · Tamaños</div><table class="pricing-table"><tr><td>Personal (up to 10)</td><td>from $120</td></tr><tr><td>Medium (up to 25)</td><td>from $220</td></tr><tr><td>Large (up to 50)</td><td>from $380</td></tr><tr><td>Grand (50+)</td><td>Custom Quote</td></tr></table><div class="pricing-note">*Varies by selections · Varía según selección</div></div>
+      <div class="menu-card-front">
+        <span class="menu-icon">🫶</span>
+        <h3>Charcuterie Trays</h3>
+        <span class="menu-es">Bandejas de Charcutería</span>
+        <p>Stunning grazing trays built for your group size — meats, cheeses, fruits &amp; more. <em style="font-family:'Playfair Display',serif;font-style:italic;color:var(--rose)">Perfectas para cualquier ocasión.</em></p>
+        <span class="menu-tag">Most Popular · Más Popular</span>
+        <div class="menu-hover-hint">↑ Hover for pricing</div>
+      </div>
+      <div class="menu-pricing">
+        <div class="pricing-title">Serves / Para · Precio</div>
+        <table class="pricing-table">
+          <tr><td>10–12 people / personas</td><td>$75</td></tr>
+          <tr><td>15–20 people / personas</td><td>$100</td></tr>
+          <tr><td>25–30 people / personas</td><td>$125</td></tr>
+        </table>
+        <div class="pricing-note">*Custom sizes available · Tamaños personalizados disponibles</div>
+      </div>
     </div>
+
+    <!-- Mini Box -->
     <div class="menu-card reveal">
-      <div class="menu-card-front"><span class="menu-icon">🍮</span><h3>Tres Leches Cups</h3><span class="menu-es">Vasitos de Tres Leches</span><p>Light, creamy, soaked in three milks and topped with fresh berries. <em style="font-family:'Playfair Display',serif;font-style:italic;color:var(--rose)">Un clásico de la cocina latina.</em></p><span class="menu-tag">Puerto Rican Classic</span><div class="menu-hover-hint">↑ Hover for pricing</div></div>
-      <div class="menu-pricing"><div class="pricing-title">Portions · Porciones</div><table class="pricing-table"><tr><td>6 cups / vasitos</td><td>$28</td></tr><tr><td>12 cups / vasitos</td><td>$52</td></tr><tr><td>24 cups / vasitos</td><td>$95</td></tr><tr><td>48 cups / vasitos</td><td>$180</td></tr></table><div class="pricing-note">*With fresh strawberries · Con fresas frescas</div></div>
+      <div class="menu-card-front">
+        <span class="menu-icon">🎁</span>
+        <h3>Mini Charcuterie Box</h3>
+        <span class="menu-es">Charcutería Mini Box</span>
+        <p>Individual gift-style charcuterie boxes — perfect for favors, gifts, or personal treats. <em style="font-family:'Playfair Display',serif;font-style:italic;color:var(--rose)">Ideal como recuerdo o regalo.</em></p>
+        <span class="menu-tag">Gift Ready · Lista para Regalar</span>
+        <div class="menu-hover-hint">↑ Hover for pricing</div>
+      </div>
+      <div class="menu-pricing">
+        <div class="pricing-title">Per Box · Por Caja</div>
+        <table class="pricing-table">
+          <tr><td>Individual box / caja</td><td>$9.00 c/u</td></tr>
+          <tr><td>Bulk orders welcome</td><td>Ask us!</td></tr>
+        </table>
+        <div class="pricing-note">*Mínimo de pedido puede aplicar</div>
+      </div>
     </div>
+
+    <!-- Mini Sandwich de Pollo -->
     <div class="menu-card reveal">
-      <div class="menu-card-front"><span class="menu-icon">🥐</span><h3>Quesitos</h3><span class="menu-es">Pastelitos de Queso</span><p>Flaky cream cheese pastries dusted with powdered sugar. <em style="font-family:'Playfair Display',serif;font-style:italic;color:var(--rose)">Crujientes por fuera, suaves por dentro.</em></p><span class="menu-tag">Fan Favorite · El Preferido</span><div class="menu-hover-hint">↑ Hover for pricing</div></div>
-      <div class="menu-pricing"><div class="pricing-title">Portions · Porciones</div><table class="pricing-table"><tr><td>6 pieces / piezas</td><td>$15</td></tr><tr><td>12 pieces / piezas</td><td>$27</td></tr><tr><td>24 pieces / piezas</td><td>$50</td></tr><tr><td>48 pieces / piezas</td><td>$92</td></tr></table><div class="pricing-note">*Freshly baked · Recién horneados</div></div>
+      <div class="menu-card-front">
+        <span class="menu-icon">🥪</span>
+        <h3>Mini Chicken Sandwiches</h3>
+        <span class="menu-es">Mini Sandwich de Pollo</span>
+        <p>Delicious mini chicken sandwiches — perfect for events &amp; catering. <em style="font-family:'Playfair Display',serif;font-style:italic;color:var(--rose)">Perfectos para eventos y catering.</em></p>
+        <span class="menu-tag">Event Staple · Clásico de Eventos</span>
+        <div class="menu-hover-hint">↑ Hover for pricing</div>
+      </div>
+      <div class="menu-pricing">
+        <div class="pricing-title">Quantity / Cantidad</div>
+        <table class="pricing-table">
+          <tr><td>24 sandwiches</td><td>$48</td></tr>
+          <tr><td>48 sandwiches</td><td>$96</td></tr>
+        </table>
+        <div class="pricing-note">*Made fresh to order · Frescos al momento</div>
+      </div>
     </div>
+
+    <!-- Sandwich de Mezcla -->
     <div class="menu-card reveal">
-      <div class="menu-card-front"><span class="menu-icon">🫓</span><h3>Pastelillos</h3><span class="menu-es">Pastelillos Artesanales</span><p>Golden hand-folded pastries with savory or sweet fillings. <em style="font-family:'Playfair Display',serif;font-style:italic;color:var(--rose)">Un sabor a hogar en cada bocado.</em></p><span class="menu-tag">Handmade Daily · Hechos a Mano</span><div class="menu-hover-hint">↑ Hover for pricing</div></div>
-      <div class="menu-pricing"><div class="pricing-title">Portions · Porciones</div><table class="pricing-table"><tr><td>6 pieces / piezas</td><td>$14</td></tr><tr><td>12 pieces / piezas</td><td>$25</td></tr><tr><td>24 pieces / piezas</td><td>$46</td></tr><tr><td>48 pieces / piezas</td><td>$85</td></tr></table><div class="pricing-note">*Guava, cheese, or meat · Guayaba, queso, carne</div></div>
+      <div class="menu-card-front">
+        <span class="menu-icon">🥖</span>
+        <h3>Mixed Sandwiches</h3>
+        <span class="menu-es">Sandwich de Mezcla</span>
+        <p>Assorted finger sandwiches with a variety of fillings — crowd pleasers every time. <em style="font-family:'Playfair Display',serif;font-style:italic;color:var(--rose)">Surtidos con variedad de rellenos.</em></p>
+        <span class="menu-tag">Crowd Favorite · Favorito del Público</span>
+        <div class="menu-hover-hint">↑ Hover for pricing</div>
+      </div>
+      <div class="menu-pricing">
+        <div class="pricing-title">Quantity / Cantidad</div>
+        <table class="pricing-table">
+          <tr><td>12 sandwiches</td><td>$8</td></tr>
+          <tr><td>24 sandwiches</td><td>$16</td></tr>
+          <tr><td>36 sandwiches</td><td>$24</td></tr>
+          <tr><td>50 sandwiches</td><td>$35</td></tr>
+        </table>
+        <div class="pricing-note">*Surtidos y frescos · Assorted &amp; fresh</div>
+      </div>
     </div>
+
+    <!-- Canapés -->
     <div class="menu-card reveal">
-      <div class="menu-card-front"><span class="menu-icon">🎁</span><h3>Charcuterie Gift Boxes</h3><span class="menu-es">Cajas de Regalo</span><p>Curated gift boxes with cheeses, meats, fruits, and sweets. <em style="font-family:'Playfair Display',serif;font-style:italic;color:var(--rose)">El regalo perfecto.</em></p><span class="menu-tag">Custom Orders · Personalizadas</span><div class="menu-hover-hint">↑ Hover for pricing</div></div>
-      <div class="menu-pricing"><div class="pricing-title">Box Sizes · Tamaños</div><table class="pricing-table"><tr><td>Small / Pequeña (1–2)</td><td>$38</td></tr><tr><td>Medium / Mediana (3–4)</td><td>$58</td></tr><tr><td>Large / Grande (4–6)</td><td>$85</td></tr><tr><td>XL / Extra Grande (6+)</td><td>$115</td></tr></table><div class="pricing-note">*Fully customizable · Completamente personalizable</div></div>
+      <div class="menu-card-front">
+        <span class="menu-icon">🍢</span>
+        <h3>Canapés</h3>
+        <span class="menu-es">Canapés Artesanales</span>
+        <p>Elegant bite-sized canapés — a sophisticated touch for any gathering or event. <em style="font-family:'Playfair Display',serif;font-style:italic;color:var(--rose)">Un toque sofisticado para cualquier reunión.</em></p>
+        <span class="menu-tag">Elegant Bites · Bocados Elegantes</span>
+        <div class="menu-hover-hint">↑ Hover for pricing</div>
+      </div>
+      <div class="menu-pricing">
+        <div class="pricing-title">Quantity / Cantidad</div>
+        <table class="pricing-table">
+          <tr><td>25 pieces / piezas</td><td>$15</td></tr>
+          <tr><td>50 pieces / piezas</td><td>$25</td></tr>
+          <tr><td>100 pieces / piezas</td><td>$47</td></tr>
+        </table>
+        <div class="pricing-note">*Variety of toppings · Variedad de toppings</div>
+      </div>
     </div>
+
+    <!-- Fresas con Chocolate -->
     <div class="menu-card reveal">
-      <div class="menu-card-front"><span class="menu-icon">🎂</span><h3>Custom Cakes &amp; Desserts</h3><span class="menu-es">Tortas y Postres Especiales</span><p>Elegant cakes designed around your celebration. <em style="font-family:'Playfair Display',serif;font-style:italic;color:var(--rose)">Diseñados con amor para ti.</em></p><span class="menu-tag">Made to Order · A Tu Medida</span><div class="menu-hover-hint">↑ Hover for pricing</div></div>
-      <div class="menu-pricing"><div class="pricing-title">Cake Sizes · Tamaños</div><table class="pricing-table"><tr><td>6" round (8–10 slices)</td><td>from $60</td></tr><tr><td>8" round (12–16 slices)</td><td>from $85</td></tr><tr><td>10" round (20–25 slices)</td><td>from $120</td></tr><tr><td>Tiered / Multi-tier</td><td>Custom Quote</td></tr></table><div class="pricing-note">*Includes custom design · Incluye diseño personalizado</div></div>
+      <div class="menu-card-front">
+        <span class="menu-icon">🍓</span>
+        <h3>Chocolate Strawberries</h3>
+        <span class="menu-es">Fresas con Chocolate</span>
+        <p>Luscious strawberries hand-dipped in rich chocolate — a timeless, romantic treat. <em style="font-family:'Playfair Display',serif;font-style:italic;color:var(--rose)">Un clásico romántico irresistible.</em></p>
+        <span class="menu-tag">Fan Favorite · El Preferido</span>
+        <div class="menu-hover-hint">↑ Hover for pricing</div>
+      </div>
+      <div class="menu-pricing">
+        <div class="pricing-title">Quantity / Cantidad</div>
+        <table class="pricing-table">
+          <tr><td>12 strawberries / fresas</td><td>$20</td></tr>
+          <tr><td>24 strawberries / fresas</td><td>$36</td></tr>
+          <tr><td>36 strawberries / fresas</td><td>$54</td></tr>
+        </table>
+        <div class="pricing-note">*Dark, milk, or white chocolate · A elegir</div>
+      </div>
     </div>
+
+    <!-- Ceviche de Camarones -->
+    <div class="menu-card reveal">
+      <div class="menu-card-front">
+        <span class="menu-icon">🍤</span>
+        <h3>Shrimp Ceviche</h3>
+        <span class="menu-es">Ceviche de Camarones</span>
+        <p>Fresh, vibrant shrimp ceviche — the ultimate crowd-pleaser for summer events. <em style="font-family:'Playfair Display',serif;font-style:italic;color:var(--rose)">Fresco y lleno de sabor latino.</em></p>
+        <span class="menu-tag">Fresh Made · Hecho Fresco</span>
+        <div class="menu-hover-hint">↑ Hover for pricing</div>
+      </div>
+      <div class="menu-pricing">
+        <div class="pricing-title">Weight / Peso</div>
+        <table class="pricing-table">
+          <tr><td>3 pounds / libras</td><td>$65</td></tr>
+          <tr><td>6 pounds / libras</td><td>$90</td></tr>
+        </table>
+        <div class="pricing-note">*Served with chips or tostones · Con chips o tostones</div>
+      </div>
+    </div>
+
+    <!-- Dips -->
+    <div class="menu-card reveal">
+      <div class="menu-card-front">
+        <span class="menu-icon">🫕</span>
+        <h3>Dips</h3>
+        <span class="menu-es">Dips / Salsas</span>
+        <p>Four flavors of creamy, savory dip — served with your choice of crackers or chips. <em style="font-family:'Playfair Display',serif;font-style:italic;color:var(--rose)">Incluye galletas o chips.</em></p>
+        <span class="menu-tag">Includes Chips · Incluye Chips</span>
+        <div class="menu-hover-hint">↑ Hover for pricing</div>
+      </div>
+      <div class="menu-pricing">
+        <div class="pricing-title">Flavor / Sabor</div>
+        <table class="pricing-table">
+          <tr><td>🍗 Chicken / Pollo</td><td>$22</td></tr>
+          <tr><td>🥬 Spinach / Espinaca</td><td>$18</td></tr>
+          <tr><td>🥓 Bacon Ranch</td><td>$18</td></tr>
+          <tr><td>🔥 Bola de Fuego</td><td>$18</td></tr>
+        </table>
+        <div class="pricing-note">*All include crackers or chips · Todos incluyen galletas o chips</div>
+      </div>
+    </div>
+
+    <!-- Ensaladas -->
+    <div class="menu-card reveal">
+      <div class="menu-card-front">
+        <span class="menu-icon">🥗</span>
+        <h3>Salads</h3>
+        <span class="menu-es">Ensaladas</span>
+        <p>Cold pasta salad and hearty grain salad — fresh, filling sides for any event. <em style="font-family:'Playfair Display',serif;font-style:italic;color:var(--rose)">Frescas y deliciosas para cualquier evento.</em></p>
+        <span class="menu-tag">Fresh Sides · Acompañantes Frescos</span>
+        <div class="menu-hover-hint">↑ Hover for pricing</div>
+      </div>
+      <div class="menu-pricing">
+        <div class="pricing-title">Option / Opción</div>
+        <table class="pricing-table">
+          <tr><td>Cold Pasta Salad / Ensalada de Pasta Fría</td><td>$14</td></tr>
+          <tr><td>Grain Salad 4 lbs / Ensalada de Granos 4 libras</td><td>$28</td></tr>
+        </table>
+        <div class="pricing-note">*Made fresh daily · Preparadas frescas cada día</div>
+      </div>
+    </div>
+
   </div>
 </section>
 
 <!-- GALLERY -->
 <section id="gallery">
   <div class="section-header reveal">
-    <div class="section-kicker">Our Portfolio · Nuestro Trabajo</div>
-    <div class="section-title">A Taste of Our Work</div>
+    <div class="section-kicker"><span class="t-en">Our Portfolio</span><span class="t-es">Nuestro Trabajo</span></div>
+    <div class="section-title"><span class="t-en">A Taste of Our Work</span><span class="t-es">Un Vistazo a lo que Hacemos</span></div>
     <hr class="section-rule"/>
-    <p class="section-text">Click any photo to see it in full. <em>Haz clic en cualquier foto para verla completa.</em></p>
+    <p class="section-text"><span class="t-en">A glimpse of what we've created for our beautiful clients.</span><span class="t-es">Un vistazo de lo que hemos creado para nuestros clientes.</span></p>
   </div>
   <div class="gallery-grid" id="galleryGrid">
     <div class="gallery-card reveal">
@@ -413,18 +593,21 @@
 <section id="build">
   <div class="build-inner">
     <div class="section-header reveal">
-      <div class="section-kicker" style="color:var(--gold-lt)">Custom Order · Pedido Personalizado</div>
-      <div class="section-title" style="color:var(--gold-lt)">Build Your Own</div>
+      <div class="section-kicker" style="color:var(--gold-lt)"><span class="t-en">Custom Order</span><span class="t-es">Pedido Personalizado</span></div>
+      <div class="section-title" style="color:var(--gold-lt)"><span class="t-en">Build Your Own</span><span class="t-es">Crea Tu Pedido</span></div>
       <hr class="section-rule"/>
-      <p class="section-text" style="color:rgba(255,255,255,.6)">Mix and match your favorites. <em>Combina tus favoritos y obtén un estimado al instante.</em></p>
+      <p class="section-text" style="color:rgba(255,255,255,.6)"><span class="t-en">Mix and match from our full menu and get an instant estimate.</span><span class="t-es">Combina lo que quieras y obtén un estimado al instante.</span></p>
     </div>
     <div class="build-grid" id="buildGrid">
-      <div class="build-item" data-base="28"><div class="build-price-tag">from $28</div><span class="build-item-icon">🍮</span><div class="build-item-name">Tres Leches Cups</div><span class="build-item-es">Vasitos de Tres Leches</span><div class="build-qty"><button onclick="changeQty(this,-1)">−</button><span class="build-qty-num">0</span><button onclick="changeQty(this,1)">+</button></div><div style="font-size:.65rem;color:rgba(255,255,255,.4);margin-top:5px">per 6 cups · por 6 vasitos</div></div>
-      <div class="build-item" data-base="15"><div class="build-price-tag">from $15</div><span class="build-item-icon">🥐</span><div class="build-item-name">Quesitos</div><span class="build-item-es">Pastelitos de Queso</span><div class="build-qty"><button onclick="changeQty(this,-1)">−</button><span class="build-qty-num">0</span><button onclick="changeQty(this,1)">+</button></div><div style="font-size:.65rem;color:rgba(255,255,255,.4);margin-top:5px">per 6 pieces · por 6 piezas</div></div>
-      <div class="build-item" data-base="14"><div class="build-price-tag">from $14</div><span class="build-item-icon">🫓</span><div class="build-item-name">Pastelillos</div><span class="build-item-es">Pastelillos Artesanales</span><div class="build-qty"><button onclick="changeQty(this,-1)">−</button><span class="build-qty-num">0</span><button onclick="changeQty(this,1)">+</button></div><div style="font-size:.65rem;color:rgba(255,255,255,.4);margin-top:5px">per 6 pieces · por 6 piezas</div></div>
-      <div class="build-item" data-base="38"><div class="build-price-tag">from $38</div><span class="build-item-icon">🎁</span><div class="build-item-name">Gift Box</div><span class="build-item-es">Caja de Regalo</span><div class="build-qty"><button onclick="changeQty(this,-1)">−</button><span class="build-qty-num">0</span><button onclick="changeQty(this,1)">+</button></div><div style="font-size:.65rem;color:rgba(255,255,255,.4);margin-top:5px">per box · por caja</div></div>
-      <div class="build-item" data-base="60"><div class="build-price-tag">from $60</div><span class="build-item-icon">🎂</span><div class="build-item-name">Custom Cake</div><span class="build-item-es">Torta Personalizada</span><div class="build-qty"><button onclick="changeQty(this,-1)">−</button><span class="build-qty-num">0</span><button onclick="changeQty(this,1)">+</button></div><div style="font-size:.65rem;color:rgba(255,255,255,.4);margin-top:5px">per cake · por torta</div></div>
-      <div class="build-item" data-base="120"><div class="build-price-tag">from $120</div><span class="build-item-icon">🫶</span><div class="build-item-name">Grazing Table</div><span class="build-item-es">Mesa de Charcutería</span><div class="build-qty"><button onclick="changeQty(this,-1)">−</button><span class="build-qty-num">0</span><button onclick="changeQty(this,1)">+</button></div><div style="font-size:.65rem;color:rgba(255,255,255,.4);margin-top:5px">per table · por mesa</div></div>
+      <div class="build-item" data-base="75"><div class="build-price-tag">from $75</div><span class="build-item-icon">🫶</span><div class="build-item-name">Charcuterie Tray</div><span class="build-item-es">Bandeja de Charcutería</span><div class="build-qty"><button onclick="changeQty(this,-1)">−</button><span class="build-qty-num">0</span><button onclick="changeQty(this,1)">+</button></div><div style="font-size:.65rem;color:rgba(255,255,255,.4);margin-top:5px">10–12 people · personas</div></div>
+      <div class="build-item" data-base="9"><div class="build-price-tag">$9 c/u</div><span class="build-item-icon">🎁</span><div class="build-item-name">Mini Charcuterie Box</div><span class="build-item-es">Mini Box de Charcutería</span><div class="build-qty"><button onclick="changeQty(this,-1)">−</button><span class="build-qty-num">0</span><button onclick="changeQty(this,1)">+</button></div><div style="font-size:.65rem;color:rgba(255,255,255,.4);margin-top:5px">per box · por caja</div></div>
+      <div class="build-item" data-base="48"><div class="build-price-tag">from $48</div><span class="build-item-icon">🥪</span><div class="build-item-name">Mini Chicken Sandwiches</div><span class="build-item-es">Mini Sandwich de Pollo</span><div class="build-qty"><button onclick="changeQty(this,-1)">−</button><span class="build-qty-num">0</span><button onclick="changeQty(this,1)">+</button></div><div style="font-size:.65rem;color:rgba(255,255,255,.4);margin-top:5px">per 24 · por 24</div></div>
+      <div class="build-item" data-base="8"><div class="build-price-tag">from $8</div><span class="build-item-icon">🥖</span><div class="build-item-name">Mixed Sandwiches</div><span class="build-item-es">Sandwich de Mezcla</span><div class="build-qty"><button onclick="changeQty(this,-1)">−</button><span class="build-qty-num">0</span><button onclick="changeQty(this,1)">+</button></div><div style="font-size:.65rem;color:rgba(255,255,255,.4);margin-top:5px">per 12 · por 12</div></div>
+      <div class="build-item" data-base="20"><div class="build-price-tag">from $20</div><span class="build-item-icon">🍓</span><div class="build-item-name">Chocolate Strawberries</div><span class="build-item-es">Fresas con Chocolate</span><div class="build-qty"><button onclick="changeQty(this,-1)">−</button><span class="build-qty-num">0</span><button onclick="changeQty(this,1)">+</button></div><div style="font-size:.65rem;color:rgba(255,255,255,.4);margin-top:5px">per 12 · por 12</div></div>
+      <div class="build-item" data-base="15"><div class="build-price-tag">from $15</div><span class="build-item-icon">🍢</span><div class="build-item-name">Canapés</div><span class="build-item-es">Canapés Artesanales</span><div class="build-qty"><button onclick="changeQty(this,-1)">−</button><span class="build-qty-num">0</span><button onclick="changeQty(this,1)">+</button></div><div style="font-size:.65rem;color:rgba(255,255,255,.4);margin-top:5px">per 25 · por 25</div></div>
+      <div class="build-item" data-base="65"><div class="build-price-tag">from $65</div><span class="build-item-icon">🍤</span><div class="build-item-name">Shrimp Ceviche</div><span class="build-item-es">Ceviche de Camarones</span><div class="build-qty"><button onclick="changeQty(this,-1)">−</button><span class="build-qty-num">0</span><button onclick="changeQty(this,1)">+</button></div><div style="font-size:.65rem;color:rgba(255,255,255,.4);margin-top:5px">per 3 lbs · por 3 libras</div></div>
+      <div class="build-item" data-base="18"><div class="build-price-tag">from $18</div><span class="build-item-icon">🫕</span><div class="build-item-name">Dip + Chips</div><span class="build-item-es">Dip con Galletas o Chips</span><div class="build-qty"><button onclick="changeQty(this,-1)">−</button><span class="build-qty-num">0</span><button onclick="changeQty(this,1)">+</button></div><div style="font-size:.65rem;color:rgba(255,255,255,.4);margin-top:5px">per dip · por dip</div></div>
+      <div class="build-item" data-base="14"><div class="build-price-tag">from $14</div><span class="build-item-icon">🥗</span><div class="build-item-name">Salad</div><span class="build-item-es">Ensalada</span><div class="build-qty"><button onclick="changeQty(this,-1)">−</button><span class="build-qty-num">0</span><button onclick="changeQty(this,1)">+</button></div><div style="font-size:.65rem;color:rgba(255,255,255,.4);margin-top:5px">pasta or grain · pasta o granos</div></div>
     </div>
     <div class="build-summary">
       <div class="build-total-label">Your Estimate · Tu Estimado<strong id="buildItems">Select items above · Selecciona arriba</strong></div>
@@ -441,37 +624,36 @@
 <section id="order">
   <div class="order-inner">
     <div class="order-info reveal">
-      <div class="section-kicker">Get in Touch · Contáctanos</div>
-      <h2>Ready to Order?</h2>
+      <div class="section-kicker"><span class="t-en">Get in Touch</span><span class="t-es">Contáctanos</span></div>
+      <h2><span class="t-en">Ready to Order?</span><span class="t-es">¿Lista para Ordenar?</span></h2>
       <span class="sub-en">Spring Hill, Florida</span>
-      <span class="sub-es">¿Lista para ordenar?</span>
-      <p>We'd love to be part of your next celebration! <em style="font-family:'Playfair Display',serif;font-style:italic;color:var(--rose)">Nos encantaría ser parte de tu próxima celebración.</em></p>
+      <p class="t-en">We'd love to be part of your next celebration! Reach out and let's create something beautiful together.</p><p class="t-es">¡Nos encantaría ser parte de tu próxima celebración! Contáctanos y creemos algo hermoso juntos.</p>
       <div class="contact-block">
-        <div class="contact-item"><div class="contact-icon">📞</div><div><a href="tel:+17876195486">(787) 619-5486</a><p>Call or text · Llama o escribe</p></div></div>
-        <div class="contact-item"><div class="contact-icon">📍</div><div><a href="#">Spring Hill, Florida</a><p>Serving greater Tampa Bay · Área de Tampa</p></div></div>
-        <div class="contact-item"><div class="contact-icon">📸</div><div><a href="https://instagram.com/lalasweetscakes" target="_blank">@lalasweetscakes</a><p>Follow us · Síguenos en Instagram</p></div></div>
+        <div class="contact-item"><div class="contact-icon">📞</div><div><a href="tel:+17876195486">(787) 619-5486</a><p><span class="t-en">Call or text</span><span class="t-es">Llama o escribe</span></p></div></div>
+        <div class="contact-item"><div class="contact-icon">📍</div><div><a href="#">Spring Hill, Florida</a><p><span class="t-en">Serving greater Tampa Bay area</span><span class="t-es">Sirviendo el área de Tampa</span></p></div></div>
+        <div class="contact-item"><div class="contact-icon">📸</div><div><a href="https://instagram.com/lalasweetscakes" target="_blank">@lalasweetscakes</a><p><span class="t-en">Follow us on Instagram</span><span class="t-es">Síguenos en Instagram</span></p></div></div>
       </div>
     </div>
     <div class="order-form reveal">
-      <h3>Send a Request <span>Envía tu Pedido</span></h3>
-      <p class="form-note">We'll get back to you within 24 hours. · Te respondemos en 24 horas.</p>
+      <h3><span class="t-en">Send a Request</span><span class="t-es">Envía tu Pedido</span></h3>
+      <p class="form-note"><span class="t-en">We'll get back to you within 24 hours.</span><span class="t-es">Te respondemos en 24 horas.</span></p>
       <div class="form-row">
-        <div class="form-group"><label>First Name · Nombre</label><input type="text" placeholder="María"/></div>
-        <div class="form-group"><label>Last Name · Apellido</label><input type="text" placeholder="García"/></div>
+        <div class="form-group"><label><span class="t-en">First Name</span><span class="t-es">Nombre</span></label><input type="text" placeholder="María"/></div>
+        <div class="form-group"><label><span class="t-en">Last Name</span><span class="t-es">Apellido</span></label><input type="text" placeholder="García"/></div>
       </div>
-      <div class="form-group"><label>Phone or Email · Teléfono o Correo</label><input type="text" placeholder="(555) 000-0000 or email@example.com"/></div>
-      <div class="form-group"><label>What are you ordering? · ¿Qué deseas ordenar?</label>
+      <div class="form-group"><label><span class="t-en">Phone or Email</span><span class="t-es">Teléfono o Correo</span></label><input type="text" placeholder="(555) 000-0000 or / o email@example.com"/></div>
+      <div class="form-group"><label><span class="t-en">What are you ordering?</span><span class="t-es">¿Qué deseas ordenar?</span></label>
         <select><option value="">Select / Selecciona...</option><option>Grazing / Charcuterie Table</option><option>Tres Leches Cups · Vasitos</option><option>Quesitos</option><option>Pastelillos</option><option>Charcuterie Gift Boxes</option><option>Custom Cake · Torta Personalizada</option><option>Build Your Own Mix · Combinación</option></select>
       </div>
-      <div class="form-group"><label>Event Details · Detalles del Evento</label><textarea id="eventDetails" placeholder="Event date, guests, theme... / Fecha, invitados, tema..."></textarea></div>
-      <button class="form-submit" onclick="handleSubmit(event)">Send My Request · Enviar Pedido ✦</button>
+      <div class="form-group"><label><span class="t-en">Event Details</span><span class="t-es">Detalles del Evento</span></label><textarea id="eventDetails" data-ph-en="Event date, number of guests, theme, special requests..." data-ph-es="Fecha del evento, invitados, tema, peticiones especiales..." placeholder="Event date, number of guests, theme..."></textarea></div>
+      <button class="form-submit" onclick="handleSubmit(event)"><span class="t-en">Send My Request ✦</span><span class="t-es">Enviar Pedido ✦</span></button>
     </div>
   </div>
 </section>
 
 <footer>
   <a class="footer-logo" href="#">Lala Sweet's &amp; Cake</a>
-  <div class="footer-tagline">Handcrafted with Amor · Hecho con Amor · Spring Hill, FL</div>
+  <div class="footer-tagline"><span class="t-en">Handcrafted with Amor · Spring Hill, FL</span><span class="t-es">Hecho con Amor · Spring Hill, FL</span></div>
   <ul class="footer-links">
     <li><a href="#about">About</a></li><li><a href="#menu">Menu</a></li><li><a href="#gallery">Gallery</a></li><li><a href="#build">Build Your Own</a></li><li><a href="#order">Order</a></li>
   </ul>
@@ -479,7 +661,7 @@
     <a href="https://instagram.com/lalasweetscakes" target="_blank">📸</a>
     <a href="tel:+17876195486">📞</a>
   </div>
-  <div class="footer-copy">© 2026 Lala Sweet's &amp; Cake · Spring Hill, Florida · All rights reserved.</div>
+  <div class="footer-copy">© 2026 Lala Sweet's &amp; Cake · Spring Hill, Florida · <span class="t-en">All rights reserved.</span><span class="t-es">Todos los derechos reservados.</span></div>
 </footer>
 
 <script>
@@ -490,6 +672,25 @@
     const bg = document.getElementById('heroBg');
     if(bg) bg.style.transform = `scale(1.04) translateY(${y * 0.25}px)`;
   });
+
+
+  // Language toggle
+  function setLang(lang) {
+    document.body.classList.toggle('es', lang === 'es');
+    document.getElementById('btnEN').classList.toggle('active', lang === 'en');
+    document.getElementById('btnES').classList.toggle('active', lang === 'es');
+    // Swap textarea placeholder
+    const ta = document.getElementById('eventDetails');
+    if(ta) {
+      ta.placeholder = lang === 'es'
+        ? 'Fecha del evento, invitados, tema, peticiones especiales...'
+        : 'Event date, number of guests, theme, special requests...';
+    }
+    localStorage.setItem('lala-lang', lang);
+  }
+  // Restore saved language
+  const savedLang = localStorage.getItem('lala-lang');
+  if(savedLang === 'es') setLang('es');
 
   // Scroll reveal
   const revealObs = new IntersectionObserver(entries => {
