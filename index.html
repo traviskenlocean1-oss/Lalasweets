@@ -103,7 +103,9 @@
     .pricing-note{font-size:.65rem;color:var(--text-lt);margin-top:8px;text-align:center;font-style:italic}
 
     /* ── GALLERY ── */
-    #gallery{background:#fff}
+    #gallery{background:#fff;position:relative}
+    .gallery-bg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:0.055;overflow:hidden}
+    .gallery-bg svg{width:100%;height:100%}
     .gallery-grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
     .gallery-card{position:relative;overflow:hidden;border-radius:4px;background:var(--brown);cursor:default;box-shadow:0 8px 28px rgba(61,43,31,.12);transition:box-shadow .35s,transform .35s}
     .gallery-card:hover{box-shadow:0 20px 56px rgba(61,43,31,.25);transform:translateY(-6px) scale(1.01)}
@@ -619,6 +621,169 @@
 
 <!-- GALLERY -->
 <section id="gallery">
+  <!-- Decorative background illustration -->
+  <div class="gallery-bg">
+    <svg viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+      <!-- TRES LECHES CUPS scattered -->
+      <!-- Cup 1 top-left -->
+      <g transform="translate(80,60)">
+        <rect x="-18" y="-30" width="36" height="40" rx="4" fill="#C5707D"/>
+        <rect x="-20" y="-34" width="40" height="10" rx="5" fill="#9E4F5A"/>
+        <ellipse cx="0" cy="-30" rx="18" ry="6" fill="#F2C4CE"/>
+        <ellipse cx="0" cy="-32" rx="12" ry="4" fill="white" opacity="0.7"/>
+        <circle cx="-6" cy="-36" r="4" fill="#C5707D"/>
+        <circle cx="6" cy="-36" r="4" fill="#C9A84C"/>
+        <circle cx="0" cy="-40" r="3" fill="#C5707D"/>
+      </g>
+      <!-- Cup 2 -->
+      <g transform="translate(280,120)">
+        <rect x="-18" y="-30" width="36" height="40" rx="4" fill="#C5707D"/>
+        <rect x="-20" y="-34" width="40" height="10" rx="5" fill="#9E4F5A"/>
+        <ellipse cx="0" cy="-30" rx="18" ry="6" fill="#F2C4CE"/>
+        <ellipse cx="0" cy="-32" rx="12" ry="4" fill="white" opacity="0.7"/>
+        <circle cx="-6" cy="-36" r="4" fill="#C9A84C"/>
+        <circle cx="6" cy="-36" r="4" fill="#C5707D"/>
+      </g>
+      <!-- Cup 3 far right -->
+      <g transform="translate(1100,80)">
+        <rect x="-18" y="-30" width="36" height="40" rx="4" fill="#C5707D"/>
+        <rect x="-20" y="-34" width="40" height="10" rx="5" fill="#9E4F5A"/>
+        <ellipse cx="0" cy="-30" rx="18" ry="6" fill="#F2C4CE"/>
+        <ellipse cx="0" cy="-32" rx="12" ry="4" fill="white" opacity="0.7"/>
+        <circle cx="0" cy="-36" r="4" fill="#C5707D"/>
+      </g>
+      <!-- Cup 4 bottom right -->
+      <g transform="translate(1050,680)">
+        <rect x="-18" y="-30" width="36" height="40" rx="4" fill="#C5707D"/>
+        <rect x="-20" y="-34" width="40" height="10" rx="5" fill="#9E4F5A"/>
+        <ellipse cx="0" cy="-30" rx="18" ry="6" fill="#F2C4CE"/>
+        <ellipse cx="0" cy="-32" rx="12" ry="4" fill="white" opacity="0.7"/>
+        <circle cx="-6" cy="-36" r="3.5" fill="#C9A84C"/>
+        <circle cx="6" cy="-36" r="3.5" fill="#C5707D"/>
+      </g>
+      <!-- Cup 5 bottom left -->
+      <g transform="translate(120,700)">
+        <rect x="-18" y="-30" width="36" height="40" rx="4" fill="#C5707D"/>
+        <rect x="-20" y="-34" width="40" height="10" rx="5" fill="#9E4F5A"/>
+        <ellipse cx="0" cy="-30" rx="18" ry="6" fill="#F2C4CE"/>
+        <ellipse cx="0" cy="-32" rx="12" ry="4" fill="white" opacity="0.7"/>
+        <circle cx="0" cy="-36" r="4" fill="#C5707D"/>
+      </g>
+
+      <!-- STRAWBERRIES scattered -->
+      <g transform="translate(500,50)">
+        <path d="M0,-28 C-12,-28 -16,-14 -12,0 C-8,14 8,14 12,0 C16,-14 12,-28 0,-28Z" fill="#C5707D"/>
+        <path d="M0,-28 C-4,-24 -4,-20 0,-18 C4,-20 4,-24 0,-28Z" fill="#C9A84C"/>
+        <line x1="-6" y1="-8" x2="-2" y2="-2" stroke="white" stroke-width="0.8" opacity="0.5"/>
+        <line x1="0" y1="-12" x2="0" y2="-4" stroke="white" stroke-width="0.8" opacity="0.5"/>
+        <line x1="6" y1="-8" x2="2" y2="-2" stroke="white" stroke-width="0.8" opacity="0.5"/>
+      </g>
+      <g transform="translate(720,40) scale(0.8)">
+        <path d="M0,-28 C-12,-28 -16,-14 -12,0 C-8,14 8,14 12,0 C16,-14 12,-28 0,-28Z" fill="#C5707D"/>
+        <path d="M0,-28 C-4,-24 -4,-20 0,-18 C4,-20 4,-24 0,-28Z" fill="#C9A84C"/>
+      </g>
+      <g transform="translate(900,700) scale(0.9)">
+        <path d="M0,-28 C-12,-28 -16,-14 -12,0 C-8,14 8,14 12,0 C16,-14 12,-28 0,-28Z" fill="#C5707D"/>
+        <path d="M0,-28 C-4,-24 -4,-20 0,-18 C4,-20 4,-24 0,-28Z" fill="#C9A84C"/>
+      </g>
+      <g transform="translate(300,720) scale(0.85)">
+        <path d="M0,-28 C-12,-28 -16,-14 -12,0 C-8,14 8,14 12,0 C16,-14 12,-28 0,-28Z" fill="#C5707D"/>
+        <path d="M0,-28 C-4,-24 -4,-20 0,-18 C4,-20 4,-24 0,-28Z" fill="#C9A84C"/>
+      </g>
+
+      <!-- QUESITO / PASTRY shapes -->
+      <g transform="translate(200,380)">
+        <rect x="-28" y="-16" width="56" height="32" rx="6" fill="#C9A84C"/>
+        <ellipse cx="0" cy="-16" rx="28" ry="8" fill="#E8D5A3"/>
+        <ellipse cx="0" cy="16" rx="28" ry="8" fill="#B8932A"/>
+        <text x="0" y="6" font-size="14" fill="white" text-anchor="middle" opacity="0.4">~</text>
+      </g>
+      <g transform="translate(980,360) scale(0.9)">
+        <rect x="-28" y="-16" width="56" height="32" rx="6" fill="#C9A84C"/>
+        <ellipse cx="0" cy="-16" rx="28" ry="8" fill="#E8D5A3"/>
+        <ellipse cx="0" cy="16" rx="28" ry="8" fill="#B8932A"/>
+      </g>
+      <g transform="translate(600,740) scale(0.85)">
+        <rect x="-28" y="-16" width="56" height="32" rx="6" fill="#C9A84C"/>
+        <ellipse cx="0" cy="-16" rx="28" ry="8" fill="#E8D5A3"/>
+        <ellipse cx="0" cy="16" rx="28" ry="8" fill="#B8932A"/>
+      </g>
+
+      <!-- CROISSANT shapes -->
+      <g transform="translate(1150,360)">
+        <path d="M-30,-8 Q-20,-30 0,-28 Q20,-30 30,-8 Q20,10 0,14 Q-20,10 -30,-8Z" fill="#C9A84C"/>
+        <path d="M-20,-6 Q-12,-22 0,-20 Q12,-22 20,-6" stroke="#E8D5A3" stroke-width="2" fill="none"/>
+      </g>
+      <g transform="translate(50,380) scale(0.9)">
+        <path d="M-30,-8 Q-20,-30 0,-28 Q20,-30 30,-8 Q20,10 0,14 Q-20,10 -30,-8Z" fill="#C9A84C"/>
+        <path d="M-20,-6 Q-12,-22 0,-20 Q12,-22 20,-6" stroke="#E8D5A3" stroke-width="2" fill="none"/>
+      </g>
+
+      <!-- GRAPES (charcuterie element) -->
+      <g transform="translate(800,720)">
+        <circle cx="0" cy="0" r="8" fill="#9E4F5A"/>
+        <circle cx="14" cy="-4" r="8" fill="#C5707D"/>
+        <circle cx="7" cy="-16" r="8" fill="#9E4F5A"/>
+        <circle cx="-4" cy="-14" r="7" fill="#C5707D"/>
+        <circle cx="18" cy="-14" r="7" fill="#9E4F5A"/>
+        <circle cx="7" cy="-28" r="7" fill="#C5707D"/>
+        <line x1="7" y1="-36" x2="7" y2="-44" stroke="#C9A84C" stroke-width="1.5"/>
+        <path d="M7,-44 Q18,-50 22,-42" stroke="#C9A84C" stroke-width="1" fill="none"/>
+      </g>
+      <g transform="translate(440,740) scale(0.8)">
+        <circle cx="0" cy="0" r="8" fill="#9E4F5A"/>
+        <circle cx="14" cy="-4" r="8" fill="#C5707D"/>
+        <circle cx="7" cy="-16" r="8" fill="#9E4F5A"/>
+        <circle cx="-4" cy="-14" r="7" fill="#C5707D"/>
+        <circle cx="18" cy="-14" r="7" fill="#9E4F5A"/>
+        <line x1="7" y1="-22" x2="7" y2="-32" stroke="#C9A84C" stroke-width="1.5"/>
+      </g>
+      <g transform="translate(860,60) scale(0.75)">
+        <circle cx="0" cy="0" r="8" fill="#9E4F5A"/>
+        <circle cx="14" cy="-4" r="8" fill="#C5707D"/>
+        <circle cx="7" cy="-16" r="8" fill="#9E4F5A"/>
+        <circle cx="-4" cy="-14" r="7" fill="#C5707D"/>
+        <line x1="7" y1="-22" x2="7" y2="-32" stroke="#C9A84C" stroke-width="1.5"/>
+      </g>
+
+      <!-- GOLD SPARKLES / STARS -->
+      <text x="160" y="200" font-size="22" fill="#C9A84C">✦</text>
+      <text x="600" y="160" font-size="16" fill="#C9A84C">✦</text>
+      <text x="1000" y="200" font-size="20" fill="#C9A84C">✦</text>
+      <text x="380" y="600" font-size="14" fill="#C9A84C">✦</text>
+      <text x="750" y="660" font-size="18" fill="#C9A84C">✦</text>
+      <text x="60" y="560" font-size="12" fill="#C5707D">✦</text>
+      <text x="1140" y="560" font-size="12" fill="#C5707D">✦</text>
+      <text x="500" y="400" font-size="10" fill="#C9A84C">✦</text>
+      <text x="700" y="380" font-size="10" fill="#C9A84C">✦</text>
+
+      <!-- FLORAL accents -->
+      <g transform="translate(660,400)">
+        <ellipse cx="0" cy="-12" rx="6" ry="11" fill="#F2C4CE" transform="rotate(0)"/>
+        <ellipse cx="0" cy="-12" rx="6" ry="11" fill="#F4B8C2" transform="rotate(72)"/>
+        <ellipse cx="0" cy="-12" rx="6" ry="11" fill="#F2C4CE" transform="rotate(144)"/>
+        <ellipse cx="0" cy="-12" rx="6" ry="11" fill="#F4B8C2" transform="rotate(216)"/>
+        <ellipse cx="0" cy="-12" rx="6" ry="11" fill="#F2C4CE" transform="rotate(288)"/>
+        <circle cx="0" cy="0" r="6" fill="#C9A84C"/>
+      </g>
+      <g transform="translate(200,150) scale(0.7)">
+        <ellipse cx="0" cy="-12" rx="6" ry="11" fill="#F2C4CE" transform="rotate(0)"/>
+        <ellipse cx="0" cy="-12" rx="6" ry="11" fill="#F4B8C2" transform="rotate(72)"/>
+        <ellipse cx="0" cy="-12" rx="6" ry="11" fill="#F2C4CE" transform="rotate(144)"/>
+        <ellipse cx="0" cy="-12" rx="6" ry="11" fill="#F4B8C2" transform="rotate(216)"/>
+        <ellipse cx="0" cy="-12" rx="6" ry="11" fill="#F2C4CE" transform="rotate(288)"/>
+        <circle cx="0" cy="0" r="6" fill="#C9A84C"/>
+      </g>
+      <g transform="translate(1000,600) scale(0.8)">
+        <ellipse cx="0" cy="-12" rx="6" ry="11" fill="#F2C4CE" transform="rotate(0)"/>
+        <ellipse cx="0" cy="-12" rx="6" ry="11" fill="#F4B8C2" transform="rotate(72)"/>
+        <ellipse cx="0" cy="-12" rx="6" ry="11" fill="#F2C4CE" transform="rotate(144)"/>
+        <ellipse cx="0" cy="-12" rx="6" ry="11" fill="#F4B8C2" transform="rotate(216)"/>
+        <ellipse cx="0" cy="-12" rx="6" ry="11" fill="#F2C4CE" transform="rotate(288)"/>
+        <circle cx="0" cy="0" r="6" fill="#C9A84C"/>
+      </g>
+    </svg>
+  </div>
   <div class="section-header reveal">
     <div class="section-kicker"><span class="t-en">Our Portfolio</span><span class="t-es">Nuestro Trabajo</span></div>
     <div class="section-title"><span class="t-en">A Taste of Our Work</span><span class="t-es">Un Vistazo a lo que Hacemos</span></div>
@@ -725,16 +890,22 @@
       <hr class="section-rule"/>
       <p class="section-text" style="color:rgba(255,255,255,.6)"><span class="t-en">Mix and match from our full menu and get an instant estimate.</span><span class="t-es">Combina lo que quieras y obtén un estimado al instante.</span></p>
     </div>
-    <div class="build-grid" id="buildGrid">
-      <div class="build-item" data-base="75"><div class="build-price-tag">from $75</div><span class="build-item-icon">🫶</span><div class="build-item-name">Charcuterie Tray</div><span class="build-item-es">Bandeja de Charcutería</span><div class="build-qty"><button onclick="changeQty(this,-1)">−</button><span class="build-qty-num">0</span><button onclick="changeQty(this,1)">+</button></div><div style="font-size:.65rem;color:rgba(255,255,255,.4);margin-top:5px">10–12 people · personas</div></div>
+    <div class="build-grid" id="buildGrid" style="grid-template-columns:repeat(auto-fit,minmax(180px,1fr))">
+      <div class="build-item" data-base="75"><div class="build-price-tag">from $75</div><span class="build-item-icon">🫶</span><div class="build-item-name">Charcuterie Tray</div><span class="build-item-es">Bandeja de Charcutería</span><div class="build-qty"><button onclick="changeQty(this,-1)">−</button><span class="build-qty-num">0</span><button onclick="changeQty(this,1)">+</button></div><div style="font-size:.65rem;color:rgba(255,255,255,.4);margin-top:5px">10–12 people · 10–12 personas</div></div>
       <div class="build-item" data-base="9"><div class="build-price-tag">$9 c/u</div><span class="build-item-icon">🎁</span><div class="build-item-name">Mini Charcuterie Box</div><span class="build-item-es">Mini Box de Charcutería</span><div class="build-qty"><button onclick="changeQty(this,-1)">−</button><span class="build-qty-num">0</span><button onclick="changeQty(this,1)">+</button></div><div style="font-size:.65rem;color:rgba(255,255,255,.4);margin-top:5px">per box · por caja</div></div>
       <div class="build-item" data-base="48"><div class="build-price-tag">from $48</div><span class="build-item-icon">🥪</span><div class="build-item-name">Mini Chicken Sandwiches</div><span class="build-item-es">Mini Sandwich de Pollo</span><div class="build-qty"><button onclick="changeQty(this,-1)">−</button><span class="build-qty-num">0</span><button onclick="changeQty(this,1)">+</button></div><div style="font-size:.65rem;color:rgba(255,255,255,.4);margin-top:5px">per 24 · por 24</div></div>
       <div class="build-item" data-base="8"><div class="build-price-tag">from $8</div><span class="build-item-icon">🥖</span><div class="build-item-name">Mixed Sandwiches</div><span class="build-item-es">Sandwich de Mezcla</span><div class="build-qty"><button onclick="changeQty(this,-1)">−</button><span class="build-qty-num">0</span><button onclick="changeQty(this,1)">+</button></div><div style="font-size:.65rem;color:rgba(255,255,255,.4);margin-top:5px">per 12 · por 12</div></div>
-      <div class="build-item" data-base="20"><div class="build-price-tag">from $20</div><span class="build-item-icon">🍓</span><div class="build-item-name">Chocolate Strawberries</div><span class="build-item-es">Fresas con Chocolate</span><div class="build-qty"><button onclick="changeQty(this,-1)">−</button><span class="build-qty-num">0</span><button onclick="changeQty(this,1)">+</button></div><div style="font-size:.65rem;color:rgba(255,255,255,.4);margin-top:5px">per 12 · por 12</div></div>
       <div class="build-item" data-base="15"><div class="build-price-tag">from $15</div><span class="build-item-icon">🍢</span><div class="build-item-name">Canapés</div><span class="build-item-es">Canapés Artesanales</span><div class="build-qty"><button onclick="changeQty(this,-1)">−</button><span class="build-qty-num">0</span><button onclick="changeQty(this,1)">+</button></div><div style="font-size:.65rem;color:rgba(255,255,255,.4);margin-top:5px">per 25 · por 25</div></div>
+      <div class="build-item" data-base="20"><div class="build-price-tag">from $20</div><span class="build-item-icon">🍓</span><div class="build-item-name">Chocolate Strawberries</div><span class="build-item-es">Fresas con Chocolate</span><div class="build-qty"><button onclick="changeQty(this,-1)">−</button><span class="build-qty-num">0</span><button onclick="changeQty(this,1)">+</button></div><div style="font-size:.65rem;color:rgba(255,255,255,.4);margin-top:5px">per 12 · por 12</div></div>
       <div class="build-item" data-base="65"><div class="build-price-tag">from $65</div><span class="build-item-icon">🍤</span><div class="build-item-name">Shrimp Ceviche</div><span class="build-item-es">Ceviche de Camarones</span><div class="build-qty"><button onclick="changeQty(this,-1)">−</button><span class="build-qty-num">0</span><button onclick="changeQty(this,1)">+</button></div><div style="font-size:.65rem;color:rgba(255,255,255,.4);margin-top:5px">per 3 lbs · por 3 libras</div></div>
       <div class="build-item" data-base="18"><div class="build-price-tag">from $18</div><span class="build-item-icon">🫕</span><div class="build-item-name">Dip + Chips</div><span class="build-item-es">Dip con Galletas o Chips</span><div class="build-qty"><button onclick="changeQty(this,-1)">−</button><span class="build-qty-num">0</span><button onclick="changeQty(this,1)">+</button></div><div style="font-size:.65rem;color:rgba(255,255,255,.4);margin-top:5px">per dip · por dip</div></div>
       <div class="build-item" data-base="14"><div class="build-price-tag">from $14</div><span class="build-item-icon">🥗</span><div class="build-item-name">Salad</div><span class="build-item-es">Ensalada</span><div class="build-qty"><button onclick="changeQty(this,-1)">−</button><span class="build-qty-num">0</span><button onclick="changeQty(this,1)">+</button></div><div style="font-size:.65rem;color:rgba(255,255,255,.4);margin-top:5px">pasta or grain · pasta o granos</div></div>
+      <div class="build-item" data-base="36"><div class="build-price-tag">from $36</div><span class="build-item-icon">🍰</span><div class="build-item-name">Cheesecake</div><span class="build-item-es">Cheesecake Individual</span><div class="build-qty"><button onclick="changeQty(this,-1)">−</button><span class="build-qty-num">0</span><button onclick="changeQty(this,1)">+</button></div><div style="font-size:.65rem;color:rgba(255,255,255,.4);margin-top:5px">per 12 · por 12</div></div>
+      <div class="build-item" data-base="38"><div class="build-price-tag">from $38</div><span class="build-item-icon">🥐</span><div class="build-item-name">Croissants</div><span class="build-item-es">Croissants Artesanales</span><div class="build-qty"><button onclick="changeQty(this,-1)">−</button><span class="build-qty-num">0</span><button onclick="changeQty(this,1)">+</button></div><div style="font-size:.65rem;color:rgba(255,255,255,.4);margin-top:5px">per 20 · por 20</div></div>
+      <div class="build-item" data-base="45"><div class="build-price-tag">from $45</div><span class="build-item-icon">🍮</span><div class="build-item-name">Tres Leches</div><span class="build-item-es">Tres Leches Individual</span><div class="build-qty"><button onclick="changeQty(this,-1)">−</button><span class="build-qty-num">0</span><button onclick="changeQty(this,1)">+</button></div><div style="font-size:.65rem;color:rgba(255,255,255,.4);margin-top:5px">per 12 · por 12</div></div>
+      <div class="build-item" data-base="48"><div class="build-price-tag">from $48</div><span class="build-item-icon">🍦</span><div class="build-item-name">Charcuterie Cones</div><span class="build-item-es">Conos de Charcutería</span><div class="build-qty"><button onclick="changeQty(this,-1)">−</button><span class="build-qty-num">0</span><button onclick="changeQty(this,1)">+</button></div><div style="font-size:.65rem;color:rgba(255,255,255,.4);margin-top:5px">per 12 · por 12</div></div>
+      <div class="build-item" data-base="45"><div class="build-price-tag">from $45</div><span class="build-item-icon">🍫</span><div class="build-item-name">Choconutela Cups</div><span class="build-item-es">Vasitos de Choconutela</span><div class="build-qty"><button onclick="changeQty(this,-1)">−</button><span class="build-qty-num">0</span><button onclick="changeQty(this,1)">+</button></div><div style="font-size:.65rem;color:rgba(255,255,255,.4);margin-top:5px">per 12 · por 12</div></div>
+      <div class="build-item" data-base="18"><div class="build-price-tag">from $18</div><span class="build-item-icon">🫓</span><div class="build-item-name">Quesitos & Guava Pastries</div><span class="build-item-es">Quesitos y Past. Guayaba</span><div class="build-qty"><button onclick="changeQty(this,-1)">−</button><span class="build-qty-num">0</span><button onclick="changeQty(this,1)">+</button></div><div style="font-size:.65rem;color:rgba(255,255,255,.4);margin-top:5px">per 20 · por 20</div></div>
     </div>
     <div class="build-summary">
       <div class="build-total-label">Your Estimate · Tu Estimado<strong id="buildItems">Select items above · Selecciona arriba</strong></div>
