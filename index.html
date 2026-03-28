@@ -12,8 +12,8 @@
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
     html{scroll-behavior:smooth}
     body{font-family:'Lato',sans-serif;background:var(--cream);color:var(--text);overflow-x:hidden}
-    .lang-toggle{display:flex;align-items:center;gap:2px;background:var(--cream);border:1.5px solid var(--gold-lt);border-radius:20px;padding:3px}
-    .lang-btn{padding:5px 14px;border:none;background:transparent;font-family:'Lato',sans-serif;font-size:.7rem;font-weight:700;letter-spacing:.1em;cursor:pointer;border-radius:16px;color:var(--text-lt);transition:all .22s}
+    .lang-toggle{display:flex;align-items:center;gap:2px;background:var(--cream);border:1.5px solid var(--gold-lt);border-radius:20px;padding:3px;position:relative;z-index:200}
+    .lang-btn{padding:5px 14px;border:none;background:transparent;font-family:'Lato',sans-serif;font-size:.7rem;font-weight:700;letter-spacing:.1em;cursor:pointer;border-radius:16px;color:var(--text-lt);transition:all .22s;pointer-events:auto;position:relative;z-index:201}
     .lang-btn.active{background:var(--rose);color:#fff}
     .t-es{display:none!important}
     body.es .t-en{display:none!important}
@@ -185,8 +185,8 @@
     <li><a href="#order" class="nav-cta"><span class="t-en">Order Now</span><span class="t-es">Ordenar</span></a></li>
   </ul>
   <div class="lang-toggle">
-    <button class="lang-btn active" id="btnEN" onclick="setLang('en')">EN</button>
-    <button class="lang-btn" id="btnES" onclick="setLang('es')">ES</button>
+    <button class="lang-btn active" id="btnEN">EN</button>
+    <button class="lang-btn" id="btnES">ES</button>
   </div>
 </nav>
 
@@ -449,10 +449,22 @@
     if(ta) ta.placeholder = lang === 'es' ? 'Fecha del evento, invitados, tema...' : 'Event date, guests, theme...';
     try { localStorage.setItem('lala-lang', lang); } catch(e) {}
   }
-  try {
-    const savedLang = localStorage.getItem('lala-lang');
-    if(savedLang === 'es') setLang('es');
-  } catch(e) {}
+
+  // Attach listeners after DOM ready
+  document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('btnEN').addEventListener('click', function(e) {
+      e.stopPropagation();
+      setLang('en');
+    });
+    document.getElementById('btnES').addEventListener('click', function(e) {
+      e.stopPropagation();
+      setLang('es');
+    });
+    try {
+      const savedLang = localStorage.getItem('lala-lang');
+      if(savedLang === 'es') setLang('es');
+    } catch(e) {}
+  });
 
   const nav = document.querySelector('nav');
   window.addEventListener('scroll', () => {
