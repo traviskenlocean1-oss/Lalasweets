@@ -490,8 +490,7 @@
     });
     if (lines.length) {
       var ta = document.getElementById('eventDetails');
-      if (ta) ta.value = 'My order: ' + lines.join(', ') + '
-Estimate: ' + document.getElementById('buildTotal').textContent;
+      if (ta) ta.value = 'My order: ' + lines.join(', ') + ' | Estimate: ' + document.getElementById('buildTotal').textContent;
     }
   }
 
