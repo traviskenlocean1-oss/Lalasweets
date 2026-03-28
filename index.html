@@ -191,7 +191,7 @@
     /* ANIMATIONS */
     @keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
     @keyframes bounce{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(8px)}}
-    .reveal{opacity:0;transform:translateY(28px);transition:opacity .75s ease,transform .75s ease}
+    .reveal{opacity:1;transform:translateY(0);transition:opacity .75s ease,transform .75s ease}
     .reveal.visible{opacity:1;transform:translateY(0)}
 
     /* RESPONSIVE */
@@ -521,11 +521,22 @@
   const savedLang = localStorage.getItem('lala-lang');
   if(savedLang === 'es') setLang('es');
 
-  // Scroll reveal
-  const revealObs = new IntersectionObserver(entries => {
-    entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
-  }, {threshold:0.1});
-  document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+  // Scroll reveal - with fallback
+  try {
+    const revealObs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+    }, {threshold:0.05});
+    document.querySelectorAll('.reveal').forEach(el => {
+      el.style.opacity='0';
+      el.style.transform='translateY(28px)';
+      revealObs.observe(el);
+    });
+  } catch(e) {
+    document.querySelectorAll('.reveal').forEach(el => {
+      el.style.opacity='1';
+      el.style.transform='none';
+    });
+  }
 
   // Nav shrink
   const nav = document.querySelector('nav');
