@@ -153,6 +153,10 @@
     @media(max-width:960px){.about-inner,.order-inner{grid-template-columns:1fr;gap:48px}.gallery-grid{grid-template-columns:repeat(2,1fr)}nav{padding:6px 20px}.nav-links{display:none}}
     @media(max-width:560px){.gallery-grid{grid-template-columns:1fr}.form-row{grid-template-columns:1fr}.order-form{padding:28px 18px}.build-summary{flex-direction:column;align-items:flex-start}}
     .es-text{display:none}
+    select.build-select option {
+      background: #3D2B1F;
+      color: #fff;
+    }
   </style>
 </head>
 <body>
@@ -355,105 +359,105 @@
       <div class="build-item" data-base="0">
         <span class="build-item-icon">🫶</span>
         <div class="build-item-name"><span class="en-text">Charcuterie Tray</span><span class="es-text">Bandeja de Charcutería</span></div>
-        <select class="build-select" onchange="updateFromSelect(this)" style="margin-top:10px;width:100%;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);color:#fff;padding:7px 8px;border-radius:4px;font-size:.78rem;cursor:pointer;outline:none;">
+        <select class="build-select" onchange="updateFromSelect(this)" style="margin-top:10px;width:100%;background:#3D2B1F;border:1px solid rgba(255,255,255,.2);color:#fff;padding:7px 8px;border-radius:4px;font-size:.78rem;cursor:pointer;outline:none;">
           <option value="0">--</option><option value="75">10-12 people · $75</option><option value="100">15-20 people · $100</option><option value="125">25-30 people · $125</option>
         </select>
       </div>
       <div class="build-item" data-base="0">
         <span class="build-item-icon">🎁</span>
         <div class="build-item-name"><span class="en-text">Mini Charcuterie Box</span><span class="es-text">Mini Box de Charcutería</span></div>
-        <select class="build-select" onchange="updateFromSelect(this)" style="margin-top:10px;width:100%;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);color:#fff;padding:7px 8px;border-radius:4px;font-size:.78rem;cursor:pointer;outline:none;">
+        <select class="build-select" onchange="updateFromSelect(this)" style="margin-top:10px;width:100%;background:#3D2B1F;border:1px solid rgba(255,255,255,.2);color:#fff;padding:7px 8px;border-radius:4px;font-size:.78rem;cursor:pointer;outline:none;">
           <option value="0">--</option><option value="9">1 box · $9</option><option value="45">5 boxes · $45</option><option value="90">10 boxes · $90</option>
         </select>
       </div>
       <div class="build-item" data-base="0">
         <span class="build-item-icon">🥪</span>
         <div class="build-item-name"><span class="en-text">Mini Chicken Sandwiches</span><span class="es-text">Mini Sandwich de Pollo</span></div>
-        <select class="build-select" onchange="updateFromSelect(this)" style="margin-top:10px;width:100%;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);color:#fff;padding:7px 8px;border-radius:4px;font-size:.78rem;cursor:pointer;outline:none;">
+        <select class="build-select" onchange="updateFromSelect(this)" style="margin-top:10px;width:100%;background:#3D2B1F;border:1px solid rgba(255,255,255,.2);color:#fff;padding:7px 8px;border-radius:4px;font-size:.78rem;cursor:pointer;outline:none;">
           <option value="0">--</option><option value="48">24 pcs · $48</option><option value="96">48 pcs · $96</option>
         </select>
       </div>
       <div class="build-item" data-base="0">
         <span class="build-item-icon">🥖</span>
         <div class="build-item-name"><span class="en-text">Mixed Sandwiches</span><span class="es-text">Sandwich de Mezcla</span></div>
-        <select class="build-select" onchange="updateFromSelect(this)" style="margin-top:10px;width:100%;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);color:#fff;padding:7px 8px;border-radius:4px;font-size:.78rem;cursor:pointer;outline:none;">
+        <select class="build-select" onchange="updateFromSelect(this)" style="margin-top:10px;width:100%;background:#3D2B1F;border:1px solid rgba(255,255,255,.2);color:#fff;padding:7px 8px;border-radius:4px;font-size:.78rem;cursor:pointer;outline:none;">
           <option value="0">--</option><option value="8">12 pcs · $8</option><option value="16">24 pcs · $16</option><option value="24">36 pcs · $24</option><option value="35">50 pcs · $35</option>
         </select>
       </div>
       <div class="build-item" data-base="0">
         <span class="build-item-icon">🍢</span>
         <div class="build-item-name"><span class="en-text">Canapés</span><span class="es-text">Canapés Artesanales</span></div>
-        <select class="build-select" onchange="updateFromSelect(this)" style="margin-top:10px;width:100%;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);color:#fff;padding:7px 8px;border-radius:4px;font-size:.78rem;cursor:pointer;outline:none;">
+        <select class="build-select" onchange="updateFromSelect(this)" style="margin-top:10px;width:100%;background:#3D2B1F;border:1px solid rgba(255,255,255,.2);color:#fff;padding:7px 8px;border-radius:4px;font-size:.78rem;cursor:pointer;outline:none;">
           <option value="0">--</option><option value="15">25 pcs · $15</option><option value="25">50 pcs · $25</option><option value="47">100 pcs · $47</option>
         </select>
       </div>
       <div class="build-item" data-base="0">
         <span class="build-item-icon">🍓</span>
         <div class="build-item-name"><span class="en-text">Chocolate Strawberries</span><span class="es-text">Fresas con Chocolate</span></div>
-        <select class="build-select" onchange="updateFromSelect(this)" style="margin-top:10px;width:100%;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);color:#fff;padding:7px 8px;border-radius:4px;font-size:.78rem;cursor:pointer;outline:none;">
+        <select class="build-select" onchange="updateFromSelect(this)" style="margin-top:10px;width:100%;background:#3D2B1F;border:1px solid rgba(255,255,255,.2);color:#fff;padding:7px 8px;border-radius:4px;font-size:.78rem;cursor:pointer;outline:none;">
           <option value="0">--</option><option value="20">12 pcs · $20</option><option value="36">24 pcs · $36</option><option value="54">36 pcs · $54</option>
         </select>
       </div>
       <div class="build-item" data-base="0">
         <span class="build-item-icon">🍤</span>
         <div class="build-item-name"><span class="en-text">Shrimp Ceviche</span><span class="es-text">Ceviche de Camarones</span></div>
-        <select class="build-select" onchange="updateFromSelect(this)" style="margin-top:10px;width:100%;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);color:#fff;padding:7px 8px;border-radius:4px;font-size:.78rem;cursor:pointer;outline:none;">
+        <select class="build-select" onchange="updateFromSelect(this)" style="margin-top:10px;width:100%;background:#3D2B1F;border:1px solid rgba(255,255,255,.2);color:#fff;padding:7px 8px;border-radius:4px;font-size:.78rem;cursor:pointer;outline:none;">
           <option value="0">--</option><option value="65">3 lbs · $65</option><option value="90">6 lbs · $90</option>
         </select>
       </div>
       <div class="build-item" data-base="0">
         <span class="build-item-icon">🫕</span>
         <div class="build-item-name"><span class="en-text">Dip + Chips</span><span class="es-text">Dip con Galletas</span></div>
-        <select class="build-select" onchange="updateFromSelect(this)" style="margin-top:10px;width:100%;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);color:#fff;padding:7px 8px;border-radius:4px;font-size:.78rem;cursor:pointer;outline:none;">
+        <select class="build-select" onchange="updateFromSelect(this)" style="margin-top:10px;width:100%;background:#3D2B1F;border:1px solid rgba(255,255,255,.2);color:#fff;padding:7px 8px;border-radius:4px;font-size:.78rem;cursor:pointer;outline:none;">
           <option value="0">--</option><option value="22">Chicken / Pollo · $22</option><option value="18">Spinach / Espinaca · $18</option><option value="18">Bacon Ranch · $18</option><option value="18">Bola de Fuego · $18</option>
         </select>
       </div>
       <div class="build-item" data-base="0">
         <span class="build-item-icon">🥗</span>
         <div class="build-item-name"><span class="en-text">Salad</span><span class="es-text">Ensalada</span></div>
-        <select class="build-select" onchange="updateFromSelect(this)" style="margin-top:10px;width:100%;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);color:#fff;padding:7px 8px;border-radius:4px;font-size:.78rem;cursor:pointer;outline:none;">
+        <select class="build-select" onchange="updateFromSelect(this)" style="margin-top:10px;width:100%;background:#3D2B1F;border:1px solid rgba(255,255,255,.2);color:#fff;padding:7px 8px;border-radius:4px;font-size:.78rem;cursor:pointer;outline:none;">
           <option value="0">--</option><option value="14">Cold Pasta · $14</option><option value="28">Grain Salad 4lbs · $28</option>
         </select>
       </div>
       <div class="build-item" data-base="0">
         <span class="build-item-icon">🍰</span>
         <div class="build-item-name"><span class="en-text">Cheesecake</span><span class="es-text">Cheesecake Individual</span></div>
-        <select class="build-select" onchange="updateFromSelect(this)" style="margin-top:10px;width:100%;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);color:#fff;padding:7px 8px;border-radius:4px;font-size:.78rem;cursor:pointer;outline:none;">
+        <select class="build-select" onchange="updateFromSelect(this)" style="margin-top:10px;width:100%;background:#3D2B1F;border:1px solid rgba(255,255,255,.2);color:#fff;padding:7px 8px;border-radius:4px;font-size:.78rem;cursor:pointer;outline:none;">
           <option value="0">--</option><option value="36">12 pcs · $36</option><option value="70">24 pcs · $70</option><option value="95">36 pcs · $95</option>
         </select>
       </div>
       <div class="build-item" data-base="0">
         <span class="build-item-icon">🥐</span>
         <div class="build-item-name"><span class="en-text">Croissants</span><span class="es-text">Croissants Artesanales</span></div>
-        <select class="build-select" onchange="updateFromSelect(this)" style="margin-top:10px;width:100%;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);color:#fff;padding:7px 8px;border-radius:4px;font-size:.78rem;cursor:pointer;outline:none;">
+        <select class="build-select" onchange="updateFromSelect(this)" style="margin-top:10px;width:100%;background:#3D2B1F;border:1px solid rgba(255,255,255,.2);color:#fff;padding:7px 8px;border-radius:4px;font-size:.78rem;cursor:pointer;outline:none;">
           <option value="0">--</option><option value="38">20 pcs · $38</option><option value="65">40 pcs · $65</option><option value="90">60 pcs · $90</option>
         </select>
       </div>
       <div class="build-item" data-base="0">
         <span class="build-item-icon">🍮</span>
         <div class="build-item-name"><span class="en-text">Tres Leches</span><span class="es-text">Tres Leches Individual</span></div>
-        <select class="build-select" onchange="updateFromSelect(this)" style="margin-top:10px;width:100%;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);color:#fff;padding:7px 8px;border-radius:4px;font-size:.78rem;cursor:pointer;outline:none;">
+        <select class="build-select" onchange="updateFromSelect(this)" style="margin-top:10px;width:100%;background:#3D2B1F;border:1px solid rgba(255,255,255,.2);color:#fff;padding:7px 8px;border-radius:4px;font-size:.78rem;cursor:pointer;outline:none;">
           <option value="0">--</option><option value="45">12 pcs · $45</option><option value="78">24 pcs · $78</option><option value="110">36 pcs · $110</option>
         </select>
       </div>
       <div class="build-item" data-base="0">
         <span class="build-item-icon">🍦</span>
         <div class="build-item-name"><span class="en-text">Charcuterie Cones</span><span class="es-text">Conos de Charcutería</span></div>
-        <select class="build-select" onchange="updateFromSelect(this)" style="margin-top:10px;width:100%;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);color:#fff;padding:7px 8px;border-radius:4px;font-size:.78rem;cursor:pointer;outline:none;">
+        <select class="build-select" onchange="updateFromSelect(this)" style="margin-top:10px;width:100%;background:#3D2B1F;border:1px solid rgba(255,255,255,.2);color:#fff;padding:7px 8px;border-radius:4px;font-size:.78rem;cursor:pointer;outline:none;">
           <option value="0">--</option><option value="48">12 cones · $48</option><option value="95">24 cones · $95</option>
         </select>
       </div>
       <div class="build-item" data-base="0">
         <span class="build-item-icon">🍫</span>
         <div class="build-item-name"><span class="en-text">Choconutela Cups</span><span class="es-text">Vasitos de Choconutela</span></div>
-        <select class="build-select" onchange="updateFromSelect(this)" style="margin-top:10px;width:100%;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);color:#fff;padding:7px 8px;border-radius:4px;font-size:.78rem;cursor:pointer;outline:none;">
+        <select class="build-select" onchange="updateFromSelect(this)" style="margin-top:10px;width:100%;background:#3D2B1F;border:1px solid rgba(255,255,255,.2);color:#fff;padding:7px 8px;border-radius:4px;font-size:.78rem;cursor:pointer;outline:none;">
           <option value="0">--</option><option value="45">12 pcs · $45</option><option value="78">24 pcs · $78</option><option value="110">36 pcs · $110</option>
         </select>
       </div>
       <div class="build-item" data-base="0">
         <span class="build-item-icon">🫓</span>
         <div class="build-item-name"><span class="en-text">Quesitos & Guava Pastries</span><span class="es-text">Quesitos y Past. Guayaba</span></div>
-        <select class="build-select" onchange="updateFromSelect(this)" style="margin-top:10px;width:100%;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);color:#fff;padding:7px 8px;border-radius:4px;font-size:.78rem;cursor:pointer;outline:none;">
+        <select class="build-select" onchange="updateFromSelect(this)" style="margin-top:10px;width:100%;background:#3D2B1F;border:1px solid rgba(255,255,255,.2);color:#fff;padding:7px 8px;border-radius:4px;font-size:.78rem;cursor:pointer;outline:none;">
           <option value="0">--</option><option value="18">20 pcs · $18</option><option value="35">40 pcs · $35</option><option value="53">60 pcs · $53</option><option value="85">100 pcs · $85</option>
         </select>
       </div>
