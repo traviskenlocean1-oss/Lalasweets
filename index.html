@@ -500,7 +500,7 @@
         </div>
         <div style="text-align:right;">
           <div id="indTotal" style="font-family:'Playfair Display',serif;font-size:2.2rem;font-weight:700;color:var(--rose);">$0</div>
-          <div style="font-size:.68rem;color:var(--text-lt);">*<span class="en-text">Estimate before delivery fee</span><span class="es-text">Estimado antes de cargo de entrega</span></div>
+          <div style="font-size:.68rem;color:var(--text-lt);">*<span class="en-text">Free pickup or delivery by distance · No setup fee</span><span class="es-text">Recogido gratis o entrega por distancia · Sin cargo de montaje</span></div>
         </div>
         <a href="#order" class="build-cta" onclick="prefillIndividual()" style="background:var(--rose);color:#fff;"><span class="en-text">Send This Order ✦</span><span class="es-text">Enviar Pedido ✦</span></a>
       </div>
@@ -685,6 +685,7 @@
       <p id="formMsg" style="display:none;text-align:center;margin-top:14px;font-family:'Playfair Display',serif;font-style:italic;color:var(--rose);font-size:.95rem;"></p>
     </div>
   </div>
+    </div><!-- end panelBuild -->
 </section>
 
 <!-- LEAVE A REVIEW -->
@@ -854,17 +855,14 @@
     document.querySelectorAll('.ind-item').forEach(function(item) {
       var sel = item.querySelector('.ind-select');
       if (sel && parseInt(sel.value) > 0) {
-        var name = item.querySelector('[class*="en-text"]') ? item.querySelector('[class*="en-text"]').textContent.trim() : '';
+        var nameEl = item.querySelector('.en-text'); var name = nameEl ? nameEl.textContent.trim() : '';
         lines.push(name + ': ' + sel.options[sel.selectedIndex].text);
         total += parseInt(sel.value);
       }
     });
     if (lines.length) {
       var ta = document.getElementById('eventDetails');
-      if (ta) ta.value = 'INDIVIDUAL ORDER:
-' + lines.join('
-') + '
-Estimate: $' + total;
+      if (ta) ta.value = 'INDIVIDUAL ORDER: ' + lines.join(', ') + ' | Estimate: $' + total;
       var ot = document.getElementById('orderType');
       if (ot) ot.value = 'Individual Order / Pedido Individual';
     }
