@@ -461,6 +461,13 @@
           <option value="0">--</option><option value="18">20 pcs · $18</option><option value="35">40 pcs · $35</option><option value="53">60 pcs · $53</option><option value="85">100 pcs · $85</option>
         </select>
       </div>
+    <div id="minFeeNotice" style="display:none;background:rgba(201,168,76,.15);border:1px solid rgba(201,168,76,.4);border-radius:6px;padding:14px 20px;margin-bottom:16px;align-items:center;gap:12px;">
+      <span style="font-size:1.3rem;">⚠️</span>
+      <div>
+        <div style="font-family:'Playfair Display',serif;font-weight:600;color:var(--gold-lt);font-size:.88rem;"><span class="en-text">$65 Table Setup Fee Included</span><span class="es-text">Cargo de $65 por Mesa Incluido</span></div>
+        <div style="font-size:.78rem;color:rgba(255,255,255,.55);margin-top:3px;"><span class="en-text">A $65 table setup fee is automatically added to all Build Your Own orders.</span><span class="es-text">Se añade automáticamente un cargo de $65 por mesa a todos los pedidos de Crea Tu Pedido.</span></div>
+      </div>
+    </div>
     <div class="build-summary">
       <div class="build-total-label"><span><span class="en-text">Your Estimate</span><span class="es-text">Tu Estimado</span></span><strong id="buildItems"><span><span class="en-text">Select items above</span><span class="es-text">Selecciona arriba</span></span></strong></div>
       <div style="text-align:right"><div class="build-total-price" id="buildTotal">$0</div><div class="build-total-note">*Starting estimate · Estimado base</div></div>
@@ -644,6 +651,13 @@
         lines.push(item.querySelector('.build-item-name').textContent.trim() + ' (' + sel.options[sel.selectedIndex].text + ')');
       }
     });
+    var minFee = document.getElementById('minFeeNotice');
+    if (total > 0) {
+      total += 65;
+      if (minFee) minFee.style.display = 'flex';
+    } else {
+      if (minFee) minFee.style.display = 'none';
+    }
     document.getElementById('buildTotal').textContent = '$' + total.toLocaleString();
     var bi = document.getElementById('buildItems');
     if (bi) bi.textContent = lines.length ? lines.join(' | ') : '';
