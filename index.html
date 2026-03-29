@@ -484,7 +484,7 @@
     </div>
     <div class="build-summary">
       <div class="build-total-label"><span><span class="en-text">Your Estimate</span><span class="es-text">Tu Estimado</span></span><strong id="buildItems"><span><span class="en-text">Select items above</span><span class="es-text">Selecciona arriba</span></span></strong></div>
-      <div style="text-align:right"><div class="build-total-price" id="buildTotal">$0</div><div id="buildTaxLine" style="font-size:.72rem;color:var(--gold-lt);opacity:.7;margin-top:2px;"></div><div class="build-total-note">*Estimate includes $65 setup + 7% tax · Estimado incluye cargo $65 + impuesto 7%</div></div>
+      <div style="text-align:right"><div class="build-total-price" id="buildTotal">$0</div><div id="buildTaxLine" style="font-size:.72rem;color:var(--gold-lt);opacity:.7;margin-top:2px;"></div><div class="build-total-note">**Estimate only · $65 setup fee applies to Build Your Own orders without a package</div></div>
       <a href="#order" class="build-cta" onclick="prefillOrder()"><span><span class="en-text">Send This Order ✦</span><span class="es-text">Enviar Pedido ✦</span></span></a>
     </div>
   </div>
@@ -644,10 +644,17 @@
     } else {
       if (minFee) minFee.style.display = 'none';
     }
-    var tax = total > 0 ? Math.round(total * 0.07) : 0;
-    var grandTotal = total + tax;
+    var setupFee = 0;
+    if (total > 0) {
+      var orderTypeSel = document.getElementById('orderType');
+      var hasPackage = orderTypeSel && packagePrices[orderTypeSel.value];
+      setupFee = hasPackage ? 0 : 65;
+    }
+    var subtotalWithFee = total + setupFee;
+    var tax = total > 0 ? Math.round(subtotalWithFee * 0.07) : 0;
+    var grandTotal = subtotalWithFee + tax;
     document.getElementById('buildTotal').textContent = '$' + grandTotal.toLocaleString();
-    document.getElementById('buildTaxLine').textContent = total > 0 ? '+ $' + tax + ' est. tax (7%)' : '';
+    document.getElementById('buildTaxLine').textContent = total > 0 ? (setupFee > 0 ? '+$65 setup · ' : '') + '+$' + tax + ' est. tax (7%)' : '';
     var bi = document.getElementById('buildItems');
     if (bi) bi.textContent = lines.length ? lines.join(' | ') : '';
   }
@@ -692,12 +699,17 @@
 
     if (buildLines.length > 0) {
       if (total > 0) lines.push('');
-      lines.push('ADD-ONS / BUILD YOUR OWN:');
+      var hasPackage = orderType && packagePrices[orderType];
+      if (hasPackage) {
+        lines.push('ADD-ONS:');
+      } else {
+        lines.push('BUILD YOUR OWN:');
+        buildSubtotal += 65; // setup fee only if no package
+        lines.push('  Setup fee: $65');
+      }
       buildLines.forEach(function(l) { lines.push('  · ' + l); });
-      buildSubtotal += 65; // setup fee
       var tax = Math.round(buildSubtotal * 0.07);
       buildSubtotal += tax;
-      lines.push('  Setup fee: $65');
       lines.push('  Est. tax (7%): $' + tax);
       total += buildSubtotal;
     }
