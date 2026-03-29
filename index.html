@@ -95,7 +95,7 @@
     .testimonial-main cite{font-size:.75rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--gold-lt)}
     .petal{position:absolute;pointer-events:none;z-index:1;opacity:0;animation:petalFloat linear infinite}
     @keyframes petalFloat{0%{opacity:0;transform:translateY(110%) rotate(0deg)}8%{opacity:.7}88%{opacity:.5}100%{opacity:0;transform:translateY(-30px) rotate(380deg)}}
-    #build{background:var(--brown);padding:96px 24px}
+    #build{background:var(--brown);padding:64px 24px 96px}
     .build-inner{max-width:980px;margin:0 auto}
     .build-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:16px;margin-bottom:32px}
     .build-item{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:4px;padding:22px 16px;text-align:center;cursor:pointer;transition:all .3s;user-select:none;position:relative}
@@ -371,9 +371,9 @@
     </div>
 
     <!-- TWO COLUMN SPLIT - TABS -->
-    <div style="display:flex;border-bottom:2px solid rgba(255,255,255,.1);margin-bottom:0;">
-      <button id="tabInd" onclick="switchTab('individual')" style="flex:1;padding:16px;background:rgba(255,255,255,.08);border:none;border-bottom:3px solid var(--gold);color:var(--gold-lt);font-family:'Playfair Display',serif;font-size:.92rem;font-weight:600;cursor:pointer;transition:all .25s;">🛍️ <span class="en-text">Individual Order</span><span class="es-text">Pedido Individual</span></button>
-      <button id="tabBuild" onclick="switchTab('build')" style="flex:1;padding:16px;background:transparent;border:none;border-bottom:3px solid transparent;color:rgba(255,255,255,.4);font-family:'Playfair Display',serif;font-size:.92rem;font-weight:600;cursor:pointer;transition:all .25s;">🪄 <span class="en-text">Build Your Own Table</span><span class="es-text">Crea Tu Mesa Completa</span></button>
+    <div style="display:flex;border-bottom:2px solid rgba(255,255,255,.1);margin-bottom:0;position:relative;z-index:10;">
+      <button id="tabInd" onclick="switchTab('individual')" style="flex:1;padding:16px;background:rgba(255,255,255,.08);border:none;border-bottom:3px solid var(--gold);color:var(--gold-lt);font-family:'Playfair Display',serif;font-size:.92rem;font-weight:600;cursor:pointer;transition:all .25s;pointer-events:auto;position:relative;z-index:11;">🛍️ <span class="en-text">Individual Order</span><span class="es-text">Pedido Individual</span></button>
+      <button id="tabBuild" onclick="switchTab('build')" style="flex:1;padding:16px;background:transparent;border:none;border-bottom:3px solid transparent;color:rgba(255,255,255,.4);font-family:'Playfair Display',serif;font-size:.92rem;font-weight:600;cursor:pointer;transition:all .25s;pointer-events:auto;position:relative;z-index:11;">🪄 <span class="en-text">Build Your Own Table</span><span class="es-text">Crea Tu Mesa Completa</span></button>
     </div>
 
     <!-- INDIVIDUAL ORDER TAB -->
