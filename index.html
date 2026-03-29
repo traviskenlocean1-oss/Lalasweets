@@ -1067,19 +1067,6 @@
       }
     });
 
-    // Also check individual order items
-    document.querySelectorAll('.ind-item').forEach(function(item) {
-      var sel = item.querySelector('.ind-select');
-      if (sel && parseInt(sel.value) > 0) {
-        var val = parseInt(sel.value);
-        addonSubtotal += val;
-        var nameEl = item.querySelector('.en-text');
-        var name = nameEl ? nameEl.textContent.trim() : '';
-        addonItems.push({ name: name, desc: sel.options[sel.selectedIndex].text, price: val, id: 'build_' + item.querySelector('.build-item-name').textContent.replace(/\s+/g,'_') });
-        summaryForForm.push('INDIVIDUAL: ' + name + ': ' + sel.options[sel.selectedIndex].text);
-      }
-    });
-
     // Check individual panel items
     document.querySelectorAll('.ind-select').forEach(function(sel) {
       if (sel && parseInt(sel.value) > 0) {
