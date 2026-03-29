@@ -493,14 +493,39 @@
         </div>
       </div>
       <!-- Individual Total -->
+      <!-- Pickup or Delivery Toggle -->
+      <div style="background:#fff;border:1px solid var(--gold-lt);border-radius:6px;padding:18px 24px;margin-bottom:12px;">
+        <div style="font-family:'Playfair Display',serif;font-size:.78rem;font-weight:600;color:var(--brown);margin-bottom:12px;letter-spacing:.1em;text-transform:uppercase;"><span class="en-text">How would you like it?</span><span class="es-text">¿Cómo lo deseas?</span></div>
+        <div style="display:flex;gap:12px;">
+          <label style="flex:1;cursor:pointer;">
+            <input type="radio" name="indDelivery" value="pickup" checked onchange="updateIndTotal()" style="display:none;">
+            <div id="pickupBtn" style="padding:12px 16px;border:2px solid var(--rose);border-radius:6px;text-align:center;background:var(--rose);color:#fff;transition:all .2s;">
+              <div style="font-size:1.3rem;">🏠</div>
+              <div style="font-weight:700;font-size:.82rem;margin-top:4px;"><span class="en-text">Free Pickup</span><span class="es-text">Recogido Gratis</span></div>
+              <div style="font-size:.7rem;opacity:.8;"><span class="en-text">No delivery fee</span><span class="es-text">Sin cargo de entrega</span></div>
+            </div>
+          </label>
+          <label style="flex:1;cursor:pointer;">
+            <input type="radio" name="indDelivery" value="delivery" onchange="updateIndTotal()" style="display:none;">
+            <div id="deliveryBtn" style="padding:12px 16px;border:2px solid var(--gold-lt);border-radius:6px;text-align:center;background:transparent;color:var(--brown);transition:all .2s;">
+              <div style="font-size:1.3rem;">🚗</div>
+              <div style="font-weight:700;font-size:.82rem;margin-top:4px;"><span class="en-text">Delivery</span><span class="es-text">Entrega</span></div>
+              <div style="font-size:.7rem;color:var(--text-lt);"><span class="en-text">+$10 delivery fee</span><span class="es-text">+$10 cargo de entrega</span></div>
+            </div>
+          </label>
+        </div>
+      </div>
+
+      <!-- Total Box -->
       <div style="background:#fff;border:1px solid var(--gold-lt);border-radius:6px;padding:20px 24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;">
         <div>
           <div style="font-family:'Playfair Display',serif;font-size:.78rem;color:var(--text-lt);"><span class="en-text">Your Estimate</span><span class="es-text">Tu Estimado</span></div>
-          <div id="indItemsList" style="font-size:.75rem;color:var(--text-lt);margin-top:4px;font-style:italic;"></div>
+          <div id="indItemsList" style="font-size:.75rem;color:var(--text-lt);margin-top:4px;font-style:italic;max-width:280px;"></div>
         </div>
         <div style="text-align:right;">
           <div id="indTotal" style="font-family:'Playfair Display',serif;font-size:2.2rem;font-weight:700;color:var(--rose);">$0</div>
-          <div style="font-size:.68rem;color:var(--text-lt);">*<span class="en-text">Free pickup · Delivery starts at $10 · No setup fee</span><span class="es-text">Recogido gratis · Entrega desde $10 · Sin cargo de montaje</span></div>
+          <div id="indDeliveryLine" style="font-size:.72rem;color:var(--rose);margin-top:2px;display:none;">+ $10 <span class="en-text">delivery fee</span><span class="es-text">cargo de entrega</span></div>
+          <div style="font-size:.68rem;color:var(--text-lt);margin-top:2px;">*<span class="en-text">Estimate · No setup fee</span><span class="es-text">Estimado · Sin cargo de montaje</span></div>
         </div>
         <a href="#order" class="build-cta" onclick="prefillIndividual()" style="background:var(--rose);color:#fff;"><span class="en-text">Send This Order ✦</span><span class="es-text">Enviar Pedido ✦</span></a>
       </div>
@@ -815,34 +840,24 @@
   }
 
   function updateTotal() {
-    var total = 0;
+    var itemsTotal = 0;
     var lines = [];
     document.querySelectorAll('.build-item').forEach(function(item) {
       var sel = item.querySelector('.build-select');
       var val = sel ? parseInt(sel.value) : 0;
       if (val > 0) {
-        total += val;
+        itemsTotal += val;
         lines.push(item.querySelector('.build-item-name').textContent.trim() + ' (' + sel.options[sel.selectedIndex].text + ')');
       }
     });
     var minFee = document.getElementById('minFeeNotice');
-    if (total > 0) {
-      total += 65;
-      if (minFee) minFee.style.display = 'flex';
-    } else {
-      if (minFee) minFee.style.display = 'none';
-    }
-    var setupFee = 0;
-    if (total > 0) {
-      var orderTypeSel = document.getElementById('orderType');
-      var hasPackage = orderTypeSel && (packagePrices[orderTypeSel.value] || orderTypeSel.value.indexOf('Individual') >= 0);
-      setupFee = hasPackage ? 0 : 65;
-    }
-    var subtotalWithFee = total + setupFee;
-    var tax = total > 0 ? Math.round(subtotalWithFee * 0.07) : 0;
-    var grandTotal = subtotalWithFee + tax;
-    document.getElementById('buildTotal').textContent = '$' + grandTotal.toLocaleString();
-    document.getElementById('buildTaxLine').textContent = total > 0 ? (setupFee > 0 ? '+$65 setup · ' : '') + '+$' + tax + ' est. tax (7%)' : '';
+    var setupFee = itemsTotal > 0 ? 65 : 0;
+    var subtotal = itemsTotal + setupFee;
+    var tax = itemsTotal > 0 ? Math.round(subtotal * 0.07) : 0;
+    var grandTotal = subtotal + tax;
+    if (minFee) minFee.style.display = itemsTotal > 0 ? 'flex' : 'none';
+    document.getElementById('buildTotal').textContent = itemsTotal > 0 ? '$' + grandTotal.toLocaleString() : '$0';
+    document.getElementById('buildTaxLine').textContent = itemsTotal > 0 ? '+$65 setup · +$' + tax + ' est. tax (7%)' : '';
     var bi = document.getElementById('buildItems');
     if (bi) bi.textContent = lines.length ? lines.join(' | ') : '';
   }
@@ -881,10 +896,43 @@
       if (val > 0) {
         total += val;
         var item = sel.closest('.ind-item');
-        lines.push(item.querySelector('.en-text') ? item.querySelector('.en-text').textContent.trim() : '' );
+        var nameEl = item.querySelector('.en-text');
+        lines.push(nameEl ? nameEl.textContent.trim() : '');
       }
     });
-    document.getElementById('indTotal').textContent = '$' + total.toLocaleString();
+
+    // Check delivery option
+    var deliveryRadio = document.querySelector('input[name="indDelivery"]:checked');
+    var isDelivery = deliveryRadio && deliveryRadio.value === 'delivery';
+    var deliveryFee = (isDelivery && total > 0) ? 10 : 0;
+    var grandTotal = total + deliveryFee;
+
+    // Update toggle button styles
+    var pickupBtn = document.getElementById('pickupBtn');
+    var deliveryBtnEl = document.getElementById('deliveryBtn');
+    if (pickupBtn && deliveryBtnEl) {
+      if (isDelivery) {
+        pickupBtn.style.background = 'transparent';
+        pickupBtn.style.borderColor = 'var(--gold-lt)';
+        pickupBtn.style.color = 'var(--brown)';
+        deliveryBtnEl.style.background = 'var(--rose)';
+        deliveryBtnEl.style.borderColor = 'var(--rose)';
+        deliveryBtnEl.style.color = '#fff';
+      } else {
+        pickupBtn.style.background = 'var(--rose)';
+        pickupBtn.style.borderColor = 'var(--rose)';
+        pickupBtn.style.color = '#fff';
+        deliveryBtnEl.style.background = 'transparent';
+        deliveryBtnEl.style.borderColor = 'var(--gold-lt)';
+        deliveryBtnEl.style.color = 'var(--brown)';
+      }
+    }
+
+    // Show delivery line
+    var dl = document.getElementById('indDeliveryLine');
+    if (dl) dl.style.display = (isDelivery && total > 0) ? 'block' : 'none';
+
+    document.getElementById('indTotal').textContent = grandTotal > 0 ? '$' + grandTotal.toLocaleString() : '$0';
     var il = document.getElementById('indItemsList');
     if (il) il.textContent = lines.length ? lines.join(', ') : '';
   }
@@ -895,16 +943,25 @@
     document.querySelectorAll('.ind-item').forEach(function(item) {
       var sel = item.querySelector('.ind-select');
       if (sel && parseInt(sel.value) > 0) {
-        var nameEl = item.querySelector('.en-text'); var name = nameEl ? nameEl.textContent.trim() : '';
+        var nameEl = item.querySelector('.en-text');
+        var name = nameEl ? nameEl.textContent.trim() : '';
         lines.push(name + ': ' + sel.options[sel.selectedIndex].text);
         total += parseInt(sel.value);
       }
     });
+    var deliveryRadio = document.querySelector('input[name="indDelivery"]:checked');
+    var isDelivery = deliveryRadio && deliveryRadio.value === 'delivery';
+    var deliveryFee = isDelivery ? 10 : 0;
+    var grandTotal = total + deliveryFee;
+    var method = isDelivery ? 'Delivery (+$10 fee)' : 'Free Pickup';
     if (lines.length) {
       var ta = document.getElementById('eventDetails');
-      if (ta) ta.value = 'INDIVIDUAL ORDER: ' + lines.join(', ') + ' | Estimate: $' + total;
+      if (ta) ta.value = 'INDIVIDUAL ORDER (' + method + '): ' + lines.join(', ') + ' | Estimate: $' + grandTotal + (isDelivery ? ' (includes $10 delivery)' : ' (free pickup)');
       var ot = document.getElementById('orderType');
       if (ot) ot.value = 'Individual Order / Pedido Individual';
+      document.getElementById('order').scrollIntoView({behavior:'smooth'});
+    } else {
+      alert('Please select at least one item before sending your order.');
     }
   }
 
