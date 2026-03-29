@@ -370,49 +370,152 @@
       <p class="section-text" style="color:rgba(255,255,255,.6)"><span class="en-text">Choose individual items for pickup or delivery — or let Lala set up your full table experience.</span><span class="es-text">Escoge artículos individuales para recoger o entrega — o deja que Lala monte tu mesa completa.</span></p>
     </div>
 
-    <!-- TWO COLUMN SPLIT -->
-    <div style="display:grid;grid-template-columns:1fr 1px 1fr;gap:0;margin-bottom:48px;">
-      <!-- LEFT: INDIVIDUAL ORDER -->
-      <div style="padding:36px 40px 36px 0;">
-        <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;">
-          <div style="width:44px;height:44px;background:rgba(201,168,76,.15);border:1px solid rgba(201,168,76,.3);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0;">🛍️</div>
-          <div>
-            <div style="font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:600;color:#fff;"><span class="en-text">Individual Order</span><span class="es-text">Pedido Individual</span></div>
-            <div style="font-size:.72rem;color:var(--gold-lt);letter-spacing:.1em;text-transform:uppercase;margin-top:2px;"><span class="en-text">Pickup or Delivery</span><span class="es-text">Recogido o Entrega</span></div>
-          </div>
+    <!-- TWO COLUMN SPLIT - TABS -->
+    <div style="display:flex;border-bottom:2px solid rgba(255,255,255,.1);margin-bottom:0;">
+      <button id="tabInd" onclick="switchTab('individual')" style="flex:1;padding:16px;background:rgba(255,255,255,.08);border:none;border-bottom:3px solid var(--gold);color:var(--gold-lt);font-family:'Playfair Display',serif;font-size:.92rem;font-weight:600;cursor:pointer;transition:all .25s;">🛍️ <span class="en-text">Individual Order</span><span class="es-text">Pedido Individual</span></button>
+      <button id="tabBuild" onclick="switchTab('build')" style="flex:1;padding:16px;background:transparent;border:none;border-bottom:3px solid transparent;color:rgba(255,255,255,.4);font-family:'Playfair Display',serif;font-size:.92rem;font-weight:600;cursor:pointer;transition:all .25s;">🪄 <span class="en-text">Build Your Own Table</span><span class="es-text">Crea Tu Mesa Completa</span></button>
+    </div>
+
+    <!-- INDIVIDUAL ORDER TAB -->
+    <div id="panelIndividual" style="background:linear-gradient(135deg,#FFF0F3 0%,#FAF7F2 100%);padding:32px;border-radius:0 0 8px 8px;">
+      <div style="display:flex;align-items:center;gap:16px;margin-bottom:20px;flex-wrap:wrap;">
+        <p style="font-size:.85rem;color:var(--text-lt);line-height:1.7;flex:1;min-width:200px;"><span class="en-text">Order individual items — free pickup available or delivery by distance. <strong>No setup fee.</strong></span><span class="es-text">Ordena artículos individuales — recogido gratis o entrega por distancia. <strong>Sin cargo de montaje.</strong></span></p>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;">
+          <span style="padding:6px 14px;background:#fff;border:1px solid var(--gold-lt);border-radius:20px;font-size:.72rem;color:var(--text-lt);">✓ <span class="en-text">Free Pickup</span><span class="es-text">Recogido Gratis</span></span>
+          <span style="padding:6px 14px;background:#fff;border:1px solid var(--gold-lt);border-radius:20px;font-size:.72rem;color:var(--text-lt);">🚗 <span class="en-text">Delivery Available</span><span class="es-text">Entrega Disponible</span></span>
         </div>
-        <p style="font-size:.85rem;color:rgba(255,255,255,.55);line-height:1.75;margin-bottom:20px;">
-          <span class="en-text">Order individual items from our menu — perfect for smaller gatherings or adding to your own setup. Choose free pickup or we can deliver to you.</span>
-          <span class="es-text">Ordena artículos individuales — perfecto para reuniones pequeñas. Recoge gratis o te lo entregamos.</span>
-        </p>
-        <div style="display:flex;gap:10px;flex-wrap:wrap;">
-          <span style="padding:7px 14px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.15);border-radius:20px;font-size:.73rem;color:rgba(255,255,255,.65);">✓ <span class="en-text">Free Pickup Available</span><span class="es-text">Recogido Gratis</span></span>
-          <span style="padding:7px 14px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.15);border-radius:20px;font-size:.73rem;color:rgba(255,255,255,.65);">🚗 <span class="en-text">Delivery Available</span><span class="es-text">Entrega Disponible</span></span>
-        </div>
-        <a href="#order" style="display:inline-block;margin-top:20px;padding:11px 24px;background:rgba(201,168,76,.15);border:1px solid var(--gold);color:var(--gold-lt);border-radius:3px;text-decoration:none;font-size:.75rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;"><span class="en-text">Order Individually →</span><span class="es-text">Ordenar Individual →</span></a>
       </div>
-      <!-- DIVIDER -->
-      <div style="background:linear-gradient(to bottom,transparent,rgba(201,168,76,.4),transparent);margin:20px 0;"></div>
-      <!-- RIGHT: BUILD YOUR OWN TABLE -->
-      <div style="padding:36px 0 36px 40px;">
-        <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;">
-          <div style="width:44px;height:44px;background:rgba(197,112,125,.15);border:1px solid rgba(197,112,125,.3);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0;">🪄</div>
-          <div>
-            <div style="font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:600;color:#fff;"><span class="en-text">Build Your Own Table</span><span class="es-text">Crea Tu Mesa Completa</span></div>
-            <div style="font-size:.72rem;color:var(--rose);letter-spacing:.1em;text-transform:uppercase;margin-top:2px;"><span class="en-text">Delivery Only · $65 Setup Fee</span><span class="es-text">Solo Entrega · Cargo $65</span></div>
-          </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px;margin-bottom:24px;">
+        <div class="ind-item" data-base="0">
+          <span style="font-size:2rem;display:block;margin-bottom:8px;">🫶</span>
+          <div style="font-family:'Playfair Display',serif;font-size:.88rem;font-weight:600;color:var(--brown);margin-bottom:2px;"><span class="en-text">Charcuterie Trays</span><span class="es-text">Bandejas de Charcutería</span></div>
+          <select class="ind-select" onchange="updateIndTotal()" style="margin-top:8px;width:100%;background:#fff;border:1.5px solid var(--gold-lt);color:var(--brown);padding:7px 8px;border-radius:4px;font-size:.77rem;cursor:pointer;outline:none;">
+            <option value="0">--</option><option value="75">10-12 people · $75</option><option value="100">15-20 people · $100</option><option value="125">25-30 people · $125</option>
+          </select>
         </div>
-        <p style="font-size:.85rem;color:rgba(255,255,255,.55);line-height:1.75;margin-bottom:20px;">
-          <span class="en-text">Lala arrives with all her equipment, displays &amp; décor to set up your full custom grazing table. A $65 service fee covers her equipment and setup — delivery required.</span>
-          <span class="es-text">Lala llega con todo su equipo, displays y decoración para montar tu mesa personalizada. El cargo de $65 cubre su equipo y montaje — requiere entrega.</span>
-        </p>
-        <div style="display:flex;gap:10px;flex-wrap:wrap;">
-          <span style="padding:7px 14px;background:rgba(197,112,125,.1);border:1px solid rgba(197,112,125,.3);border-radius:20px;font-size:.73rem;color:rgba(255,255,255,.65);">🎨 <span class="en-text">Full Setup Included</span><span class="es-text">Montaje Completo</span></span>
-          <span style="padding:7px 14px;background:rgba(197,112,125,.1);border:1px solid rgba(197,112,125,.3);border-radius:20px;font-size:.73rem;color:rgba(255,255,255,.65);">🚗 <span class="en-text">Delivery Required</span><span class="es-text">Requiere Entrega</span></span>
+        <div class="ind-item" data-base="0">
+          <span style="font-size:2rem;display:block;margin-bottom:8px;">🎁</span>
+          <div style="font-family:'Playfair Display',serif;font-size:.88rem;font-weight:600;color:var(--brown);margin-bottom:2px;"><span class="en-text">Mini Charcuterie Box</span><span class="es-text">Mini Box de Charcutería</span></div>
+          <select class="ind-select" onchange="updateIndTotal()" style="margin-top:8px;width:100%;background:#fff;border:1.5px solid var(--gold-lt);color:var(--brown);padding:7px 8px;border-radius:4px;font-size:.77rem;cursor:pointer;outline:none;">
+            <option value="0">--</option><option value="9">1 box · $9</option><option value="45">5 boxes · $45</option><option value="90">10 boxes · $90</option>
+          </select>
         </div>
-        <p style="font-size:.72rem;color:rgba(255,255,255,.3);margin-top:16px;font-style:italic;"><span class="en-text">↓ Mix and match below — $65 setup + 7% tax added automatically</span><span class="es-text">↓ Combina abajo — $65 cargo + 7% impuesto automático</span></p>
+        <div class="ind-item" data-base="0">
+          <span style="font-size:2rem;display:block;margin-bottom:8px;">🥪</span>
+          <div style="font-family:'Playfair Display',serif;font-size:.88rem;font-weight:600;color:var(--brown);margin-bottom:2px;"><span class="en-text">Mini Chicken Sandwiches</span><span class="es-text">Mini Sandwich de Pollo</span></div>
+          <select class="ind-select" onchange="updateIndTotal()" style="margin-top:8px;width:100%;background:#fff;border:1.5px solid var(--gold-lt);color:var(--brown);padding:7px 8px;border-radius:4px;font-size:.77rem;cursor:pointer;outline:none;">
+            <option value="0">--</option><option value="48">24 pcs · $48</option><option value="96">48 pcs · $96</option>
+          </select>
+        </div>
+        <div class="ind-item" data-base="0">
+          <span style="font-size:2rem;display:block;margin-bottom:8px;">🥖</span>
+          <div style="font-family:'Playfair Display',serif;font-size:.88rem;font-weight:600;color:var(--brown);margin-bottom:2px;"><span class="en-text">Mixed Sandwiches</span><span class="es-text">Sandwich de Mezcla</span></div>
+          <select class="ind-select" onchange="updateIndTotal()" style="margin-top:8px;width:100%;background:#fff;border:1.5px solid var(--gold-lt);color:var(--brown);padding:7px 8px;border-radius:4px;font-size:.77rem;cursor:pointer;outline:none;">
+            <option value="0">--</option><option value="8">12 pcs · $8</option><option value="16">24 pcs · $16</option><option value="24">36 pcs · $24</option><option value="35">50 pcs · $35</option>
+          </select>
+        </div>
+        <div class="ind-item" data-base="0">
+          <span style="font-size:2rem;display:block;margin-bottom:8px;">🍢</span>
+          <div style="font-family:'Playfair Display',serif;font-size:.88rem;font-weight:600;color:var(--brown);margin-bottom:2px;"><span class="en-text">Canapés</span><span class="es-text">Canapés Artesanales</span></div>
+          <select class="ind-select" onchange="updateIndTotal()" style="margin-top:8px;width:100%;background:#fff;border:1.5px solid var(--gold-lt);color:var(--brown);padding:7px 8px;border-radius:4px;font-size:.77rem;cursor:pointer;outline:none;">
+            <option value="0">--</option><option value="15">25 pcs · $15</option><option value="25">50 pcs · $25</option><option value="47">100 pcs · $47</option>
+          </select>
+        </div>
+        <div class="ind-item" data-base="0">
+          <span style="font-size:2rem;display:block;margin-bottom:8px;">🍓</span>
+          <div style="font-family:'Playfair Display',serif;font-size:.88rem;font-weight:600;color:var(--brown);margin-bottom:2px;"><span class="en-text">Chocolate Strawberries</span><span class="es-text">Fresas con Chocolate</span></div>
+          <select class="ind-select" onchange="updateIndTotal()" style="margin-top:8px;width:100%;background:#fff;border:1.5px solid var(--gold-lt);color:var(--brown);padding:7px 8px;border-radius:4px;font-size:.77rem;cursor:pointer;outline:none;">
+            <option value="0">--</option><option value="20">12 pcs · $20</option><option value="36">24 pcs · $36</option><option value="54">36 pcs · $54</option>
+          </select>
+        </div>
+        <div class="ind-item" data-base="0">
+          <span style="font-size:2rem;display:block;margin-bottom:8px;">🍤</span>
+          <div style="font-family:'Playfair Display',serif;font-size:.88rem;font-weight:600;color:var(--brown);margin-bottom:2px;"><span class="en-text">Shrimp Ceviche</span><span class="es-text">Ceviche de Camarones</span></div>
+          <select class="ind-select" onchange="updateIndTotal()" style="margin-top:8px;width:100%;background:#fff;border:1.5px solid var(--gold-lt);color:var(--brown);padding:7px 8px;border-radius:4px;font-size:.77rem;cursor:pointer;outline:none;">
+            <option value="0">--</option><option value="65">3 lbs · $65</option><option value="90">6 lbs · $90</option>
+          </select>
+        </div>
+        <div class="ind-item" data-base="0">
+          <span style="font-size:2rem;display:block;margin-bottom:8px;">🫕</span>
+          <div style="font-family:'Playfair Display',serif;font-size:.88rem;font-weight:600;color:var(--brown);margin-bottom:2px;"><span class="en-text">Dips</span><span class="es-text">Dips / Salsas</span></div>
+          <select class="ind-select" onchange="updateIndTotal()" style="margin-top:8px;width:100%;background:#fff;border:1.5px solid var(--gold-lt);color:var(--brown);padding:7px 8px;border-radius:4px;font-size:.77rem;cursor:pointer;outline:none;">
+            <option value="0">--</option><option value="22">Chicken · $22</option><option value="18">Spinach · $18</option><option value="18">Bacon Ranch · $18</option><option value="18">Bola de Fuego · $18</option>
+          </select>
+        </div>
+        <div class="ind-item" data-base="0">
+          <span style="font-size:2rem;display:block;margin-bottom:8px;">🥗</span>
+          <div style="font-family:'Playfair Display',serif;font-size:.88rem;font-weight:600;color:var(--brown);margin-bottom:2px;"><span class="en-text">Salad</span><span class="es-text">Ensalada</span></div>
+          <select class="ind-select" onchange="updateIndTotal()" style="margin-top:8px;width:100%;background:#fff;border:1.5px solid var(--gold-lt);color:var(--brown);padding:7px 8px;border-radius:4px;font-size:.77rem;cursor:pointer;outline:none;">
+            <option value="0">--</option><option value="14">Cold Pasta · $14</option><option value="28">Grain Salad 4lbs · $28</option>
+          </select>
+        </div>
+        <div class="ind-item" data-base="0">
+          <span style="font-size:2rem;display:block;margin-bottom:8px;">🍰</span>
+          <div style="font-family:'Playfair Display',serif;font-size:.88rem;font-weight:600;color:var(--brown);margin-bottom:2px;"><span class="en-text">Cheesecake</span><span class="es-text">Cheesecake Individual</span></div>
+          <select class="ind-select" onchange="updateIndTotal()" style="margin-top:8px;width:100%;background:#fff;border:1.5px solid var(--gold-lt);color:var(--brown);padding:7px 8px;border-radius:4px;font-size:.77rem;cursor:pointer;outline:none;">
+            <option value="0">--</option><option value="36">12 pcs · $36</option><option value="70">24 pcs · $70</option><option value="95">36 pcs · $95</option>
+          </select>
+        </div>
+        <div class="ind-item" data-base="0">
+          <span style="font-size:2rem;display:block;margin-bottom:8px;">🥐</span>
+          <div style="font-family:'Playfair Display',serif;font-size:.88rem;font-weight:600;color:var(--brown);margin-bottom:2px;"><span class="en-text">Croissants</span><span class="es-text">Croissants Artesanales</span></div>
+          <select class="ind-select" onchange="updateIndTotal()" style="margin-top:8px;width:100%;background:#fff;border:1.5px solid var(--gold-lt);color:var(--brown);padding:7px 8px;border-radius:4px;font-size:.77rem;cursor:pointer;outline:none;">
+            <option value="0">--</option><option value="38">20 pcs · $38</option><option value="65">40 pcs · $65</option><option value="90">60 pcs · $90</option>
+          </select>
+        </div>
+        <div class="ind-item" data-base="0">
+          <span style="font-size:2rem;display:block;margin-bottom:8px;">🍮</span>
+          <div style="font-family:'Playfair Display',serif;font-size:.88rem;font-weight:600;color:var(--brown);margin-bottom:2px;"><span class="en-text">Tres Leches</span><span class="es-text">Tres Leches Individual</span></div>
+          <select class="ind-select" onchange="updateIndTotal()" style="margin-top:8px;width:100%;background:#fff;border:1.5px solid var(--gold-lt);color:var(--brown);padding:7px 8px;border-radius:4px;font-size:.77rem;cursor:pointer;outline:none;">
+            <option value="0">--</option><option value="45">12 pcs · $45</option><option value="78">24 pcs · $78</option><option value="110">36 pcs · $110</option>
+          </select>
+        </div>
+        <div class="ind-item" data-base="0">
+          <span style="font-size:2rem;display:block;margin-bottom:8px;">🍦</span>
+          <div style="font-family:'Playfair Display',serif;font-size:.88rem;font-weight:600;color:var(--brown);margin-bottom:2px;"><span class="en-text">Charcuterie Cones</span><span class="es-text">Conos de Charcutería</span></div>
+          <select class="ind-select" onchange="updateIndTotal()" style="margin-top:8px;width:100%;background:#fff;border:1.5px solid var(--gold-lt);color:var(--brown);padding:7px 8px;border-radius:4px;font-size:.77rem;cursor:pointer;outline:none;">
+            <option value="0">--</option><option value="48">12 cones · $48</option><option value="95">24 cones · $95</option>
+          </select>
+        </div>
+        <div class="ind-item" data-base="0">
+          <span style="font-size:2rem;display:block;margin-bottom:8px;">🍫</span>
+          <div style="font-family:'Playfair Display',serif;font-size:.88rem;font-weight:600;color:var(--brown);margin-bottom:2px;"><span class="en-text">Choconutela Cups</span><span class="es-text">Vasitos de Choconutela</span></div>
+          <select class="ind-select" onchange="updateIndTotal()" style="margin-top:8px;width:100%;background:#fff;border:1.5px solid var(--gold-lt);color:var(--brown);padding:7px 8px;border-radius:4px;font-size:.77rem;cursor:pointer;outline:none;">
+            <option value="0">--</option><option value="45">12 pcs · $45</option><option value="78">24 pcs · $78</option><option value="110">36 pcs · $110</option>
+          </select>
+        </div>
+        <div class="ind-item" data-base="0">
+          <span style="font-size:2rem;display:block;margin-bottom:8px;">🫓</span>
+          <div style="font-family:'Playfair Display',serif;font-size:.88rem;font-weight:600;color:var(--brown);margin-bottom:2px;"><span class="en-text">Quesitos & Guava Pastries</span><span class="es-text">Quesitos y Past. Guayaba</span></div>
+          <select class="ind-select" onchange="updateIndTotal()" style="margin-top:8px;width:100%;background:#fff;border:1.5px solid var(--gold-lt);color:var(--brown);padding:7px 8px;border-radius:4px;font-size:.77rem;cursor:pointer;outline:none;">
+            <option value="0">--</option><option value="18">20 pcs · $18</option><option value="35">40 pcs · $35</option><option value="53">60 pcs · $53</option><option value="85">100 pcs · $85</option>
+          </select>
+        </div>
+      </div>
+      <!-- Individual Total -->
+      <div style="background:#fff;border:1px solid var(--gold-lt);border-radius:6px;padding:20px 24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;">
+        <div>
+          <div style="font-family:'Playfair Display',serif;font-size:.78rem;color:var(--text-lt);"><span class="en-text">Your Estimate</span><span class="es-text">Tu Estimado</span></div>
+          <div id="indItemsList" style="font-size:.75rem;color:var(--text-lt);margin-top:4px;font-style:italic;"></div>
+        </div>
+        <div style="text-align:right;">
+          <div id="indTotal" style="font-family:'Playfair Display',serif;font-size:2.2rem;font-weight:700;color:var(--rose);">$0</div>
+          <div style="font-size:.68rem;color:var(--text-lt);">*<span class="en-text">Estimate before delivery fee</span><span class="es-text">Estimado antes de cargo de entrega</span></div>
+        </div>
+        <a href="#order" class="build-cta" onclick="prefillIndividual()" style="background:var(--rose);color:#fff;"><span class="en-text">Send This Order ✦</span><span class="es-text">Enviar Pedido ✦</span></a>
       </div>
     </div>
+
+    <!-- BUILD YOUR OWN TAB -->
+    <div id="panelBuild" style="display:none;background:var(--brown);padding:32px;border-radius:0 0 8px 8px;">
+      <div style="display:flex;align-items:center;gap:16px;margin-bottom:20px;flex-wrap:wrap;">
+        <p style="font-size:.85rem;color:rgba(255,255,255,.55);line-height:1.7;flex:1;min-width:200px;"><span class="en-text">Lala arrives with all her equipment, displays &amp; décor to set up your full custom grazing table. <strong style="color:var(--gold-lt);">Delivery required — $65 setup fee applies.</strong></span><span class="es-text">Lala llega con todo su equipo y decoración para montar tu mesa completa. <strong style="color:var(--gold-lt);">Requiere entrega — cargo de $65 por montaje.</strong></span></p>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;">
+          <span style="padding:6px 14px;background:rgba(197,112,125,.1);border:1px solid rgba(197,112,125,.3);border-radius:20px;font-size:.72rem;color:rgba(255,255,255,.65);">🎨 <span class="en-text">Full Setup</span><span class="es-text">Montaje Completo</span></span>
+          <span style="padding:6px 14px;background:rgba(197,112,125,.1);border:1px solid rgba(197,112,125,.3);border-radius:20px;font-size:.72rem;color:rgba(255,255,255,.65);">🚗 <span class="en-text">Delivery Only</span><span class="es-text">Solo Entrega</span></span>
+        </div>
+      </div>
+
     <div class="build-grid" id="buildGrid" style="grid-template-columns:repeat(auto-fit,minmax(160px,1fr))">
       <div class="build-item" data-base="0">
         <span class="build-item-icon">🫶</span>
@@ -691,7 +794,7 @@
     var setupFee = 0;
     if (total > 0) {
       var orderTypeSel = document.getElementById('orderType');
-      var hasPackage = orderTypeSel && packagePrices[orderTypeSel.value];
+      var hasPackage = orderTypeSel && (packagePrices[orderTypeSel.value] || orderTypeSel.value.indexOf('Individual') >= 0);
       setupFee = hasPackage ? 0 : 65;
     }
     var subtotalWithFee = total + setupFee;
@@ -701,6 +804,70 @@
     document.getElementById('buildTaxLine').textContent = total > 0 ? (setupFee > 0 ? '+$65 setup · ' : '') + '+$' + tax + ' est. tax (7%)' : '';
     var bi = document.getElementById('buildItems');
     if (bi) bi.textContent = lines.length ? lines.join(' | ') : '';
+  }
+
+  function switchTab(tab) {
+    var indPanel = document.getElementById('panelIndividual');
+    var buildPanel = document.getElementById('panelBuild');
+    var tabInd = document.getElementById('tabInd');
+    var tabBuild = document.getElementById('tabBuild');
+    if (tab === 'individual') {
+      indPanel.style.display = 'block';
+      buildPanel.style.display = 'none';
+      tabInd.style.borderBottomColor = 'var(--gold)';
+      tabInd.style.color = 'var(--gold-lt)';
+      tabInd.style.background = 'rgba(255,255,255,.08)';
+      tabBuild.style.borderBottomColor = 'transparent';
+      tabBuild.style.color = 'rgba(255,255,255,.4)';
+      tabBuild.style.background = 'transparent';
+    } else {
+      indPanel.style.display = 'none';
+      buildPanel.style.display = 'block';
+      tabBuild.style.borderBottomColor = 'var(--gold)';
+      tabBuild.style.color = 'var(--gold-lt)';
+      tabBuild.style.background = 'rgba(255,255,255,.08)';
+      tabInd.style.borderBottomColor = 'transparent';
+      tabInd.style.color = 'rgba(255,255,255,.4)';
+      tabInd.style.background = 'transparent';
+    }
+  }
+
+  function updateIndTotal() {
+    var total = 0;
+    var lines = [];
+    document.querySelectorAll('.ind-select').forEach(function(sel) {
+      var val = parseInt(sel.value);
+      if (val > 0) {
+        total += val;
+        var item = sel.closest('.ind-item');
+        lines.push(item.querySelector('.en-text') ? item.querySelector('.en-text').textContent.trim() : '' );
+      }
+    });
+    document.getElementById('indTotal').textContent = '$' + total.toLocaleString();
+    var il = document.getElementById('indItemsList');
+    if (il) il.textContent = lines.length ? lines.join(', ') : '';
+  }
+
+  function prefillIndividual() {
+    var lines = [];
+    var total = 0;
+    document.querySelectorAll('.ind-item').forEach(function(item) {
+      var sel = item.querySelector('.ind-select');
+      if (sel && parseInt(sel.value) > 0) {
+        var name = item.querySelector('[class*="en-text"]') ? item.querySelector('[class*="en-text"]').textContent.trim() : '';
+        lines.push(name + ': ' + sel.options[sel.selectedIndex].text);
+        total += parseInt(sel.value);
+      }
+    });
+    if (lines.length) {
+      var ta = document.getElementById('eventDetails');
+      if (ta) ta.value = 'INDIVIDUAL ORDER:
+' + lines.join('
+') + '
+Estimate: $' + total;
+      var ot = document.getElementById('orderType');
+      if (ot) ot.value = 'Individual Order / Pedido Individual';
+    }
   }
 
   var packagePrices = {
@@ -743,7 +910,7 @@
 
     if (buildLines.length > 0) {
       if (total > 0) lines.push('');
-      var hasPackage = orderType && packagePrices[orderType];
+      var hasPackage = orderType && (packagePrices[orderType] || orderType.indexOf('Individual') >= 0);
       if (hasPackage) {
         lines.push('ADD-ONS:');
       } else {
