@@ -361,346 +361,326 @@
   <span class="petal" style="width:16px;height:16px;left:95%;bottom:0;animation-duration:8.5s;animation-delay:1s"><svg viewBox="0 0 40 40"><ellipse cx="20" cy="12" rx="8" ry="13" fill="rgba(255,255,255,0.55)" transform="rotate(0 20 20)"/><ellipse cx="20" cy="12" rx="8" ry="13" fill="rgba(255,255,255,0.45)" transform="rotate(72 20 20)"/><ellipse cx="20" cy="12" rx="8" ry="13" fill="rgba(255,255,255,0.5)" transform="rotate(144 20 20)"/><ellipse cx="20" cy="12" rx="8" ry="13" fill="rgba(255,255,255,0.45)" transform="rotate(216 20 20)"/><ellipse cx="20" cy="12" rx="8" ry="13" fill="rgba(255,255,255,0.5)" transform="rotate(288 20 20)"/><circle cx="20" cy="20" r="4" fill="rgba(255,255,255,0.65)"/></svg></span>
 </div>
 
-<section id="build">
-  <div class="build-inner">
-    <div class="section-header reveal">
+<section id="build" style="background:var(--brown);padding:64px 0 0;">
+  <div class="build-inner" style="max-width:980px;margin:0 auto;padding:0 24px;">
+    <div class="section-header reveal" style="margin-bottom:40px;">
       <div class="section-kicker" style="color:var(--gold-lt)"><span class="en-text">Custom Orders</span><span class="es-text">Pedidos Personalizados</span></div>
       <div class="section-title" style="color:var(--gold-lt)"><span class="en-text">Order Your Way</span><span class="es-text">Ordena a Tu Manera</span></div>
       <hr class="section-rule"/>
-      <p class="section-text" style="color:rgba(255,255,255,.6)"><span class="en-text">Choose individual items for pickup or delivery — or let Lala set up your full table experience.</span><span class="es-text">Escoge artículos individuales para recoger o entrega — o deja que Lala monte tu mesa completa.</span></p>
+      <p class="section-text" style="color:rgba(255,255,255,.6)"><span class="en-text">Choose individual items for pickup or delivery — or let Lala build your full table experience.</span><span class="es-text">Escoge artículos individuales o deja que Lala monte tu mesa completa.</span></p>
     </div>
 
-    <!-- TWO COLUMN SPLIT - TABS -->
-    <div style="display:flex;border-bottom:2px solid rgba(255,255,255,.1);margin-bottom:0;position:relative;z-index:10;">
-      <button id="tabInd" onclick="switchTab('individual')" style="flex:1;padding:16px;background:rgba(255,255,255,.08);border:none;border-bottom:3px solid var(--gold);color:var(--gold-lt);font-family:'Playfair Display',serif;font-size:.92rem;font-weight:600;cursor:pointer;transition:all .25s;pointer-events:auto;position:relative;z-index:11;">🛍️ <span class="en-text">Individual Order</span><span class="es-text">Pedido Individual</span></button>
-      <button id="tabBuild" onclick="switchTab('build')" style="flex:1;padding:16px;background:transparent;border:none;border-bottom:3px solid transparent;color:rgba(255,255,255,.4);font-family:'Playfair Display',serif;font-size:.92rem;font-weight:600;cursor:pointer;transition:all .25s;pointer-events:auto;position:relative;z-index:11;">🪄 <span class="en-text">Build Your Own Table</span><span class="es-text">Crea Tu Mesa Completa</span></button>
+    <!-- TAB BUTTONS -->
+    <div style="display:flex;gap:0;margin-bottom:0;border-radius:8px 8px 0 0;overflow:hidden;">
+      <button id="tabInd" style="flex:1;padding:18px 24px;background:rgba(242,196,206,0.95);border:none;border-bottom:4px solid var(--rose);color:var(--brown);font-family:'Playfair Display',serif;font-size:.95rem;font-weight:700;cursor:pointer;" onclick="showTab('ind')">
+        🛍️ <span class="en-text">Individual Order</span><span class="es-text">Pedido Individual</span>
+      </button>
+      <button id="tabBuild" style="flex:1;padding:18px 24px;background:rgba(255,255,255,0.06);border:none;border-bottom:4px solid transparent;color:rgba(255,255,255,0.45);font-family:'Playfair Display',serif;font-size:.95rem;font-weight:700;cursor:pointer;" onclick="showTab('build')">
+        🪄 <span class="en-text">Build Your Own Table</span><span class="es-text">Crea Tu Mesa Completa</span>
+      </button>
     </div>
 
-    <!-- INDIVIDUAL ORDER TAB -->
-    <div id="panelIndividual" style="background:linear-gradient(135deg,#FFF0F3 0%,#FAF7F2 100%);padding:32px;border-radius:0 0 8px 8px;">
-      <div style="display:flex;align-items:center;gap:16px;margin-bottom:20px;flex-wrap:wrap;">
-        <p style="font-size:.85rem;color:var(--text-lt);line-height:1.7;flex:1;min-width:200px;"><span class="en-text">Order individual items — free pickup available or delivery by distance. <strong>No setup fee.</strong></span><span class="es-text">Ordena artículos individuales — recogido gratis o entrega por distancia. <strong>Sin cargo de montaje.</strong></span></p>
-        <div style="display:flex;gap:8px;flex-wrap:wrap;">
-          <span style="padding:6px 14px;background:#fff;border:1px solid var(--gold-lt);border-radius:20px;font-size:.72rem;color:var(--text-lt);">✓ <span class="en-text">Free Pickup</span><span class="es-text">Recogido Gratis</span></span>
-          <span style="padding:6px 14px;background:#fff;border:1px solid var(--gold-lt);border-radius:20px;font-size:.72rem;color:var(--text-lt);">🚗 <span class="en-text">Delivery from $10</span><span class="es-text">Entrega desde $10</span></span>
-        </div>
+    <!-- INDIVIDUAL PANEL -->
+    <div id="panelInd" style="background:linear-gradient(135deg,#FFF0F3,#FAF7F2);padding:32px;border-radius:0 0 8px 8px;">
+      <p style="font-size:.85rem;color:var(--text-lt);margin-bottom:8px;"><span class="en-text"><strong>Free pickup</strong> or <strong>+$10 delivery</strong> — no setup fee.</span><span class="es-text"><strong>Recogido gratis</strong> o <strong>+$10 entrega</strong> — sin cargo de montaje.</span></p>
+      <!-- Pickup/Delivery -->
+      <div style="display:flex;gap:12px;margin-bottom:24px;">
+        <label style="flex:1;cursor:pointer;display:block;">
+          <input type="radio" name="indDelivery" value="pickup" checked onchange="updateIndTotal()" style="display:none;">
+          <div id="pickupBtn" style="padding:10px;border:2px solid var(--rose);border-radius:6px;text-align:center;background:var(--rose);color:#fff;">
+            <div style="font-size:1.1rem;">🏠</div>
+            <div style="font-weight:700;font-size:.78rem;"><span class="en-text">Free Pickup</span><span class="es-text">Recogido Gratis</span></div>
+          </div>
+        </label>
+        <label style="flex:1;cursor:pointer;display:block;">
+          <input type="radio" name="indDelivery" value="delivery" onchange="updateIndTotal()" style="display:none;">
+          <div id="deliveryBtn" style="padding:10px;border:2px solid var(--gold-lt);border-radius:6px;text-align:center;background:transparent;color:var(--brown);">
+            <div style="font-size:1.1rem;">🚗</div>
+            <div style="font-weight:700;font-size:.78rem;"><span class="en-text">Delivery +$10</span><span class="es-text">Entrega +$10</span></div>
+          </div>
+        </label>
       </div>
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px;margin-bottom:24px;">
-        <div class="ind-item" data-base="0">
-          <span style="font-size:2rem;display:block;margin-bottom:8px;">🫶</span>
-          <div style="font-family:'Playfair Display',serif;font-size:.88rem;font-weight:600;color:var(--brown);margin-bottom:2px;"><span class="en-text">Charcuterie Trays</span><span class="es-text">Bandejas de Charcutería</span></div>
-          <select class="ind-select" onchange="updateIndTotal(); var ot=document.getElementById('orderType'); if(ot&&ot.value) buildOrderSummary(ot.value);" style="margin-top:8px;width:100%;background:#fff;border:1.5px solid var(--gold-lt);color:var(--brown);padding:7px 8px;border-radius:4px;font-size:.77rem;cursor:pointer;outline:none;">
+      <!-- Items Grid -->
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin-bottom:24px;">
+        <div class="ind-item" style="background:rgba(255,255,255,.9);border:1px solid var(--gold-lt);border-radius:6px;padding:16px;text-align:center;">
+          <div style="font-size:2rem;margin-bottom:8px;">🫶</div>
+          <div style="font-family:'Playfair Display',serif;font-size:.82rem;font-weight:600;color:var(--brown);margin-bottom:8px;"><span class="en-text">Charcuterie Trays</span><span class="es-text">Bandejas de Charcutería</span></div>
+          <select class="ind-select" onchange="updateIndTotal()" style="width:100%;background:#fff;border:1.5px solid var(--gold-lt);color:var(--brown);padding:7px 8px;border-radius:4px;font-size:.77rem;cursor:pointer;outline:none;">
             <option value="0">--</option><option value="75">10-12 people · $75</option><option value="100">15-20 people · $100</option><option value="125">25-30 people · $125</option>
           </select>
         </div>
-        <div class="ind-item" data-base="0">
-          <span style="font-size:2rem;display:block;margin-bottom:8px;">🎁</span>
-          <div style="font-family:'Playfair Display',serif;font-size:.88rem;font-weight:600;color:var(--brown);margin-bottom:2px;"><span class="en-text">Mini Charcuterie Box</span><span class="es-text">Mini Box de Charcutería</span></div>
-          <select class="ind-select" onchange="updateIndTotal(); var ot=document.getElementById('orderType'); if(ot&&ot.value) buildOrderSummary(ot.value);" style="margin-top:8px;width:100%;background:#fff;border:1.5px solid var(--gold-lt);color:var(--brown);padding:7px 8px;border-radius:4px;font-size:.77rem;cursor:pointer;outline:none;">
+        <div class="ind-item" style="background:rgba(255,255,255,.9);border:1px solid var(--gold-lt);border-radius:6px;padding:16px;text-align:center;">
+          <div style="font-size:2rem;margin-bottom:8px;">🎁</div>
+          <div style="font-family:'Playfair Display',serif;font-size:.82rem;font-weight:600;color:var(--brown);margin-bottom:8px;"><span class="en-text">Mini Charcuterie Box</span><span class="es-text">Mini Box de Charcutería</span></div>
+          <select class="ind-select" onchange="updateIndTotal()" style="width:100%;background:#fff;border:1.5px solid var(--gold-lt);color:var(--brown);padding:7px 8px;border-radius:4px;font-size:.77rem;cursor:pointer;outline:none;">
             <option value="0">--</option><option value="9">1 box · $9</option><option value="45">5 boxes · $45</option><option value="90">10 boxes · $90</option>
           </select>
         </div>
-        <div class="ind-item" data-base="0">
-          <span style="font-size:2rem;display:block;margin-bottom:8px;">🥪</span>
-          <div style="font-family:'Playfair Display',serif;font-size:.88rem;font-weight:600;color:var(--brown);margin-bottom:2px;"><span class="en-text">Mini Chicken Sandwiches</span><span class="es-text">Mini Sandwich de Pollo</span></div>
-          <select class="ind-select" onchange="updateIndTotal(); var ot=document.getElementById('orderType'); if(ot&&ot.value) buildOrderSummary(ot.value);" style="margin-top:8px;width:100%;background:#fff;border:1.5px solid var(--gold-lt);color:var(--brown);padding:7px 8px;border-radius:4px;font-size:.77rem;cursor:pointer;outline:none;">
+        <div class="ind-item" style="background:rgba(255,255,255,.9);border:1px solid var(--gold-lt);border-radius:6px;padding:16px;text-align:center;">
+          <div style="font-size:2rem;margin-bottom:8px;">🥪</div>
+          <div style="font-family:'Playfair Display',serif;font-size:.82rem;font-weight:600;color:var(--brown);margin-bottom:8px;"><span class="en-text">Mini Chicken Sandwiches</span><span class="es-text">Mini Sandwich de Pollo</span></div>
+          <select class="ind-select" onchange="updateIndTotal()" style="width:100%;background:#fff;border:1.5px solid var(--gold-lt);color:var(--brown);padding:7px 8px;border-radius:4px;font-size:.77rem;cursor:pointer;outline:none;">
             <option value="0">--</option><option value="48">24 pcs · $48</option><option value="96">48 pcs · $96</option>
           </select>
         </div>
-        <div class="ind-item" data-base="0">
-          <span style="font-size:2rem;display:block;margin-bottom:8px;">🥖</span>
-          <div style="font-family:'Playfair Display',serif;font-size:.88rem;font-weight:600;color:var(--brown);margin-bottom:2px;"><span class="en-text">Mixed Sandwiches</span><span class="es-text">Sandwich de Mezcla</span></div>
-          <select class="ind-select" onchange="updateIndTotal(); var ot=document.getElementById('orderType'); if(ot&&ot.value) buildOrderSummary(ot.value);" style="margin-top:8px;width:100%;background:#fff;border:1.5px solid var(--gold-lt);color:var(--brown);padding:7px 8px;border-radius:4px;font-size:.77rem;cursor:pointer;outline:none;">
+        <div class="ind-item" style="background:rgba(255,255,255,.9);border:1px solid var(--gold-lt);border-radius:6px;padding:16px;text-align:center;">
+          <div style="font-size:2rem;margin-bottom:8px;">🥖</div>
+          <div style="font-family:'Playfair Display',serif;font-size:.82rem;font-weight:600;color:var(--brown);margin-bottom:8px;"><span class="en-text">Mixed Sandwiches</span><span class="es-text">Sandwich de Mezcla</span></div>
+          <select class="ind-select" onchange="updateIndTotal()" style="width:100%;background:#fff;border:1.5px solid var(--gold-lt);color:var(--brown);padding:7px 8px;border-radius:4px;font-size:.77rem;cursor:pointer;outline:none;">
             <option value="0">--</option><option value="8">12 pcs · $8</option><option value="16">24 pcs · $16</option><option value="24">36 pcs · $24</option><option value="35">50 pcs · $35</option>
           </select>
         </div>
-        <div class="ind-item" data-base="0">
-          <span style="font-size:2rem;display:block;margin-bottom:8px;">🍢</span>
-          <div style="font-family:'Playfair Display',serif;font-size:.88rem;font-weight:600;color:var(--brown);margin-bottom:2px;"><span class="en-text">Canapés</span><span class="es-text">Canapés Artesanales</span></div>
-          <select class="ind-select" onchange="updateIndTotal(); var ot=document.getElementById('orderType'); if(ot&&ot.value) buildOrderSummary(ot.value);" style="margin-top:8px;width:100%;background:#fff;border:1.5px solid var(--gold-lt);color:var(--brown);padding:7px 8px;border-radius:4px;font-size:.77rem;cursor:pointer;outline:none;">
+        <div class="ind-item" style="background:rgba(255,255,255,.9);border:1px solid var(--gold-lt);border-radius:6px;padding:16px;text-align:center;">
+          <div style="font-size:2rem;margin-bottom:8px;">🍢</div>
+          <div style="font-family:'Playfair Display',serif;font-size:.82rem;font-weight:600;color:var(--brown);margin-bottom:8px;"><span class="en-text">Canapés</span><span class="es-text">Canapés Artesanales</span></div>
+          <select class="ind-select" onchange="updateIndTotal()" style="width:100%;background:#fff;border:1.5px solid var(--gold-lt);color:var(--brown);padding:7px 8px;border-radius:4px;font-size:.77rem;cursor:pointer;outline:none;">
             <option value="0">--</option><option value="15">25 pcs · $15</option><option value="25">50 pcs · $25</option><option value="47">100 pcs · $47</option>
           </select>
         </div>
-        <div class="ind-item" data-base="0">
-          <span style="font-size:2rem;display:block;margin-bottom:8px;">🍓</span>
-          <div style="font-family:'Playfair Display',serif;font-size:.88rem;font-weight:600;color:var(--brown);margin-bottom:2px;"><span class="en-text">Chocolate Strawberries</span><span class="es-text">Fresas con Chocolate</span></div>
-          <select class="ind-select" onchange="updateIndTotal(); var ot=document.getElementById('orderType'); if(ot&&ot.value) buildOrderSummary(ot.value);" style="margin-top:8px;width:100%;background:#fff;border:1.5px solid var(--gold-lt);color:var(--brown);padding:7px 8px;border-radius:4px;font-size:.77rem;cursor:pointer;outline:none;">
+        <div class="ind-item" style="background:rgba(255,255,255,.9);border:1px solid var(--gold-lt);border-radius:6px;padding:16px;text-align:center;">
+          <div style="font-size:2rem;margin-bottom:8px;">🍓</div>
+          <div style="font-family:'Playfair Display',serif;font-size:.82rem;font-weight:600;color:var(--brown);margin-bottom:8px;"><span class="en-text">Chocolate Strawberries</span><span class="es-text">Fresas con Chocolate</span></div>
+          <select class="ind-select" onchange="updateIndTotal()" style="width:100%;background:#fff;border:1.5px solid var(--gold-lt);color:var(--brown);padding:7px 8px;border-radius:4px;font-size:.77rem;cursor:pointer;outline:none;">
             <option value="0">--</option><option value="20">12 pcs · $20</option><option value="36">24 pcs · $36</option><option value="54">36 pcs · $54</option>
           </select>
         </div>
-        <div class="ind-item" data-base="0">
-          <span style="font-size:2rem;display:block;margin-bottom:8px;">🍤</span>
-          <div style="font-family:'Playfair Display',serif;font-size:.88rem;font-weight:600;color:var(--brown);margin-bottom:2px;"><span class="en-text">Shrimp Ceviche</span><span class="es-text">Ceviche de Camarones</span></div>
-          <select class="ind-select" onchange="updateIndTotal(); var ot=document.getElementById('orderType'); if(ot&&ot.value) buildOrderSummary(ot.value);" style="margin-top:8px;width:100%;background:#fff;border:1.5px solid var(--gold-lt);color:var(--brown);padding:7px 8px;border-radius:4px;font-size:.77rem;cursor:pointer;outline:none;">
+        <div class="ind-item" style="background:rgba(255,255,255,.9);border:1px solid var(--gold-lt);border-radius:6px;padding:16px;text-align:center;">
+          <div style="font-size:2rem;margin-bottom:8px;">🍤</div>
+          <div style="font-family:'Playfair Display',serif;font-size:.82rem;font-weight:600;color:var(--brown);margin-bottom:8px;"><span class="en-text">Shrimp Ceviche</span><span class="es-text">Ceviche de Camarones</span></div>
+          <select class="ind-select" onchange="updateIndTotal()" style="width:100%;background:#fff;border:1.5px solid var(--gold-lt);color:var(--brown);padding:7px 8px;border-radius:4px;font-size:.77rem;cursor:pointer;outline:none;">
             <option value="0">--</option><option value="65">3 lbs · $65</option><option value="90">6 lbs · $90</option>
           </select>
         </div>
-        <div class="ind-item" data-base="0">
-          <span style="font-size:2rem;display:block;margin-bottom:8px;">🫕</span>
-          <div style="font-family:'Playfair Display',serif;font-size:.88rem;font-weight:600;color:var(--brown);margin-bottom:2px;"><span class="en-text">Dips</span><span class="es-text">Dips / Salsas</span></div>
-          <select class="ind-select" onchange="updateIndTotal(); var ot=document.getElementById('orderType'); if(ot&&ot.value) buildOrderSummary(ot.value);" style="margin-top:8px;width:100%;background:#fff;border:1.5px solid var(--gold-lt);color:var(--brown);padding:7px 8px;border-radius:4px;font-size:.77rem;cursor:pointer;outline:none;">
+        <div class="ind-item" style="background:rgba(255,255,255,.9);border:1px solid var(--gold-lt);border-radius:6px;padding:16px;text-align:center;">
+          <div style="font-size:2rem;margin-bottom:8px;">🫕</div>
+          <div style="font-family:'Playfair Display',serif;font-size:.82rem;font-weight:600;color:var(--brown);margin-bottom:8px;"><span class="en-text">Dips</span><span class="es-text">Dips / Salsas</span></div>
+          <select class="ind-select" onchange="updateIndTotal()" style="width:100%;background:#fff;border:1.5px solid var(--gold-lt);color:var(--brown);padding:7px 8px;border-radius:4px;font-size:.77rem;cursor:pointer;outline:none;">
             <option value="0">--</option><option value="22">Chicken · $22</option><option value="18">Spinach · $18</option><option value="18">Bacon Ranch · $18</option><option value="18">Bola de Fuego · $18</option>
           </select>
         </div>
-        <div class="ind-item" data-base="0">
-          <span style="font-size:2rem;display:block;margin-bottom:8px;">🥗</span>
-          <div style="font-family:'Playfair Display',serif;font-size:.88rem;font-weight:600;color:var(--brown);margin-bottom:2px;"><span class="en-text">Salad</span><span class="es-text">Ensalada</span></div>
-          <select class="ind-select" onchange="updateIndTotal(); var ot=document.getElementById('orderType'); if(ot&&ot.value) buildOrderSummary(ot.value);" style="margin-top:8px;width:100%;background:#fff;border:1.5px solid var(--gold-lt);color:var(--brown);padding:7px 8px;border-radius:4px;font-size:.77rem;cursor:pointer;outline:none;">
+        <div class="ind-item" style="background:rgba(255,255,255,.9);border:1px solid var(--gold-lt);border-radius:6px;padding:16px;text-align:center;">
+          <div style="font-size:2rem;margin-bottom:8px;">🥗</div>
+          <div style="font-family:'Playfair Display',serif;font-size:.82rem;font-weight:600;color:var(--brown);margin-bottom:8px;"><span class="en-text">Salad</span><span class="es-text">Ensalada</span></div>
+          <select class="ind-select" onchange="updateIndTotal()" style="width:100%;background:#fff;border:1.5px solid var(--gold-lt);color:var(--brown);padding:7px 8px;border-radius:4px;font-size:.77rem;cursor:pointer;outline:none;">
             <option value="0">--</option><option value="14">Cold Pasta · $14</option><option value="28">Grain Salad 4lbs · $28</option>
           </select>
         </div>
-        <div class="ind-item" data-base="0">
-          <span style="font-size:2rem;display:block;margin-bottom:8px;">🍰</span>
-          <div style="font-family:'Playfair Display',serif;font-size:.88rem;font-weight:600;color:var(--brown);margin-bottom:2px;"><span class="en-text">Cheesecake</span><span class="es-text">Cheesecake Individual</span></div>
-          <select class="ind-select" onchange="updateIndTotal(); var ot=document.getElementById('orderType'); if(ot&&ot.value) buildOrderSummary(ot.value);" style="margin-top:8px;width:100%;background:#fff;border:1.5px solid var(--gold-lt);color:var(--brown);padding:7px 8px;border-radius:4px;font-size:.77rem;cursor:pointer;outline:none;">
+        <div class="ind-item" style="background:rgba(255,255,255,.9);border:1px solid var(--gold-lt);border-radius:6px;padding:16px;text-align:center;">
+          <div style="font-size:2rem;margin-bottom:8px;">🍰</div>
+          <div style="font-family:'Playfair Display',serif;font-size:.82rem;font-weight:600;color:var(--brown);margin-bottom:8px;"><span class="en-text">Cheesecake</span><span class="es-text">Cheesecake Individual</span></div>
+          <select class="ind-select" onchange="updateIndTotal()" style="width:100%;background:#fff;border:1.5px solid var(--gold-lt);color:var(--brown);padding:7px 8px;border-radius:4px;font-size:.77rem;cursor:pointer;outline:none;">
             <option value="0">--</option><option value="36">12 pcs · $36</option><option value="70">24 pcs · $70</option><option value="95">36 pcs · $95</option>
           </select>
         </div>
-        <div class="ind-item" data-base="0">
-          <span style="font-size:2rem;display:block;margin-bottom:8px;">🥐</span>
-          <div style="font-family:'Playfair Display',serif;font-size:.88rem;font-weight:600;color:var(--brown);margin-bottom:2px;"><span class="en-text">Croissants</span><span class="es-text">Croissants Artesanales</span></div>
-          <select class="ind-select" onchange="updateIndTotal(); var ot=document.getElementById('orderType'); if(ot&&ot.value) buildOrderSummary(ot.value);" style="margin-top:8px;width:100%;background:#fff;border:1.5px solid var(--gold-lt);color:var(--brown);padding:7px 8px;border-radius:4px;font-size:.77rem;cursor:pointer;outline:none;">
+        <div class="ind-item" style="background:rgba(255,255,255,.9);border:1px solid var(--gold-lt);border-radius:6px;padding:16px;text-align:center;">
+          <div style="font-size:2rem;margin-bottom:8px;">🥐</div>
+          <div style="font-family:'Playfair Display',serif;font-size:.82rem;font-weight:600;color:var(--brown);margin-bottom:8px;"><span class="en-text">Croissants</span><span class="es-text">Croissants Artesanales</span></div>
+          <select class="ind-select" onchange="updateIndTotal()" style="width:100%;background:#fff;border:1.5px solid var(--gold-lt);color:var(--brown);padding:7px 8px;border-radius:4px;font-size:.77rem;cursor:pointer;outline:none;">
             <option value="0">--</option><option value="38">20 pcs · $38</option><option value="65">40 pcs · $65</option><option value="90">60 pcs · $90</option>
           </select>
         </div>
-        <div class="ind-item" data-base="0">
-          <span style="font-size:2rem;display:block;margin-bottom:8px;">🍮</span>
-          <div style="font-family:'Playfair Display',serif;font-size:.88rem;font-weight:600;color:var(--brown);margin-bottom:2px;"><span class="en-text">Tres Leches</span><span class="es-text">Tres Leches Individual</span></div>
-          <select class="ind-select" onchange="updateIndTotal(); var ot=document.getElementById('orderType'); if(ot&&ot.value) buildOrderSummary(ot.value);" style="margin-top:8px;width:100%;background:#fff;border:1.5px solid var(--gold-lt);color:var(--brown);padding:7px 8px;border-radius:4px;font-size:.77rem;cursor:pointer;outline:none;">
+        <div class="ind-item" style="background:rgba(255,255,255,.9);border:1px solid var(--gold-lt);border-radius:6px;padding:16px;text-align:center;">
+          <div style="font-size:2rem;margin-bottom:8px;">🍮</div>
+          <div style="font-family:'Playfair Display',serif;font-size:.82rem;font-weight:600;color:var(--brown);margin-bottom:8px;"><span class="en-text">Tres Leches</span><span class="es-text">Tres Leches Individual</span></div>
+          <select class="ind-select" onchange="updateIndTotal()" style="width:100%;background:#fff;border:1.5px solid var(--gold-lt);color:var(--brown);padding:7px 8px;border-radius:4px;font-size:.77rem;cursor:pointer;outline:none;">
             <option value="0">--</option><option value="45">12 pcs · $45</option><option value="78">24 pcs · $78</option><option value="110">36 pcs · $110</option>
           </select>
         </div>
-        <div class="ind-item" data-base="0">
-          <span style="font-size:2rem;display:block;margin-bottom:8px;">🍦</span>
-          <div style="font-family:'Playfair Display',serif;font-size:.88rem;font-weight:600;color:var(--brown);margin-bottom:2px;"><span class="en-text">Charcuterie Cones</span><span class="es-text">Conos de Charcutería</span></div>
-          <select class="ind-select" onchange="updateIndTotal(); var ot=document.getElementById('orderType'); if(ot&&ot.value) buildOrderSummary(ot.value);" style="margin-top:8px;width:100%;background:#fff;border:1.5px solid var(--gold-lt);color:var(--brown);padding:7px 8px;border-radius:4px;font-size:.77rem;cursor:pointer;outline:none;">
+        <div class="ind-item" style="background:rgba(255,255,255,.9);border:1px solid var(--gold-lt);border-radius:6px;padding:16px;text-align:center;">
+          <div style="font-size:2rem;margin-bottom:8px;">🍦</div>
+          <div style="font-family:'Playfair Display',serif;font-size:.82rem;font-weight:600;color:var(--brown);margin-bottom:8px;"><span class="en-text">Charcuterie Cones</span><span class="es-text">Conos de Charcutería</span></div>
+          <select class="ind-select" onchange="updateIndTotal()" style="width:100%;background:#fff;border:1.5px solid var(--gold-lt);color:var(--brown);padding:7px 8px;border-radius:4px;font-size:.77rem;cursor:pointer;outline:none;">
             <option value="0">--</option><option value="48">12 cones · $48</option><option value="95">24 cones · $95</option>
           </select>
         </div>
-        <div class="ind-item" data-base="0">
-          <span style="font-size:2rem;display:block;margin-bottom:8px;">🍫</span>
-          <div style="font-family:'Playfair Display',serif;font-size:.88rem;font-weight:600;color:var(--brown);margin-bottom:2px;"><span class="en-text">Choconutela Cups</span><span class="es-text">Vasitos de Choconutela</span></div>
-          <select class="ind-select" onchange="updateIndTotal(); var ot=document.getElementById('orderType'); if(ot&&ot.value) buildOrderSummary(ot.value);" style="margin-top:8px;width:100%;background:#fff;border:1.5px solid var(--gold-lt);color:var(--brown);padding:7px 8px;border-radius:4px;font-size:.77rem;cursor:pointer;outline:none;">
+        <div class="ind-item" style="background:rgba(255,255,255,.9);border:1px solid var(--gold-lt);border-radius:6px;padding:16px;text-align:center;">
+          <div style="font-size:2rem;margin-bottom:8px;">🍫</div>
+          <div style="font-family:'Playfair Display',serif;font-size:.82rem;font-weight:600;color:var(--brown);margin-bottom:8px;"><span class="en-text">Choconutela Cups</span><span class="es-text">Vasitos de Choconutela</span></div>
+          <select class="ind-select" onchange="updateIndTotal()" style="width:100%;background:#fff;border:1.5px solid var(--gold-lt);color:var(--brown);padding:7px 8px;border-radius:4px;font-size:.77rem;cursor:pointer;outline:none;">
             <option value="0">--</option><option value="45">12 pcs · $45</option><option value="78">24 pcs · $78</option><option value="110">36 pcs · $110</option>
           </select>
         </div>
-        <div class="ind-item" data-base="0">
-          <span style="font-size:2rem;display:block;margin-bottom:8px;">🫓</span>
-          <div style="font-family:'Playfair Display',serif;font-size:.88rem;font-weight:600;color:var(--brown);margin-bottom:2px;"><span class="en-text">Quesitos & Guava Pastries</span><span class="es-text">Quesitos y Past. Guayaba</span></div>
-          <select class="ind-select" onchange="updateIndTotal(); var ot=document.getElementById('orderType'); if(ot&&ot.value) buildOrderSummary(ot.value);" style="margin-top:8px;width:100%;background:#fff;border:1.5px solid var(--gold-lt);color:var(--brown);padding:7px 8px;border-radius:4px;font-size:.77rem;cursor:pointer;outline:none;">
+        <div class="ind-item" style="background:rgba(255,255,255,.9);border:1px solid var(--gold-lt);border-radius:6px;padding:16px;text-align:center;">
+          <div style="font-size:2rem;margin-bottom:8px;">🫓</div>
+          <div style="font-family:'Playfair Display',serif;font-size:.82rem;font-weight:600;color:var(--brown);margin-bottom:8px;"><span class="en-text">Quesitos & Guava Pastries</span><span class="es-text">Quesitos y Past. Guayaba</span></div>
+          <select class="ind-select" onchange="updateIndTotal()" style="width:100%;background:#fff;border:1.5px solid var(--gold-lt);color:var(--brown);padding:7px 8px;border-radius:4px;font-size:.77rem;cursor:pointer;outline:none;">
             <option value="0">--</option><option value="18">20 pcs · $18</option><option value="35">40 pcs · $35</option><option value="53">60 pcs · $53</option><option value="85">100 pcs · $85</option>
           </select>
         </div>
       </div>
-      <!-- Individual Total -->
-      <!-- Pickup or Delivery Toggle -->
-      <div style="background:#fff;border:1px solid var(--gold-lt);border-radius:6px;padding:18px 24px;margin-bottom:12px;">
-        <div style="font-family:'Playfair Display',serif;font-size:.78rem;font-weight:600;color:var(--brown);margin-bottom:12px;letter-spacing:.1em;text-transform:uppercase;"><span class="en-text">How would you like it?</span><span class="es-text">¿Cómo lo deseas?</span></div>
-        <div style="display:flex;gap:12px;">
-          <label style="flex:1;cursor:pointer;">
-            <input type="radio" name="indDelivery" value="pickup" checked onchange="updateIndTotal(); var ot=document.getElementById('orderType'); if(ot&&ot.value) buildOrderSummary(ot.value);" style="display:none;">
-            <div id="pickupBtn" style="padding:12px 16px;border:2px solid var(--rose);border-radius:6px;text-align:center;background:var(--rose);color:#fff;transition:all .2s;">
-              <div style="font-size:1.3rem;">🏠</div>
-              <div style="font-weight:700;font-size:.82rem;margin-top:4px;"><span class="en-text">Free Pickup</span><span class="es-text">Recogido Gratis</span></div>
-              <div style="font-size:.7rem;opacity:.8;"><span class="en-text">No delivery fee</span><span class="es-text">Sin cargo de entrega</span></div>
-            </div>
-          </label>
-          <label style="flex:1;cursor:pointer;">
-            <input type="radio" name="indDelivery" value="delivery" onchange="updateIndTotal(); var ot=document.getElementById('orderType'); if(ot&&ot.value) buildOrderSummary(ot.value);" style="display:none;">
-            <div id="deliveryBtn" style="padding:12px 16px;border:2px solid var(--gold-lt);border-radius:6px;text-align:center;background:transparent;color:var(--brown);transition:all .2s;">
-              <div style="font-size:1.3rem;">🚗</div>
-              <div style="font-weight:700;font-size:.82rem;margin-top:4px;"><span class="en-text">Delivery</span><span class="es-text">Entrega</span></div>
-              <div style="font-size:.7rem;color:var(--text-lt);"><span class="en-text">+$10 delivery fee</span><span class="es-text">+$10 cargo de entrega</span></div>
-            </div>
-          </label>
-        </div>
-      </div>
-
-      <!-- Total Box -->
-      <div style="background:#fff;border:1px solid var(--gold-lt);border-radius:6px;padding:20px 24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;">
+      <!-- Total -->
+      <div style="background:#fff;border:1.5px solid var(--gold-lt);border-radius:6px;padding:16px 20px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;">
         <div>
-          <div style="font-family:'Playfair Display',serif;font-size:.78rem;color:var(--text-lt);"><span class="en-text">Your Estimate</span><span class="es-text">Tu Estimado</span></div>
-          <div id="indItemsList" style="font-size:.75rem;color:var(--text-lt);margin-top:4px;font-style:italic;max-width:280px;"></div>
+          <div style="font-size:.72rem;color:var(--text-lt);font-weight:700;letter-spacing:.1em;text-transform:uppercase;"><span class="en-text">Your Estimate</span><span class="es-text">Tu Estimado</span></div>
+          <div id="indItemsList" style="font-size:.74rem;color:var(--text-lt);margin-top:4px;font-style:italic;max-width:280px;"></div>
+          <div id="indDeliveryLine" style="display:none;font-size:.74rem;color:var(--rose);font-weight:700;margin-top:2px;">+$10 <span class="en-text">delivery fee</span><span class="es-text">cargo de entrega</span></div>
         </div>
         <div style="text-align:right;">
-          <div id="indTotal" style="font-family:'Playfair Display',serif;font-size:2.2rem;font-weight:700;color:var(--rose);">$0</div>
-          <div id="indDeliveryLine" style="font-size:.72rem;color:var(--rose);margin-top:2px;display:none;">+ $10 <span class="en-text">delivery fee</span><span class="es-text">cargo de entrega</span></div>
-          <div style="font-size:.68rem;color:var(--text-lt);margin-top:2px;">*<span class="en-text">Estimate · No setup fee</span><span class="es-text">Estimado · Sin cargo de montaje</span></div>
+          <div id="indTotal" style="font-family:'Playfair Display',serif;font-size:2rem;font-weight:700;color:var(--rose);">$0</div>
+          <div style="font-size:.65rem;color:var(--text-lt);">*<span class="en-text">no setup fee</span><span class="es-text">sin cargo de montaje</span></div>
         </div>
-        <a href="#order" class="build-cta" onclick="selectOrderType('Individual Order / Pedido Individual'); prefillIndividual();" style="background:var(--rose);color:#fff;"><span class="en-text">Send This Order ✦</span><span class="es-text">Enviar Pedido ✦</span></a>
+        <button onclick="selectOrderType('Individual Order / Pedido Individual'); prefillIndividual();" style="padding:12px 24px;background:var(--rose);color:#fff;border:none;border-radius:4px;font-weight:700;font-size:.76rem;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;">
+          <span class="en-text">Send This Order ✦</span><span class="es-text">Enviar Pedido ✦</span>
+        </button>
       </div>
     </div>
 
-    <!-- BUILD YOUR OWN TAB -->
+    <!-- BUILD YOUR OWN PANEL -->
     <div id="panelBuild" style="display:none;background:var(--brown);padding:32px;border-radius:0 0 8px 8px;">
-      <div style="display:flex;align-items:center;gap:16px;margin-bottom:20px;flex-wrap:wrap;">
-        <p style="font-size:.85rem;color:rgba(255,255,255,.55);line-height:1.7;flex:1;min-width:200px;"><span class="en-text">Lala arrives with all her equipment, displays &amp; décor to set up your full custom grazing table. <strong style="color:var(--gold-lt);">Delivery required — $65 setup fee applies.</strong></span><span class="es-text">Lala llega con todo su equipo y decoración para montar tu mesa completa. <strong style="color:var(--gold-lt);">Requiere entrega — cargo de $65 por montaje.</strong></span></p>
-        <div style="display:flex;gap:8px;flex-wrap:wrap;">
-          <span style="padding:6px 14px;background:rgba(197,112,125,.1);border:1px solid rgba(197,112,125,.3);border-radius:20px;font-size:.72rem;color:rgba(255,255,255,.65);">🎨 <span class="en-text">Full Setup</span><span class="es-text">Montaje Completo</span></span>
-          <span style="padding:6px 14px;background:rgba(197,112,125,.1);border:1px solid rgba(197,112,125,.3);border-radius:20px;font-size:.72rem;color:rgba(255,255,255,.65);">🚗 <span class="en-text">Delivery Only</span><span class="es-text">Solo Entrega</span></span>
+      <p style="font-size:.85rem;color:rgba(255,255,255,.55);margin-bottom:8px;"><span class="en-text">Lala arrives with all her equipment to set up your full grazing table. <strong style="color:var(--gold-lt);">Delivery required · $65 setup fee automatically added.</strong></span><span class="es-text">Lala llega con todo su equipo para montar tu mesa. <strong style="color:var(--gold-lt);">Requiere entrega · Cargo de $65 añadido automáticamente.</strong></span></p>
+
+      <!-- Delivery Fee Table -->
+      <div style="background:rgba(255,255,255,.04);border:1px solid rgba(201,168,76,.25);border-radius:6px;padding:16px 20px;margin-bottom:24px;">
+        <div style="font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gold-lt);margin-bottom:10px;">🚗 <span class="en-text">Delivery Fee by Distance</span><span class="es-text">Cargo de Entrega por Distancia</span></div>
+        <div style="display:grid;grid-template-columns:1fr auto;gap:4px 24px;font-size:.8rem;">
+          <span style="color:rgba(255,255,255,.55);"><span class="en-text">Up to 10 miles</span><span class="es-text">Hasta 10 millas</span></span><span style="color:var(--gold-lt);font-weight:700;">$10</span>
+          <span style="color:rgba(255,255,255,.55);">10–20 miles / millas</span><span style="color:var(--gold-lt);font-weight:700;">$15</span>
+          <span style="color:rgba(255,255,255,.55);">25–35 miles / millas</span><span style="color:var(--gold-lt);font-weight:700;">$20</span>
+          <span style="color:rgba(255,255,255,.55);">35–50 miles / millas</span><span style="color:var(--gold-lt);font-weight:700;">$30</span>
+          <span style="color:rgba(255,255,255,.55);">50+ miles / millas</span><span style="color:var(--gold-lt);font-weight:700;">$40</span>
+        </div>
+        <p style="font-size:.68rem;color:rgba(255,255,255,.3);margin-top:8px;font-style:italic;"><span class="en-text">*Delivery fee is separate from $65 setup fee. Distance from Spring Hill, FL.</span><span class="es-text">*Cargo de entrega es adicional al cargo de $65. Distancia desde Spring Hill, FL.</span></p>
+      </div>
+
+      <!-- Items Grid -->
+      <div id="buildGrid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:24px;">
+        <div class="build-item" style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:6px;padding:16px;text-align:center;">
+          <div style="font-size:2rem;margin-bottom:8px;">🫶</div>
+          <div style="font-family:'Playfair Display',serif;font-size:.82rem;font-weight:600;color:#fff;margin-bottom:8px;"><span class="en-text">Charcuterie Trays</span><span class="es-text">Bandejas de Charcutería</span></div>
+          <select class="build-select" onchange="updateTotal()" style="width:100%;background:#3D2B1F;border:1px solid rgba(255,255,255,.2);color:#fff;padding:7px 8px;border-radius:4px;font-size:.77rem;cursor:pointer;outline:none;">
+            <option value="0">--</option><option value="75">10-12 people · $75</option><option value="100">15-20 people · $100</option><option value="125">25-30 people · $125</option>
+          </select>
+        </div>
+        <div class="build-item" style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:6px;padding:16px;text-align:center;">
+          <div style="font-size:2rem;margin-bottom:8px;">🎁</div>
+          <div style="font-family:'Playfair Display',serif;font-size:.82rem;font-weight:600;color:#fff;margin-bottom:8px;"><span class="en-text">Mini Charcuterie Box</span><span class="es-text">Mini Box de Charcutería</span></div>
+          <select class="build-select" onchange="updateTotal()" style="width:100%;background:#3D2B1F;border:1px solid rgba(255,255,255,.2);color:#fff;padding:7px 8px;border-radius:4px;font-size:.77rem;cursor:pointer;outline:none;">
+            <option value="0">--</option><option value="9">1 box · $9</option><option value="45">5 boxes · $45</option><option value="90">10 boxes · $90</option>
+          </select>
+        </div>
+        <div class="build-item" style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:6px;padding:16px;text-align:center;">
+          <div style="font-size:2rem;margin-bottom:8px;">🥪</div>
+          <div style="font-family:'Playfair Display',serif;font-size:.82rem;font-weight:600;color:#fff;margin-bottom:8px;"><span class="en-text">Mini Chicken Sandwiches</span><span class="es-text">Mini Sandwich de Pollo</span></div>
+          <select class="build-select" onchange="updateTotal()" style="width:100%;background:#3D2B1F;border:1px solid rgba(255,255,255,.2);color:#fff;padding:7px 8px;border-radius:4px;font-size:.77rem;cursor:pointer;outline:none;">
+            <option value="0">--</option><option value="48">24 pcs · $48</option><option value="96">48 pcs · $96</option>
+          </select>
+        </div>
+        <div class="build-item" style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:6px;padding:16px;text-align:center;">
+          <div style="font-size:2rem;margin-bottom:8px;">🥖</div>
+          <div style="font-family:'Playfair Display',serif;font-size:.82rem;font-weight:600;color:#fff;margin-bottom:8px;"><span class="en-text">Mixed Sandwiches</span><span class="es-text">Sandwich de Mezcla</span></div>
+          <select class="build-select" onchange="updateTotal()" style="width:100%;background:#3D2B1F;border:1px solid rgba(255,255,255,.2);color:#fff;padding:7px 8px;border-radius:4px;font-size:.77rem;cursor:pointer;outline:none;">
+            <option value="0">--</option><option value="8">12 pcs · $8</option><option value="16">24 pcs · $16</option><option value="24">36 pcs · $24</option><option value="35">50 pcs · $35</option>
+          </select>
+        </div>
+        <div class="build-item" style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:6px;padding:16px;text-align:center;">
+          <div style="font-size:2rem;margin-bottom:8px;">🍢</div>
+          <div style="font-family:'Playfair Display',serif;font-size:.82rem;font-weight:600;color:#fff;margin-bottom:8px;"><span class="en-text">Canapés</span><span class="es-text">Canapés Artesanales</span></div>
+          <select class="build-select" onchange="updateTotal()" style="width:100%;background:#3D2B1F;border:1px solid rgba(255,255,255,.2);color:#fff;padding:7px 8px;border-radius:4px;font-size:.77rem;cursor:pointer;outline:none;">
+            <option value="0">--</option><option value="15">25 pcs · $15</option><option value="25">50 pcs · $25</option><option value="47">100 pcs · $47</option>
+          </select>
+        </div>
+        <div class="build-item" style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:6px;padding:16px;text-align:center;">
+          <div style="font-size:2rem;margin-bottom:8px;">🍓</div>
+          <div style="font-family:'Playfair Display',serif;font-size:.82rem;font-weight:600;color:#fff;margin-bottom:8px;"><span class="en-text">Chocolate Strawberries</span><span class="es-text">Fresas con Chocolate</span></div>
+          <select class="build-select" onchange="updateTotal()" style="width:100%;background:#3D2B1F;border:1px solid rgba(255,255,255,.2);color:#fff;padding:7px 8px;border-radius:4px;font-size:.77rem;cursor:pointer;outline:none;">
+            <option value="0">--</option><option value="20">12 pcs · $20</option><option value="36">24 pcs · $36</option><option value="54">36 pcs · $54</option>
+          </select>
+        </div>
+        <div class="build-item" style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:6px;padding:16px;text-align:center;">
+          <div style="font-size:2rem;margin-bottom:8px;">🍤</div>
+          <div style="font-family:'Playfair Display',serif;font-size:.82rem;font-weight:600;color:#fff;margin-bottom:8px;"><span class="en-text">Shrimp Ceviche</span><span class="es-text">Ceviche de Camarones</span></div>
+          <select class="build-select" onchange="updateTotal()" style="width:100%;background:#3D2B1F;border:1px solid rgba(255,255,255,.2);color:#fff;padding:7px 8px;border-radius:4px;font-size:.77rem;cursor:pointer;outline:none;">
+            <option value="0">--</option><option value="65">3 lbs · $65</option><option value="90">6 lbs · $90</option>
+          </select>
+        </div>
+        <div class="build-item" style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:6px;padding:16px;text-align:center;">
+          <div style="font-size:2rem;margin-bottom:8px;">🫕</div>
+          <div style="font-family:'Playfair Display',serif;font-size:.82rem;font-weight:600;color:#fff;margin-bottom:8px;"><span class="en-text">Dips</span><span class="es-text">Dips / Salsas</span></div>
+          <select class="build-select" onchange="updateTotal()" style="width:100%;background:#3D2B1F;border:1px solid rgba(255,255,255,.2);color:#fff;padding:7px 8px;border-radius:4px;font-size:.77rem;cursor:pointer;outline:none;">
+            <option value="0">--</option><option value="22">Chicken · $22</option><option value="18">Spinach · $18</option><option value="18">Bacon Ranch · $18</option><option value="18">Bola de Fuego · $18</option>
+          </select>
+        </div>
+        <div class="build-item" style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:6px;padding:16px;text-align:center;">
+          <div style="font-size:2rem;margin-bottom:8px;">🥗</div>
+          <div style="font-family:'Playfair Display',serif;font-size:.82rem;font-weight:600;color:#fff;margin-bottom:8px;"><span class="en-text">Salad</span><span class="es-text">Ensalada</span></div>
+          <select class="build-select" onchange="updateTotal()" style="width:100%;background:#3D2B1F;border:1px solid rgba(255,255,255,.2);color:#fff;padding:7px 8px;border-radius:4px;font-size:.77rem;cursor:pointer;outline:none;">
+            <option value="0">--</option><option value="14">Cold Pasta · $14</option><option value="28">Grain Salad 4lbs · $28</option>
+          </select>
+        </div>
+        <div class="build-item" style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:6px;padding:16px;text-align:center;">
+          <div style="font-size:2rem;margin-bottom:8px;">🍰</div>
+          <div style="font-family:'Playfair Display',serif;font-size:.82rem;font-weight:600;color:#fff;margin-bottom:8px;"><span class="en-text">Cheesecake</span><span class="es-text">Cheesecake Individual</span></div>
+          <select class="build-select" onchange="updateTotal()" style="width:100%;background:#3D2B1F;border:1px solid rgba(255,255,255,.2);color:#fff;padding:7px 8px;border-radius:4px;font-size:.77rem;cursor:pointer;outline:none;">
+            <option value="0">--</option><option value="36">12 pcs · $36</option><option value="70">24 pcs · $70</option><option value="95">36 pcs · $95</option>
+          </select>
+        </div>
+        <div class="build-item" style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:6px;padding:16px;text-align:center;">
+          <div style="font-size:2rem;margin-bottom:8px;">🥐</div>
+          <div style="font-family:'Playfair Display',serif;font-size:.82rem;font-weight:600;color:#fff;margin-bottom:8px;"><span class="en-text">Croissants</span><span class="es-text">Croissants Artesanales</span></div>
+          <select class="build-select" onchange="updateTotal()" style="width:100%;background:#3D2B1F;border:1px solid rgba(255,255,255,.2);color:#fff;padding:7px 8px;border-radius:4px;font-size:.77rem;cursor:pointer;outline:none;">
+            <option value="0">--</option><option value="38">20 pcs · $38</option><option value="65">40 pcs · $65</option><option value="90">60 pcs · $90</option>
+          </select>
+        </div>
+        <div class="build-item" style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:6px;padding:16px;text-align:center;">
+          <div style="font-size:2rem;margin-bottom:8px;">🍮</div>
+          <div style="font-family:'Playfair Display',serif;font-size:.82rem;font-weight:600;color:#fff;margin-bottom:8px;"><span class="en-text">Tres Leches</span><span class="es-text">Tres Leches Individual</span></div>
+          <select class="build-select" onchange="updateTotal()" style="width:100%;background:#3D2B1F;border:1px solid rgba(255,255,255,.2);color:#fff;padding:7px 8px;border-radius:4px;font-size:.77rem;cursor:pointer;outline:none;">
+            <option value="0">--</option><option value="45">12 pcs · $45</option><option value="78">24 pcs · $78</option><option value="110">36 pcs · $110</option>
+          </select>
+        </div>
+        <div class="build-item" style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:6px;padding:16px;text-align:center;">
+          <div style="font-size:2rem;margin-bottom:8px;">🍦</div>
+          <div style="font-family:'Playfair Display',serif;font-size:.82rem;font-weight:600;color:#fff;margin-bottom:8px;"><span class="en-text">Charcuterie Cones</span><span class="es-text">Conos de Charcutería</span></div>
+          <select class="build-select" onchange="updateTotal()" style="width:100%;background:#3D2B1F;border:1px solid rgba(255,255,255,.2);color:#fff;padding:7px 8px;border-radius:4px;font-size:.77rem;cursor:pointer;outline:none;">
+            <option value="0">--</option><option value="48">12 cones · $48</option><option value="95">24 cones · $95</option>
+          </select>
+        </div>
+        <div class="build-item" style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:6px;padding:16px;text-align:center;">
+          <div style="font-size:2rem;margin-bottom:8px;">🍫</div>
+          <div style="font-family:'Playfair Display',serif;font-size:.82rem;font-weight:600;color:#fff;margin-bottom:8px;"><span class="en-text">Choconutela Cups</span><span class="es-text">Vasitos de Choconutela</span></div>
+          <select class="build-select" onchange="updateTotal()" style="width:100%;background:#3D2B1F;border:1px solid rgba(255,255,255,.2);color:#fff;padding:7px 8px;border-radius:4px;font-size:.77rem;cursor:pointer;outline:none;">
+            <option value="0">--</option><option value="45">12 pcs · $45</option><option value="78">24 pcs · $78</option><option value="110">36 pcs · $110</option>
+          </select>
+        </div>
+        <div class="build-item" style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:6px;padding:16px;text-align:center;">
+          <div style="font-size:2rem;margin-bottom:8px;">🫓</div>
+          <div style="font-family:'Playfair Display',serif;font-size:.82rem;font-weight:600;color:#fff;margin-bottom:8px;"><span class="en-text">Quesitos & Guava Pastries</span><span class="es-text">Quesitos y Past. Guayaba</span></div>
+          <select class="build-select" onchange="updateTotal()" style="width:100%;background:#3D2B1F;border:1px solid rgba(255,255,255,.2);color:#fff;padding:7px 8px;border-radius:4px;font-size:.77rem;cursor:pointer;outline:none;">
+            <option value="0">--</option><option value="18">20 pcs · $18</option><option value="35">40 pcs · $35</option><option value="53">60 pcs · $53</option><option value="85">100 pcs · $85</option>
+          </select>
         </div>
       </div>
 
-      <!-- Delivery Fee Table for Build Your Own -->
-      <div style="background:rgba(255,255,255,.04);border:1px solid rgba(201,168,76,.25);border-radius:8px;padding:22px 24px;margin-bottom:24px;">
-        <div style="font-family:'Playfair Display',serif;font-size:.78rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--gold-lt);margin-bottom:14px;">
-          🚗 <span class="en-text">Delivery Fee — Build Your Own Table Only</span><span class="es-text">Cargo de Entrega — Solo para Crea Tu Mesa</span>
+      <!-- $65 notice -->
+      <div id="minFeeNotice" style="display:none;background:rgba(201,168,76,.15);border:1px solid rgba(201,168,76,.4);border-radius:6px;padding:12px 18px;margin-bottom:16px;align-items:center;gap:12px;">
+        <span style="font-size:1.2rem;">⚠️</span>
+        <div>
+          <div style="font-weight:600;color:var(--gold-lt);font-size:.85rem;"><span class="en-text">$65 Table Setup Fee Included</span><span class="es-text">Cargo de $65 por Mesa Incluido</span></div>
+          <div style="font-size:.75rem;color:rgba(255,255,255,.55);margin-top:2px;"><span class="en-text">A $65 setup fee is automatically added to all Build Your Own table orders.</span><span class="es-text">Se añade automáticamente un cargo de $65 a todos los pedidos de mesa.</span></div>
         </div>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid rgba(201,168,76,.2);border-radius:6px;overflow:hidden;">
-          <div style="padding:10px 14px;background:rgba(201,168,76,.08);border-bottom:1px solid rgba(201,168,76,.15);font-size:.8rem;color:var(--gold-lt);font-weight:700;"><span class="en-text">Distance from Spring Hill</span><span class="es-text">Distancia de Spring Hill</span></div>
-          <div style="padding:10px 14px;background:rgba(201,168,76,.08);border-bottom:1px solid rgba(201,168,76,.15);font-size:.8rem;color:var(--gold-lt);font-weight:700;text-align:right;"><span class="en-text">Delivery Fee</span><span class="es-text">Cargo de Entrega</span></div>
+      </div>
 
-          <div style="padding:10px 14px;border-bottom:1px solid rgba(255,255,255,.06);font-size:.82rem;color:rgba(255,255,255,.65);">
-            <span class="en-text">Up to 10 miles</span><span class="es-text">Hasta 10 millas</span>
-          </div>
-          <div style="padding:10px 14px;border-bottom:1px solid rgba(255,255,255,.06);font-size:.82rem;font-weight:700;color:var(--gold-lt);text-align:right;">$10</div>
-
-          <div style="padding:10px 14px;border-bottom:1px solid rgba(255,255,255,.06);font-size:.82rem;color:rgba(255,255,255,.65);">
-            <span class="en-text">10–20 miles</span><span class="es-text">10–20 millas</span>
-          </div>
-          <div style="padding:10px 14px;border-bottom:1px solid rgba(255,255,255,.06);font-size:.82rem;font-weight:700;color:var(--gold-lt);text-align:right;">$15</div>
-
-          <div style="padding:10px 14px;border-bottom:1px solid rgba(255,255,255,.06);font-size:.82rem;color:rgba(255,255,255,.65);">
-            <span class="en-text">25–35 miles</span><span class="es-text">25–35 millas</span>
-          </div>
-          <div style="padding:10px 14px;border-bottom:1px solid rgba(255,255,255,.06);font-size:.82rem;font-weight:700;color:var(--gold-lt);text-align:right;">$20</div>
-
-          <div style="padding:10px 14px;border-bottom:1px solid rgba(255,255,255,.06);font-size:.82rem;color:rgba(255,255,255,.65);">
-            <span class="en-text">35–50 miles</span><span class="es-text">35–50 millas</span>
-          </div>
-          <div style="padding:10px 14px;border-bottom:1px solid rgba(255,255,255,.06);font-size:.82rem;font-weight:700;color:var(--gold-lt);text-align:right;">$30</div>
-
-          <div style="padding:10px 14px;font-size:.82rem;color:rgba(255,255,255,.65);">
-            <span class="en-text">50+ miles</span><span class="es-text">50+ millas</span>
-          </div>
-          <div style="padding:10px 14px;font-size:.82rem;font-weight:700;color:var(--gold-lt);text-align:right;">$40</div>
+      <!-- Total -->
+      <div style="background:rgba(255,255,255,.06);border:1px solid rgba(201,168,76,.3);border-radius:6px;padding:20px 24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;">
+        <div>
+          <div style="font-size:.72rem;color:rgba(255,255,255,.5);font-weight:700;letter-spacing:.1em;text-transform:uppercase;"><span class="en-text">Your Estimate</span><span class="es-text">Tu Estimado</span></div>
+          <div id="buildItems" style="font-size:.74rem;color:rgba(255,255,255,.4);margin-top:4px;font-style:italic;max-width:300px;"></div>
         </div>
-        <p style="font-size:.7rem;color:rgba(255,255,255,.3);margin-top:10px;font-style:italic;">
-          <span class="en-text">*Delivery fee is separate from the $65 setup fee and item costs. Distance calculated from Spring Hill, FL.</span>
-          <span class="es-text">*El cargo de entrega es adicional al cargo de $65 y el costo de los artículos. Distancia calculada desde Spring Hill, FL.</span>
-        </p>
-      </div>
-
-    <div class="build-grid" id="buildGrid" style="grid-template-columns:repeat(auto-fit,minmax(160px,1fr))">
-      <div class="build-item" data-base="0">
-        <span class="build-item-icon">🫶</span>
-        <div class="build-item-name"><span class="en-text">Charcuterie Tray</span><span class="es-text">Bandeja de Charcutería</span></div>
-        <select class="build-select" onchange="updateFromSelect(this)" style="margin-top:10px;width:100%;background:#3D2B1F;border:1px solid rgba(255,255,255,.2);color:#fff;padding:7px 8px;border-radius:4px;font-size:.78rem;cursor:pointer;outline:none;">
-          <option value="0">--</option><option value="75">10-12 people · $75</option><option value="100">15-20 people · $100</option><option value="125">25-30 people · $125</option>
-        </select>
-      </div>
-      <div class="build-item" data-base="0">
-        <span class="build-item-icon">🎁</span>
-        <div class="build-item-name"><span class="en-text">Mini Charcuterie Box</span><span class="es-text">Mini Box de Charcutería</span></div>
-        <select class="build-select" onchange="updateFromSelect(this)" style="margin-top:10px;width:100%;background:#3D2B1F;border:1px solid rgba(255,255,255,.2);color:#fff;padding:7px 8px;border-radius:4px;font-size:.78rem;cursor:pointer;outline:none;">
-          <option value="0">--</option><option value="9">1 box · $9</option><option value="45">5 boxes · $45</option><option value="90">10 boxes · $90</option>
-        </select>
-      </div>
-      <div class="build-item" data-base="0">
-        <span class="build-item-icon">🥪</span>
-        <div class="build-item-name"><span class="en-text">Mini Chicken Sandwiches</span><span class="es-text">Mini Sandwich de Pollo</span></div>
-        <select class="build-select" onchange="updateFromSelect(this)" style="margin-top:10px;width:100%;background:#3D2B1F;border:1px solid rgba(255,255,255,.2);color:#fff;padding:7px 8px;border-radius:4px;font-size:.78rem;cursor:pointer;outline:none;">
-          <option value="0">--</option><option value="48">24 pcs · $48</option><option value="96">48 pcs · $96</option>
-        </select>
-      </div>
-      <div class="build-item" data-base="0">
-        <span class="build-item-icon">🥖</span>
-        <div class="build-item-name"><span class="en-text">Mixed Sandwiches</span><span class="es-text">Sandwich de Mezcla</span></div>
-        <select class="build-select" onchange="updateFromSelect(this)" style="margin-top:10px;width:100%;background:#3D2B1F;border:1px solid rgba(255,255,255,.2);color:#fff;padding:7px 8px;border-radius:4px;font-size:.78rem;cursor:pointer;outline:none;">
-          <option value="0">--</option><option value="8">12 pcs · $8</option><option value="16">24 pcs · $16</option><option value="24">36 pcs · $24</option><option value="35">50 pcs · $35</option>
-        </select>
-      </div>
-      <div class="build-item" data-base="0">
-        <span class="build-item-icon">🍢</span>
-        <div class="build-item-name"><span class="en-text">Canapés</span><span class="es-text">Canapés Artesanales</span></div>
-        <select class="build-select" onchange="updateFromSelect(this)" style="margin-top:10px;width:100%;background:#3D2B1F;border:1px solid rgba(255,255,255,.2);color:#fff;padding:7px 8px;border-radius:4px;font-size:.78rem;cursor:pointer;outline:none;">
-          <option value="0">--</option><option value="15">25 pcs · $15</option><option value="25">50 pcs · $25</option><option value="47">100 pcs · $47</option>
-        </select>
-      </div>
-      <div class="build-item" data-base="0">
-        <span class="build-item-icon">🍓</span>
-        <div class="build-item-name"><span class="en-text">Chocolate Strawberries</span><span class="es-text">Fresas con Chocolate</span></div>
-        <select class="build-select" onchange="updateFromSelect(this)" style="margin-top:10px;width:100%;background:#3D2B1F;border:1px solid rgba(255,255,255,.2);color:#fff;padding:7px 8px;border-radius:4px;font-size:.78rem;cursor:pointer;outline:none;">
-          <option value="0">--</option><option value="20">12 pcs · $20</option><option value="36">24 pcs · $36</option><option value="54">36 pcs · $54</option>
-        </select>
-      </div>
-      <div class="build-item" data-base="0">
-        <span class="build-item-icon">🍤</span>
-        <div class="build-item-name"><span class="en-text">Shrimp Ceviche</span><span class="es-text">Ceviche de Camarones</span></div>
-        <select class="build-select" onchange="updateFromSelect(this)" style="margin-top:10px;width:100%;background:#3D2B1F;border:1px solid rgba(255,255,255,.2);color:#fff;padding:7px 8px;border-radius:4px;font-size:.78rem;cursor:pointer;outline:none;">
-          <option value="0">--</option><option value="65">3 lbs · $65</option><option value="90">6 lbs · $90</option>
-        </select>
-      </div>
-      <div class="build-item" data-base="0">
-        <span class="build-item-icon">🫕</span>
-        <div class="build-item-name"><span class="en-text">Dip + Chips</span><span class="es-text">Dip con Galletas</span></div>
-        <select class="build-select" onchange="updateFromSelect(this)" style="margin-top:10px;width:100%;background:#3D2B1F;border:1px solid rgba(255,255,255,.2);color:#fff;padding:7px 8px;border-radius:4px;font-size:.78rem;cursor:pointer;outline:none;">
-          <option value="0">--</option><option value="22">Chicken / Pollo · $22</option><option value="18">Spinach / Espinaca · $18</option><option value="18">Bacon Ranch · $18</option><option value="18">Bola de Fuego · $18</option>
-        </select>
-      </div>
-      <div class="build-item" data-base="0">
-        <span class="build-item-icon">🥗</span>
-        <div class="build-item-name"><span class="en-text">Salad</span><span class="es-text">Ensalada</span></div>
-        <select class="build-select" onchange="updateFromSelect(this)" style="margin-top:10px;width:100%;background:#3D2B1F;border:1px solid rgba(255,255,255,.2);color:#fff;padding:7px 8px;border-radius:4px;font-size:.78rem;cursor:pointer;outline:none;">
-          <option value="0">--</option><option value="14">Cold Pasta · $14</option><option value="28">Grain Salad 4lbs · $28</option>
-        </select>
-      </div>
-      <div class="build-item" data-base="0">
-        <span class="build-item-icon">🍰</span>
-        <div class="build-item-name"><span class="en-text">Cheesecake</span><span class="es-text">Cheesecake Individual</span></div>
-        <select class="build-select" onchange="updateFromSelect(this)" style="margin-top:10px;width:100%;background:#3D2B1F;border:1px solid rgba(255,255,255,.2);color:#fff;padding:7px 8px;border-radius:4px;font-size:.78rem;cursor:pointer;outline:none;">
-          <option value="0">--</option><option value="36">12 pcs · $36</option><option value="70">24 pcs · $70</option><option value="95">36 pcs · $95</option>
-        </select>
-      </div>
-      <div class="build-item" data-base="0">
-        <span class="build-item-icon">🥐</span>
-        <div class="build-item-name"><span class="en-text">Croissants</span><span class="es-text">Croissants Artesanales</span></div>
-        <select class="build-select" onchange="updateFromSelect(this)" style="margin-top:10px;width:100%;background:#3D2B1F;border:1px solid rgba(255,255,255,.2);color:#fff;padding:7px 8px;border-radius:4px;font-size:.78rem;cursor:pointer;outline:none;">
-          <option value="0">--</option><option value="38">20 pcs · $38</option><option value="65">40 pcs · $65</option><option value="90">60 pcs · $90</option>
-        </select>
-      </div>
-      <div class="build-item" data-base="0">
-        <span class="build-item-icon">🍮</span>
-        <div class="build-item-name"><span class="en-text">Tres Leches</span><span class="es-text">Tres Leches Individual</span></div>
-        <select class="build-select" onchange="updateFromSelect(this)" style="margin-top:10px;width:100%;background:#3D2B1F;border:1px solid rgba(255,255,255,.2);color:#fff;padding:7px 8px;border-radius:4px;font-size:.78rem;cursor:pointer;outline:none;">
-          <option value="0">--</option><option value="45">12 pcs · $45</option><option value="78">24 pcs · $78</option><option value="110">36 pcs · $110</option>
-        </select>
-      </div>
-      <div class="build-item" data-base="0">
-        <span class="build-item-icon">🍦</span>
-        <div class="build-item-name"><span class="en-text">Charcuterie Cones</span><span class="es-text">Conos de Charcutería</span></div>
-        <select class="build-select" onchange="updateFromSelect(this)" style="margin-top:10px;width:100%;background:#3D2B1F;border:1px solid rgba(255,255,255,.2);color:#fff;padding:7px 8px;border-radius:4px;font-size:.78rem;cursor:pointer;outline:none;">
-          <option value="0">--</option><option value="48">12 cones · $48</option><option value="95">24 cones · $95</option>
-        </select>
-      </div>
-      <div class="build-item" data-base="0">
-        <span class="build-item-icon">🍫</span>
-        <div class="build-item-name"><span class="en-text">Choconutela Cups</span><span class="es-text">Vasitos de Choconutela</span></div>
-        <select class="build-select" onchange="updateFromSelect(this)" style="margin-top:10px;width:100%;background:#3D2B1F;border:1px solid rgba(255,255,255,.2);color:#fff;padding:7px 8px;border-radius:4px;font-size:.78rem;cursor:pointer;outline:none;">
-          <option value="0">--</option><option value="45">12 pcs · $45</option><option value="78">24 pcs · $78</option><option value="110">36 pcs · $110</option>
-        </select>
-      </div>
-      <div class="build-item" data-base="0">
-        <span class="build-item-icon">🫓</span>
-        <div class="build-item-name"><span class="en-text">Quesitos & Guava Pastries</span><span class="es-text">Quesitos y Past. Guayaba</span></div>
-        <select class="build-select" onchange="updateFromSelect(this)" style="margin-top:10px;width:100%;background:#3D2B1F;border:1px solid rgba(255,255,255,.2);color:#fff;padding:7px 8px;border-radius:4px;font-size:.78rem;cursor:pointer;outline:none;">
-          <option value="0">--</option><option value="18">20 pcs · $18</option><option value="35">40 pcs · $35</option><option value="53">60 pcs · $53</option><option value="85">100 pcs · $85</option>
-        </select>
-      </div>
-    <div id="minFeeNotice" style="display:none;background:rgba(201,168,76,.15);border:1px solid rgba(201,168,76,.4);border-radius:6px;padding:14px 20px;margin-bottom:16px;align-items:center;gap:12px;">
-      <span style="font-size:1.3rem;">⚠️</span>
-      <div>
-        <div style="font-family:'Playfair Display',serif;font-weight:600;color:var(--gold-lt);font-size:.88rem;"><span class="en-text">$65 Table Setup Fee Included</span><span class="es-text">Cargo de $65 por Mesa Incluido</span></div>
-        <div style="font-size:.78rem;color:rgba(255,255,255,.55);margin-top:3px;"><span class="en-text">A $65 table setup fee is automatically added to all Build Your Own orders.</span><span class="es-text">Se añade automáticamente un cargo de $65 por mesa a todos los pedidos de Crea Tu Pedido.</span></div>
+        <div style="text-align:right;">
+          <div id="buildTotal" style="font-family:'Playfair Display',serif;font-size:2rem;font-weight:700;color:var(--gold-lt);">$0</div>
+          <div id="buildTaxLine" style="font-size:.72rem;color:var(--gold-lt);opacity:.7;margin-top:2px;"></div>
+          <div style="font-size:.65rem;color:rgba(255,255,255,.35);">*<span class="en-text">Estimate includes $65 setup + 7% tax</span><span class="es-text">Incluye $65 cargo + 7% impuesto</span></div>
+        </div>
+        <button onclick="selectOrderType('Build Your Own / Crea Tu Pedido'); prefillOrder();" style="padding:12px 24px;background:var(--gold);color:var(--brown);border:none;border-radius:4px;font-weight:700;font-size:.76rem;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;">
+          <span class="en-text">Send This Order ✦</span><span class="es-text">Enviar Pedido ✦</span>
+        </button>
       </div>
     </div>
-    <div class="build-summary">
-      <div class="build-total-label"><span><span class="en-text">Your Estimate</span><span class="es-text">Tu Estimado</span></span><strong id="buildItems"><span><span class="en-text">Select items above</span><span class="es-text">Selecciona arriba</span></span></strong></div>
-      <div style="text-align:right"><div class="build-total-price" id="buildTotal">$0</div><div id="buildTaxLine" style="font-size:.72rem;color:var(--gold-lt);opacity:.7;margin-top:2px;"></div><div class="build-total-note">**Estimate only · $65 setup fee applies to Build Your Own orders without a package</div></div>
-      <a href="#order" class="build-cta" onclick="selectOrderType('Build Your Own / Crea Tu Pedido'); prefillOrder();"><span><span class="en-text">Send This Order ✦</span><span class="es-text">Enviar Pedido ✦</span></span></a>
-    </div>
+
   </div>
 </section>
+
+
 
 <section id="order">
   <div class="order-inner">
@@ -819,6 +799,25 @@
 </footer>
 
 <script>
+  function showTab(tab) {
+    var pi = document.getElementById('panelInd');
+    var pb = document.getElementById('panelBuild');
+    var ti = document.getElementById('tabInd');
+    var tb = document.getElementById('tabBuild');
+    if (!pi || !pb) return;
+    if (tab === 'ind') {
+      pi.style.display = 'block';
+      pb.style.display = 'none';
+      if(ti){ti.style.background='rgba(242,196,206,0.95)';ti.style.color='var(--brown)';ti.style.borderBottomColor='var(--rose)';}
+      if(tb){tb.style.background='rgba(255,255,255,0.06)';tb.style.color='rgba(255,255,255,0.45)';tb.style.borderBottomColor='transparent';}
+    } else {
+      pi.style.display = 'none';
+      pb.style.display = 'block';
+      if(tb){tb.style.background='rgba(255,255,255,0.15)';tb.style.color='var(--gold-lt)';tb.style.borderBottomColor='var(--gold)';}
+      if(ti){ti.style.background='rgba(255,255,255,0.06)';ti.style.color='rgba(255,255,255,0.45)';ti.style.borderBottomColor='transparent';}
+    }
+  }
+
   function setLang(lang) {
     var enEls = document.querySelectorAll('.en-text');
     var esEls = document.querySelectorAll('.es-text');
@@ -885,32 +884,6 @@
     document.getElementById('buildTaxLine').textContent = itemsTotal > 0 ? '+$65 setup · +$' + tax + ' est. tax (7%)' : '';
     var bi = document.getElementById('buildItems');
     if (bi) bi.textContent = lines.length ? lines.join(' | ') : '';
-  }
-
-  function switchTab(tab) {
-    var indPanel = document.getElementById('panelIndividual');
-    var buildPanel = document.getElementById('panelBuild');
-    var tabInd = document.getElementById('tabInd');
-    var tabBuild = document.getElementById('tabBuild');
-    if (tab === 'individual') {
-      indPanel.style.display = 'block';
-      buildPanel.style.display = 'none';
-      tabInd.style.borderBottomColor = 'var(--gold)';
-      tabInd.style.color = 'var(--gold-lt)';
-      tabInd.style.background = 'rgba(255,255,255,.08)';
-      tabBuild.style.borderBottomColor = 'transparent';
-      tabBuild.style.color = 'rgba(255,255,255,.4)';
-      tabBuild.style.background = 'transparent';
-    } else {
-      indPanel.style.display = 'none';
-      buildPanel.style.display = 'block';
-      tabBuild.style.borderBottomColor = 'var(--gold)';
-      tabBuild.style.color = 'var(--gold-lt)';
-      tabBuild.style.background = 'rgba(255,255,255,.08)';
-      tabInd.style.borderBottomColor = 'transparent';
-      tabInd.style.color = 'rgba(255,255,255,.4)';
-      tabInd.style.background = 'transparent';
-    }
   }
 
   function updateIndTotal() {
