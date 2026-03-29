@@ -518,13 +518,20 @@
       </div>
       <div class="form-group"><label><span><span class="en-text">Phone or Email</span><span class="es-text">Teléfono o Correo</span></span></label><input type="text" name="contact" placeholder="(555) 000-0000 or email@example.com"/></div>
       <div class="form-group"><label><span><span class="en-text">Type of Order</span><span class="es-text">Tipo de Pedido</span></span></label>
-        <select name="order_type">
+        <select name="order_type" id="orderType" onchange="updateOrderSummary()">
           <option value="">Select / Selecciona...</option>
           <option>Individual Order / Pedido Individual</option>
           <option>Build Your Own / Crea Tu Pedido</option>
           <option>15-20 Guests Package</option>
           <option>25-30 Guests Package</option>
         </select>
+      </div>
+      <div id="orderSummaryBox" style="display:none;background:var(--cream);border:1.5px solid var(--gold-lt);border-radius:4px;padding:14px 16px;margin-bottom:16px;font-size:.82rem;color:var(--text-lt);line-height:1.8;">
+        <div style="font-family:'Playfair Display',serif;font-weight:600;color:var(--brown);font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px;">
+          <span class="en-text">📋 Your Order Summary</span><span class="es-text">📋 Resumen de Tu Pedido</span>
+        </div>
+        <div id="orderSummaryText" style="white-space:pre-line;color:var(--text-lt);"></div>
+        <div id="orderSummaryTotal" style="margin-top:8px;font-family:'Playfair Display',serif;font-weight:700;color:var(--rose);font-size:.95rem;"></div>
       </div>
       <div class="form-group"><label><span><span class="en-text">Event Details</span><span class="es-text">Detalles del Evento</span></span></label><textarea id="eventDetails" name="event_details" placeholder="Event date, guests, theme..."></textarea></div>
       <button class="form-submit" id="submitBtn" onclick="handleSubmit(event)"><span><span class="en-text">Send My Request ✦</span><span class="es-text">Enviar Pedido ✦</span></span></button>
@@ -645,18 +652,72 @@
     if (bi) bi.textContent = lines.length ? lines.join(' | ') : '';
   }
 
-  function prefillOrder() {
+  var packagePrices = {
+    '15-20 Guests Package': 240,
+    '25-30 Guests Package': 375
+  };
+
+  function updateOrderSummary() {
+    var orderType = document.getElementById('orderType');
+    if (!orderType) return;
+    var selected = orderType.value;
+    buildOrderSummary(selected);
+  }
+
+  function buildOrderSummary(orderType) {
     var lines = [];
+    var total = 0;
+    var box = document.getElementById('orderSummaryBox');
+    var summaryText = document.getElementById('orderSummaryText');
+    var summaryTotal = document.getElementById('orderSummaryTotal');
+    var ta = document.getElementById('eventDetails');
+
+    // Package selected?
+    if (orderType && packagePrices[orderType]) {
+      lines.push('PACKAGE: ' + orderType + ' — $' + packagePrices[orderType]);
+      total += packagePrices[orderType];
+    }
+
+    // Any Build Your Own items selected?
+    var buildLines = [];
+    var buildSubtotal = 0;
     document.querySelectorAll('.build-item').forEach(function(item) {
       var sel = item.querySelector('.build-select');
       if (sel && parseInt(sel.value) > 0) {
-        lines.push(item.querySelector('.build-item-name').textContent.trim() + ': ' + sel.options[sel.selectedIndex].text);
+        var itemTotal = parseInt(sel.value);
+        buildSubtotal += itemTotal;
+        buildLines.push(item.querySelector('.build-item-name').textContent.trim() + ': ' + sel.options[sel.selectedIndex].text);
       }
     });
-    if (lines.length) {
-      var ta = document.getElementById('eventDetails');
-      if (ta) ta.value = 'My order: ' + lines.join(', ') + ' | Estimate: ' + document.getElementById('buildTotal').textContent;
+
+    if (buildLines.length > 0) {
+      if (total > 0) lines.push('');
+      lines.push('ADD-ONS / BUILD YOUR OWN:');
+      buildLines.forEach(function(l) { lines.push('  · ' + l); });
+      buildSubtotal += 65; // setup fee
+      var tax = Math.round(buildSubtotal * 0.07);
+      buildSubtotal += tax;
+      lines.push('  Setup fee: $65');
+      lines.push('  Est. tax (7%): $' + tax);
+      total += buildSubtotal;
     }
+
+    if (lines.length > 0) {
+      if (box) box.style.display = 'block';
+      if (summaryText) summaryText.textContent = lines.join('\n');
+      if (summaryTotal) summaryTotal.textContent = 'ESTIMATED TOTAL: $' + total.toLocaleString();
+      if (ta) ta.value = lines.join('\n') + '\nESTIMATED TOTAL: $' + total.toLocaleString();
+    } else {
+      if (box) box.style.display = 'none';
+      if (summaryText) summaryText.textContent = '';
+      if (summaryTotal) summaryTotal.textContent = '';
+    }
+  }
+
+  function prefillOrder() {
+    var orderType = document.getElementById('orderType');
+    buildOrderSummary(orderType ? orderType.value : '');
+    document.getElementById('order').scrollIntoView({behavior:'smooth'});
   }
 
   function handleSubmit(e) {
