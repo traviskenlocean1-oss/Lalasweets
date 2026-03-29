@@ -372,10 +372,10 @@
 
     <!-- TAB BUTTONS -->
     <div style="display:flex;gap:0;margin-bottom:0;border-radius:8px 8px 0 0;overflow:hidden;">
-      <button id="tabInd" style="flex:1;padding:18px 24px;background:rgba(242,196,206,0.95);border:none;border-bottom:4px solid var(--rose);color:var(--brown);font-family:'Playfair Display',serif;font-size:.95rem;font-weight:700;cursor:pointer;" onclick="showTab('ind')">
+      <button id="tabInd" style="flex:1;padding:18px 24px;background:rgba(242,196,206,0.95);border:none;border-bottom:4px solid var(--rose);color:var(--brown);font-family:'Playfair Display',serif;font-size:.95rem;font-weight:700;cursor:pointer;">
         🛍️ <span class="en-text">Individual Order</span><span class="es-text">Pedido Individual</span>
       </button>
-      <button id="tabBuild" style="flex:1;padding:18px 24px;background:rgba(255,255,255,0.06);border:none;border-bottom:4px solid transparent;color:rgba(255,255,255,0.45);font-family:'Playfair Display',serif;font-size:.95rem;font-weight:700;cursor:pointer;" onclick="showTab('build')">
+      <button id="tabBuild" style="flex:1;padding:18px 24px;background:rgba(255,255,255,0.06);border:none;border-bottom:4px solid transparent;color:rgba(255,255,255,0.45);font-family:'Playfair Display',serif;font-size:.95rem;font-weight:700;cursor:pointer;">
         🪄 <span class="en-text">Build Your Own Table</span><span class="es-text">Crea Tu Mesa Completa</span>
       </button>
     </div>
@@ -839,6 +839,13 @@
     try { localStorage.setItem('lala-lang', lang); } catch(e) {}
   }
   try { if(localStorage.getItem('lala-lang')==='es') setLang('es'); } catch(e) {}
+
+  document.addEventListener('DOMContentLoaded', function() {
+    var ti = document.getElementById('tabInd');
+    var tb = document.getElementById('tabBuild');
+    if (ti) ti.addEventListener('click', function() { showTab('ind'); });
+    if (tb) tb.addEventListener('click', function() { showTab('build'); });
+  });
 
   window.addEventListener('scroll', function() {
     var nav = document.querySelector('nav');
