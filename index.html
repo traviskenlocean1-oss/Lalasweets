@@ -942,34 +942,19 @@
     if (il) il.textContent = lines.length ? lines.join(', ') : '';
   }
 
-  function prefillIndividual() {
-    var lines = [];
-    var total = 0;
-    document.querySelectorAll('.ind-item').forEach(function(item) {
-      var sel = item.querySelector('.ind-select');
-      if (sel && parseInt(sel.value) > 0) {
-        var nameEl = item.querySelector('.en-text');
-        var name = nameEl ? nameEl.textContent.trim() : '';
-        lines.push(name + ': ' + sel.options[sel.selectedIndex].text);
-        total += parseInt(sel.value);
-      }
-    });
-    var deliveryRadio = document.querySelector('input[name="indDelivery"]:checked');
-    var isDelivery = deliveryRadio && deliveryRadio.value === 'delivery';
-    var deliveryFee = isDelivery ? 10 : 0;
-    var grandTotal = total + deliveryFee;
-    var method = isDelivery ? 'Delivery (+$10 fee)' : 'Free Pickup';
-    if (lines.length) {
-      var ta = document.getElementById('eventDetails');
-      if (ta) ta.value = 'INDIVIDUAL ORDER (' + method + '): ' + lines.join(', ') + ' | Estimate: $' + grandTotal + (isDelivery ? ' (includes $10 delivery)' : ' (free pickup)');
-      var ot = document.getElementById('orderType');
+    function prefillIndividual() {
+    var ot = document.getElementById('orderType');
+    var current = ot ? ot.value : '';
+    var isPackage = current === '15-20 Guests Package' || current === '25-30 Guests Package';
+    // Only set to Individual if no package is selected
+    if (!isPackage) {
       if (ot) ot.value = 'Individual Order / Pedido Individual';
-      document.getElementById('order').scrollIntoView({behavior:'smooth'});
-    } else {
-      alert('Please select at least one item before sending your order.');
     }
+    buildOrderSummary(ot ? ot.value : '');
+    document.getElementById('order').scrollIntoView({behavior:'smooth'});
   }
 
+  
   function removePackage() {
     var ot = document.getElementById('orderType');
     if (ot) { ot.value = ''; buildOrderSummary(''); }
@@ -979,19 +964,23 @@
     var ot = document.getElementById('orderType');
     if (ot) {
       ot.value = pkgName;
-      buildOrderSummary(pkgName);
     }
+    buildOrderSummary(pkgName);
     setTimeout(function() {
       document.getElementById('order').scrollIntoView({behavior:'smooth'});
-    }, 100);
+    }, 150);
   }
 
   function selectOrderType(type) {
     var ot = document.getElementById('orderType');
-    if (ot) {
+    if (!ot) return;
+    // Don't override package selection with individual/build type
+    var current = ot.value;
+    var isPackage = current === '15-20 Guests Package' || current === '25-30 Guests Package';
+    if (!isPackage) {
       ot.value = type;
-      buildOrderSummary(type);
     }
+    buildOrderSummary(ot.value);
   }
 
   function removeOrderItem(itemId) {
