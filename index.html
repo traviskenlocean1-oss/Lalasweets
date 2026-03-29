@@ -105,7 +105,7 @@
     .build-qty button{width:30px;height:30px;border:1px solid rgba(255,255,255,.25);background:transparent;color:#fff;border-radius:50%;font-size:1.1rem;cursor:pointer;transition:all .2s;display:flex;align-items:center;justify-content:center}
     .build-qty button:hover{background:var(--gold);border-color:var(--gold);color:var(--brown)}
     .build-qty-num{font-family:'Playfair Display',serif;font-size:1.2rem;color:#fff;min-width:26px;text-align:center;font-weight:600}
-    .build-price-tag{position:absolute;top:10px;right:10px;font-size:.65rem;font-weight:700;letter-spacing:.08em;color:var(--gold-lt);background:rgba(201,168,76,.15);padding:2px 8px;border-radius:10px}
+    
     .build-summary{background:rgba(255,255,255,.06);border:1px solid rgba(201,168,76,.3);border-radius:4px;padding:28px 32px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap}
     .build-total-label{font-family:'Playfair Display',serif;font-size:1rem;font-style:italic;color:rgba(255,255,255,.65)}
     .build-total-label strong{font-family:'Great Vibes',cursive;font-size:1.5rem;color:var(--gold-lt);display:block;font-weight:400;font-style:normal;margin-top:4px;line-height:1.4}
@@ -351,8 +351,113 @@
       <hr class="section-rule"/>
       <p class="section-text" style="color:rgba(255,255,255,.6)"><span><span class="en-text">Mix and match from our full menu and get an instant estimate.</span><span class="es-text">Combina lo que quieras y obtén un estimado al instante.</span></span></p>
     </div>
-    <div class="build-grid" id="buildGrid">
-      <div class="build-item" data-base="75"><div class="build-price-tag">from $75</div><span class="build-item-icon">🫶</span><div class="build-item-name"><span class="en-text">Charcuterie Tray</span><span class="es-text">Bandeja de Charcutería</span></div><span class="build-item-es">Bandeja de Charcutería</span><div class="build-qty"><button onclick="changeQty(this,-1)">−</button><span class="build-qty-num">0</span><button onclick="changeQty(this,1)">+</button></div></div>
+    <div class="build-grid" id="buildGrid" style="grid-template-columns:repeat(auto-fit,minmax(160px,1fr))">
+      <div class="build-item" data-base="0">
+        <span class="build-item-icon">🫶</span>
+        <div class="build-item-name"><span class="en-text">Charcuterie Tray</span><span class="es-text">Bandeja de Charcutería</span></div>
+        <select class="build-select" onchange="updateFromSelect(this)" style="margin-top:10px;width:100%;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);color:#fff;padding:7px 8px;border-radius:4px;font-size:.78rem;cursor:pointer;outline:none;">
+          <option value="0">--</option><option value="75">10-12 people · $75</option><option value="100">15-20 people · $100</option><option value="125">25-30 people · $125</option>
+        </select>
+      </div>
+      <div class="build-item" data-base="0">
+        <span class="build-item-icon">🎁</span>
+        <div class="build-item-name"><span class="en-text">Mini Charcuterie Box</span><span class="es-text">Mini Box de Charcutería</span></div>
+        <select class="build-select" onchange="updateFromSelect(this)" style="margin-top:10px;width:100%;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);color:#fff;padding:7px 8px;border-radius:4px;font-size:.78rem;cursor:pointer;outline:none;">
+          <option value="0">--</option><option value="9">1 box · $9</option><option value="45">5 boxes · $45</option><option value="90">10 boxes · $90</option>
+        </select>
+      </div>
+      <div class="build-item" data-base="0">
+        <span class="build-item-icon">🥪</span>
+        <div class="build-item-name"><span class="en-text">Mini Chicken Sandwiches</span><span class="es-text">Mini Sandwich de Pollo</span></div>
+        <select class="build-select" onchange="updateFromSelect(this)" style="margin-top:10px;width:100%;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);color:#fff;padding:7px 8px;border-radius:4px;font-size:.78rem;cursor:pointer;outline:none;">
+          <option value="0">--</option><option value="48">24 pcs · $48</option><option value="96">48 pcs · $96</option>
+        </select>
+      </div>
+      <div class="build-item" data-base="0">
+        <span class="build-item-icon">🥖</span>
+        <div class="build-item-name"><span class="en-text">Mixed Sandwiches</span><span class="es-text">Sandwich de Mezcla</span></div>
+        <select class="build-select" onchange="updateFromSelect(this)" style="margin-top:10px;width:100%;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);color:#fff;padding:7px 8px;border-radius:4px;font-size:.78rem;cursor:pointer;outline:none;">
+          <option value="0">--</option><option value="8">12 pcs · $8</option><option value="16">24 pcs · $16</option><option value="24">36 pcs · $24</option><option value="35">50 pcs · $35</option>
+        </select>
+      </div>
+      <div class="build-item" data-base="0">
+        <span class="build-item-icon">🍢</span>
+        <div class="build-item-name"><span class="en-text">Canapés</span><span class="es-text">Canapés Artesanales</span></div>
+        <select class="build-select" onchange="updateFromSelect(this)" style="margin-top:10px;width:100%;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);color:#fff;padding:7px 8px;border-radius:4px;font-size:.78rem;cursor:pointer;outline:none;">
+          <option value="0">--</option><option value="15">25 pcs · $15</option><option value="25">50 pcs · $25</option><option value="47">100 pcs · $47</option>
+        </select>
+      </div>
+      <div class="build-item" data-base="0">
+        <span class="build-item-icon">🍓</span>
+        <div class="build-item-name"><span class="en-text">Chocolate Strawberries</span><span class="es-text">Fresas con Chocolate</span></div>
+        <select class="build-select" onchange="updateFromSelect(this)" style="margin-top:10px;width:100%;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);color:#fff;padding:7px 8px;border-radius:4px;font-size:.78rem;cursor:pointer;outline:none;">
+          <option value="0">--</option><option value="20">12 pcs · $20</option><option value="36">24 pcs · $36</option><option value="54">36 pcs · $54</option>
+        </select>
+      </div>
+      <div class="build-item" data-base="0">
+        <span class="build-item-icon">🍤</span>
+        <div class="build-item-name"><span class="en-text">Shrimp Ceviche</span><span class="es-text">Ceviche de Camarones</span></div>
+        <select class="build-select" onchange="updateFromSelect(this)" style="margin-top:10px;width:100%;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);color:#fff;padding:7px 8px;border-radius:4px;font-size:.78rem;cursor:pointer;outline:none;">
+          <option value="0">--</option><option value="65">3 lbs · $65</option><option value="90">6 lbs · $90</option>
+        </select>
+      </div>
+      <div class="build-item" data-base="0">
+        <span class="build-item-icon">🫕</span>
+        <div class="build-item-name"><span class="en-text">Dip + Chips</span><span class="es-text">Dip con Galletas</span></div>
+        <select class="build-select" onchange="updateFromSelect(this)" style="margin-top:10px;width:100%;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);color:#fff;padding:7px 8px;border-radius:4px;font-size:.78rem;cursor:pointer;outline:none;">
+          <option value="0">--</option><option value="22">Chicken / Pollo · $22</option><option value="18">Spinach / Espinaca · $18</option><option value="18">Bacon Ranch · $18</option><option value="18">Bola de Fuego · $18</option>
+        </select>
+      </div>
+      <div class="build-item" data-base="0">
+        <span class="build-item-icon">🥗</span>
+        <div class="build-item-name"><span class="en-text">Salad</span><span class="es-text">Ensalada</span></div>
+        <select class="build-select" onchange="updateFromSelect(this)" style="margin-top:10px;width:100%;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);color:#fff;padding:7px 8px;border-radius:4px;font-size:.78rem;cursor:pointer;outline:none;">
+          <option value="0">--</option><option value="14">Cold Pasta · $14</option><option value="28">Grain Salad 4lbs · $28</option>
+        </select>
+      </div>
+      <div class="build-item" data-base="0">
+        <span class="build-item-icon">🍰</span>
+        <div class="build-item-name"><span class="en-text">Cheesecake</span><span class="es-text">Cheesecake Individual</span></div>
+        <select class="build-select" onchange="updateFromSelect(this)" style="margin-top:10px;width:100%;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);color:#fff;padding:7px 8px;border-radius:4px;font-size:.78rem;cursor:pointer;outline:none;">
+          <option value="0">--</option><option value="36">12 pcs · $36</option><option value="70">24 pcs · $70</option><option value="95">36 pcs · $95</option>
+        </select>
+      </div>
+      <div class="build-item" data-base="0">
+        <span class="build-item-icon">🥐</span>
+        <div class="build-item-name"><span class="en-text">Croissants</span><span class="es-text">Croissants Artesanales</span></div>
+        <select class="build-select" onchange="updateFromSelect(this)" style="margin-top:10px;width:100%;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);color:#fff;padding:7px 8px;border-radius:4px;font-size:.78rem;cursor:pointer;outline:none;">
+          <option value="0">--</option><option value="38">20 pcs · $38</option><option value="65">40 pcs · $65</option><option value="90">60 pcs · $90</option>
+        </select>
+      </div>
+      <div class="build-item" data-base="0">
+        <span class="build-item-icon">🍮</span>
+        <div class="build-item-name"><span class="en-text">Tres Leches</span><span class="es-text">Tres Leches Individual</span></div>
+        <select class="build-select" onchange="updateFromSelect(this)" style="margin-top:10px;width:100%;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);color:#fff;padding:7px 8px;border-radius:4px;font-size:.78rem;cursor:pointer;outline:none;">
+          <option value="0">--</option><option value="45">12 pcs · $45</option><option value="78">24 pcs · $78</option><option value="110">36 pcs · $110</option>
+        </select>
+      </div>
+      <div class="build-item" data-base="0">
+        <span class="build-item-icon">🍦</span>
+        <div class="build-item-name"><span class="en-text">Charcuterie Cones</span><span class="es-text">Conos de Charcutería</span></div>
+        <select class="build-select" onchange="updateFromSelect(this)" style="margin-top:10px;width:100%;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);color:#fff;padding:7px 8px;border-radius:4px;font-size:.78rem;cursor:pointer;outline:none;">
+          <option value="0">--</option><option value="48">12 cones · $48</option><option value="95">24 cones · $95</option>
+        </select>
+      </div>
+      <div class="build-item" data-base="0">
+        <span class="build-item-icon">🍫</span>
+        <div class="build-item-name"><span class="en-text">Choconutela Cups</span><span class="es-text">Vasitos de Choconutela</span></div>
+        <select class="build-select" onchange="updateFromSelect(this)" style="margin-top:10px;width:100%;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);color:#fff;padding:7px 8px;border-radius:4px;font-size:.78rem;cursor:pointer;outline:none;">
+          <option value="0">--</option><option value="45">12 pcs · $45</option><option value="78">24 pcs · $78</option><option value="110">36 pcs · $110</option>
+        </select>
+      </div>
+      <div class="build-item" data-base="0">
+        <span class="build-item-icon">🫓</span>
+        <div class="build-item-name"><span class="en-text">Quesitos & Guava Pastries</span><span class="es-text">Quesitos y Past. Guayaba</span></div>
+        <select class="build-select" onchange="updateFromSelect(this)" style="margin-top:10px;width:100%;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);color:#fff;padding:7px 8px;border-radius:4px;font-size:.78rem;cursor:pointer;outline:none;">
+          <option value="0">--</option><option value="18">20 pcs · $18</option><option value="35">40 pcs · $35</option><option value="53">60 pcs · $53</option><option value="85">100 pcs · $85</option>
+        </select>
+      </div>
+    </div><span class="build-item-icon">🫶</span><div class="build-item-name"><span class="en-text">Charcuterie Tray</span><span class="es-text">Bandeja de Charcutería</span></div><span class="build-item-es">Bandeja de Charcutería</span><div class="build-qty"><button onclick="changeQty(this,-1)">−</button><span class="build-qty-num">0</span><button onclick="changeQty(this,1)">+</button></div></div>
       <div class="build-item" data-base="9"><div class="build-price-tag">$9 c/u</div><span class="build-item-icon">🎁</span><div class="build-item-name"><span class="en-text">Mini Charcuterie Box</span><span class="es-text">Mini Box de Charcutería</span></div><span class="build-item-es">Mini Box de Charcutería</span><div class="build-qty"><button onclick="changeQty(this,-1)">−</button><span class="build-qty-num">0</span><button onclick="changeQty(this,1)">+</button></div></div>
       <div class="build-item" data-base="48"><div class="build-price-tag">from $48</div><span class="build-item-icon">🥪</span><div class="build-item-name"><span class="en-text">Mini Chicken Sandwiches</span><span class="es-text">Mini Sandwich de Pollo</span></div><span class="build-item-es">Mini Sandwich de Pollo</span><div class="build-qty"><button onclick="changeQty(this,-1)">−</button><span class="build-qty-num">0</span><button onclick="changeQty(this,1)">+</button></div></div>
       <div class="build-item" data-base="8"><div class="build-price-tag">from $8</div><span class="build-item-icon">🥖</span><div class="build-item-name"><span class="en-text">Mixed Sandwiches</span><span class="es-text">Sandwich de Mezcla</span></div><span class="build-item-es">Sandwich de Mezcla</span><div class="build-qty"><button onclick="changeQty(this,-1)">−</button><span class="build-qty-num">0</span><button onclick="changeQty(this,1)">+</button></div></div>
@@ -526,12 +631,11 @@
     if (bg) bg.style.transform = 'scale(1.04) translateY(' + (window.scrollY * 0.25) + 'px)';
   });
 
-  function changeQty(btn, delta) {
-    var item = btn.closest('.build-item');
-    var numEl = item.querySelector('.build-qty-num');
-    var qty = Math.max(0, parseInt(numEl.textContent) + delta);
-    numEl.textContent = qty;
-    item.classList.toggle('selected', qty > 0);
+  function updateFromSelect(sel) {
+    var item = sel.closest('.build-item');
+    var val = parseInt(sel.value);
+    item.classList.toggle('selected', val > 0);
+    item.dataset.base = val;
     updateTotal();
   }
 
@@ -539,22 +643,25 @@
     var total = 0;
     var lines = [];
     document.querySelectorAll('.build-item').forEach(function(item) {
-      var qty = parseInt(item.querySelector('.build-qty-num').textContent);
-      if (qty > 0) {
-        total += qty * parseInt(item.dataset.base);
-        lines.push(qty + 'x ' + item.querySelector('.build-item-name').textContent);
+      var sel = item.querySelector('.build-select');
+      var val = sel ? parseInt(sel.value) : 0;
+      if (val > 0) {
+        total += val;
+        lines.push(item.querySelector('.build-item-name').textContent.trim() + ' (' + sel.options[sel.selectedIndex].text + ')');
       }
     });
     document.getElementById('buildTotal').textContent = '$' + total.toLocaleString();
     var bi = document.getElementById('buildItems');
-    if (bi) bi.textContent = lines.length ? lines.join(' - ') : '';
+    if (bi) bi.textContent = lines.length ? lines.join(' | ') : '';
   }
 
   function prefillOrder() {
     var lines = [];
     document.querySelectorAll('.build-item').forEach(function(item) {
-      var qty = parseInt(item.querySelector('.build-qty-num').textContent);
-      if (qty > 0) lines.push(qty + 'x ' + item.querySelector('.build-item-name').textContent);
+      var sel = item.querySelector('.build-select');
+      if (sel && parseInt(sel.value) > 0) {
+        lines.push(item.querySelector('.build-item-name').textContent.trim() + ': ' + sel.options[sel.selectedIndex].text);
+      }
     });
     if (lines.length) {
       var ta = document.getElementById('eventDetails');
