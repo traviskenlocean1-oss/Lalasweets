@@ -527,7 +527,7 @@
           <div id="indDeliveryLine" style="font-size:.72rem;color:var(--rose);margin-top:2px;display:none;">+ $10 <span class="en-text">delivery fee</span><span class="es-text">cargo de entrega</span></div>
           <div style="font-size:.68rem;color:var(--text-lt);margin-top:2px;">*<span class="en-text">Estimate · No setup fee</span><span class="es-text">Estimado · Sin cargo de montaje</span></div>
         </div>
-        <a href="#order" class="build-cta" onclick="prefillIndividual()" style="background:var(--rose);color:#fff;"><span class="en-text">Send This Order ✦</span><span class="es-text">Enviar Pedido ✦</span></a>
+        <a href="#order" class="build-cta" onclick="selectOrderType('Individual Order / Pedido Individual'); prefillIndividual();" style="background:var(--rose);color:#fff;"><span class="en-text">Send This Order ✦</span><span class="es-text">Enviar Pedido ✦</span></a>
       </div>
     </div>
 
@@ -697,7 +697,7 @@
     <div class="build-summary">
       <div class="build-total-label"><span><span class="en-text">Your Estimate</span><span class="es-text">Tu Estimado</span></span><strong id="buildItems"><span><span class="en-text">Select items above</span><span class="es-text">Selecciona arriba</span></span></strong></div>
       <div style="text-align:right"><div class="build-total-price" id="buildTotal">$0</div><div id="buildTaxLine" style="font-size:.72rem;color:var(--gold-lt);opacity:.7;margin-top:2px;"></div><div class="build-total-note">**Estimate only · $65 setup fee applies to Build Your Own orders without a package</div></div>
-      <a href="#order" class="build-cta" onclick="prefillOrder()"><span><span class="en-text">Send This Order ✦</span><span class="es-text">Enviar Pedido ✦</span></span></a>
+      <a href="#order" class="build-cta" onclick="selectOrderType('Build Your Own / Crea Tu Pedido'); prefillOrder();"><span><span class="en-text">Send This Order ✦</span><span class="es-text">Enviar Pedido ✦</span></span></a>
     </div>
   </div>
 </section>
@@ -743,7 +743,7 @@
           📋 <span class="en-text">Your Order Summary</span><span class="es-text">Resumen de Tu Pedido</span>
         </div>
         <!-- Package line -->
-        <div id="summaryPackageLine" style="display:none;padding:10px 12px;background:#fff;border:1px solid var(--gold-lt);border-radius:4px;margin-bottom:8px;display:none;">
+        <div id="summaryPackageLine" style="display:none;padding:10px 12px;background:#fff;border:1px solid var(--gold-lt);border-radius:4px;margin-bottom:8px;">
           <div style="display:flex;justify-content:space-between;align-items:center;">
             <div>
               <div style="font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:2px;"><span class="en-text">Package</span><span class="es-text">Paquete</span></div>
@@ -990,6 +990,56 @@
     }
   }
 
+  function removePackage() {
+    var ot = document.getElementById('orderType');
+    if (ot) { ot.value = ''; buildOrderSummary(''); }
+  }
+
+  function selectPackage(pkgName) {
+    var ot = document.getElementById('orderType');
+    if (ot) {
+      ot.value = pkgName;
+      buildOrderSummary(pkgName);
+    }
+    setTimeout(function() {
+      document.getElementById('order').scrollIntoView({behavior:'smooth'});
+    }, 100);
+  }
+
+  function selectOrderType(type) {
+    var ot = document.getElementById('orderType');
+    if (ot) {
+      ot.value = type;
+      buildOrderSummary(type);
+    }
+  }
+
+  function removeOrderItem(itemId) {
+    if (itemId.indexOf('build_') === 0) {
+      // Find matching build-item select and reset it
+      document.querySelectorAll('.build-item').forEach(function(item) {
+        var nameEl = item.querySelector('.build-item-name');
+        if (nameEl && ('build_' + nameEl.textContent.replace(/\s+/g,'_')) === itemId) {
+          var sel = item.querySelector('.build-select');
+          if (sel) { sel.value = '0'; item.classList.remove('selected'); item.dataset.base = 0; }
+        }
+      });
+    } else if (itemId.indexOf('ind_') === 0) {
+      var targetName = itemId.replace('ind_','').replace(/_/g,' ');
+      document.querySelectorAll('.ind-item').forEach(function(item) {
+        var nameEl = item.querySelector('.en-text');
+        if (nameEl && nameEl.textContent.trim() === targetName) {
+          var sel = item.querySelector('.ind-select');
+          if (sel) sel.value = '0';
+        }
+      });
+      updateIndTotal();
+    }
+    updateTotal();
+    var ot = document.getElementById('orderType');
+    buildOrderSummary(ot ? ot.value : '');
+  }
+
   var packagePrices = {
     '15-20 Guests Package': 240,
     '25-30 Guests Package': 375
@@ -1023,7 +1073,7 @@
       grandTotal += pkgAmt;
       hasAnything = true;
       if (pkgLine) { pkgLine.style.display = 'block'; }
-      if (pkgName) pkgName.textContent = orderType;
+      if (pkgName) pkgName.innerHTML = orderType + ' <button onclick="removePackage()" style="background:#fee;border:1px solid #fcc;color:#c00;border-radius:50%;width:20px;height:20px;font-size:.8rem;cursor:pointer;margin-left:8px;padding:0;vertical-align:middle;" title="Remove">×</button>';
       if (pkgPrice) pkgPrice.textContent = '$' + pkgAmt;
       summaryForForm.push('PACKAGE: ' + orderType + ' — $' + pkgAmt);
     } else {
@@ -1043,7 +1093,7 @@
         addonSubtotal += val;
         var nameEl = item.querySelector('.build-item-name');
         var name = nameEl ? nameEl.textContent.trim() : '';
-        addonItems.push({ name: name, desc: sel.options[sel.selectedIndex].text, price: val });
+        addonItems.push({ name: name, desc: sel.options[sel.selectedIndex].text, price: val, id: 'build_' + item.querySelector('.build-item-name').textContent.replace(/\s+/g,'_') });
         summaryForForm.push((hasPackage ? 'ADD-ON: ' : '') + name + ': ' + sel.options[sel.selectedIndex].text);
       }
     });
@@ -1056,7 +1106,7 @@
         addonSubtotal += val;
         var nameEl = item.querySelector('.en-text');
         var name = nameEl ? nameEl.textContent.trim() : '';
-        addonItems.push({ name: name, desc: sel.options[sel.selectedIndex].text, price: val });
+        addonItems.push({ name: name, desc: sel.options[sel.selectedIndex].text, price: val, id: 'build_' + item.querySelector('.build-item-name').textContent.replace(/\s+/g,'_') });
         summaryForForm.push('INDIVIDUAL: ' + name + ': ' + sel.options[sel.selectedIndex].text);
       }
     });
@@ -1066,9 +1116,11 @@
       if (addonLines) addonLines.style.display = 'block';
       if (addonList) {
         addonList.innerHTML = addonItems.map(function(a) {
-          return '<div style="display:flex;justify-content:space-between;padding:5px 10px;background:#fff;border-radius:3px;border:1px solid var(--gold-lt);font-size:.8rem;">' +
-            '<span style="color:var(--brown);">' + a.name + ' <span style="color:var(--text-lt);font-size:.74rem;">(' + a.desc + ')</span></span>' +
-            '<span style="font-weight:700;color:var(--rose);">$' + a.price + '</span></div>';
+          return '<div style="display:flex;justify-content:space-between;align-items:center;padding:5px 10px;background:#fff;border-radius:3px;border:1px solid var(--gold-lt);font-size:.8rem;gap:8px;">' +
+            '<span style="color:var(--brown);flex:1;">' + a.name + ' <span style="color:var(--text-lt);font-size:.74rem;">(' + a.desc + ')</span></span>' +
+            '<span style="font-weight:700;color:var(--rose);">$' + a.price + '</span>' +
+            '<button onclick="removeOrderItem('' + a.id + '')" style="background:#fee;border:1px solid #fcc;color:#c00;border-radius:50%;width:22px;height:22px;font-size:.85rem;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;padding:0;line-height:1;" title="Remove">×</button>' +
+            '</div>';
         }).join('');
       }
       // Fees
