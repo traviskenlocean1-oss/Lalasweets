@@ -872,55 +872,77 @@
     buildOrderSummary(ot ? ot.value : '');
   }
 
-  function updateTotal() {
-    var itemsTotal = 0;
-    var lines = [];
-    document.querySelectorAll('.build-select').forEach(function(sel) {
-      var val = parseInt(sel.value);
+  function getSelectedOrderItems(selectSelector, itemSelector, prefix) {
+    var items = [];
+    var subtotal = 0;
+    document.querySelectorAll(selectSelector).forEach(function(sel) {
+      var val = parseInt(sel.value, 10) || 0;
       if (val > 0) {
-        itemsTotal += val;
-        var item = sel.closest('.build-item');
+        subtotal += val;
+        var item = sel.closest(itemSelector);
         var nameEl = item ? item.querySelector('.en-text') : null;
-        var name = nameEl ? nameEl.textContent.trim() : '';
-        lines.push(name + ' (' + sel.options[sel.selectedIndex].text + ')');
+        var name = nameEl ? nameEl.textContent.trim() : 'Item';
+        items.push({
+          name: name,
+          desc: sel.options[sel.selectedIndex].text,
+          price: val,
+          id: prefix + name.replace(/[^a-zA-Z0-9]/g, '_')
+        });
       }
     });
+    return { items: items, subtotal: subtotal };
+  }
+
+  function getBuildPricing() {
+    var selection = getSelectedOrderItems('.build-select', '.build-item', 'build_');
+    var setupFee = selection.subtotal > 0 ? 65 : 0;
+    var tax = selection.subtotal > 0 ? Math.round((selection.subtotal + setupFee) * 0.07) : 0;
+    return {
+      items: selection.items,
+      itemsTotal: selection.subtotal,
+      setupFee: setupFee,
+      tax: tax,
+      grandTotal: selection.subtotal + setupFee + tax
+    };
+  }
+
+  function getIndividualPricing() {
+    var selection = getSelectedOrderItems('.ind-select', '.ind-item', 'ind_');
+    var deliveryRadio = document.querySelector('input[name="indDelivery"]:checked');
+    var isDelivery = deliveryRadio && deliveryRadio.value === 'delivery';
+    var deliveryFee = (isDelivery && selection.subtotal > 0) ? 10 : 0;
+    return {
+      items: selection.items,
+      itemsTotal: selection.subtotal,
+      isDelivery: isDelivery,
+      deliveryFee: deliveryFee,
+      grandTotal: selection.subtotal + deliveryFee
+    };
+  }
+
+  function updateTotal() {
+    var pricing = getBuildPricing();
     var minFee = document.getElementById('minFeeNotice');
-    var setupFee = itemsTotal > 0 ? 65 : 0;
-    var subtotal = itemsTotal + setupFee;
-    var tax = itemsTotal > 0 ? Math.round(subtotal * 0.07) : 0;
-    var grandTotal = subtotal + tax;
-    if (minFee) minFee.style.display = itemsTotal > 0 ? 'flex' : 'none';
-    document.getElementById('buildTotal').textContent = itemsTotal > 0 ? '$' + grandTotal.toLocaleString() : '$0';
-    document.getElementById('buildTaxLine').textContent = itemsTotal > 0 ? '+$65 setup · +$' + tax + ' est. tax (7%)' : '';
+    if (minFee) minFee.style.display = pricing.itemsTotal > 0 ? 'flex' : 'none';
+    document.getElementById('buildTotal').textContent = pricing.itemsTotal > 0 ? '$' + pricing.grandTotal.toLocaleString() : '$0';
+    document.getElementById('buildTaxLine').textContent = pricing.itemsTotal > 0 ? '+$65 setup · +$' + pricing.tax + ' est. tax (7%)' : '';
     var bi = document.getElementById('buildItems');
-    if (bi) bi.textContent = lines.length ? lines.join(' | ') : '';
+    if (bi) {
+      bi.textContent = pricing.items.length ? pricing.items.map(function(item) {
+        return item.name + ' (' + item.desc + ')';
+      }).join(' | ') : '';
+    }
   }
 
   function updateIndTotal() {
-    var total = 0;
-    var lines = [];
-    document.querySelectorAll('.ind-select').forEach(function(sel) {
-      var val = parseInt(sel.value);
-      if (val > 0) {
-        total += val;
-        var item = sel.closest('.ind-item');
-        var nameEl = item.querySelector('.en-text');
-        lines.push(nameEl ? nameEl.textContent.trim() : '');
-      }
-    });
-
-    // Check delivery option
-    var deliveryRadio = document.querySelector('input[name="indDelivery"]:checked');
-    var isDelivery = deliveryRadio && deliveryRadio.value === 'delivery';
-    var deliveryFee = (isDelivery && total > 0) ? 10 : 0;
-    var grandTotal = total + deliveryFee;
+    var pricing = getIndividualPricing();
+    var lines = pricing.items.map(function(item) { return item.name; });
 
     // Update toggle button styles
     var pickupBtn = document.getElementById('pickupBtn');
     var deliveryBtnEl = document.getElementById('deliveryBtn');
     if (pickupBtn && deliveryBtnEl) {
-      if (isDelivery) {
+      if (pricing.isDelivery) {
         pickupBtn.style.background = 'transparent';
         pickupBtn.style.borderColor = 'var(--gold-lt)';
         pickupBtn.style.color = 'var(--brown)';
@@ -939,9 +961,9 @@
 
     // Show delivery line
     var dl = document.getElementById('indDeliveryLine');
-    if (dl) dl.style.display = (isDelivery && total > 0) ? 'block' : 'none';
+    if (dl) dl.style.display = (pricing.isDelivery && pricing.itemsTotal > 0) ? 'block' : 'none';
 
-    document.getElementById('indTotal').textContent = grandTotal > 0 ? '$' + grandTotal.toLocaleString() : '$0';
+    document.getElementById('indTotal').textContent = pricing.grandTotal > 0 ? '$' + pricing.grandTotal.toLocaleString() : '$0';
     var il = document.getElementById('indItemsList');
     if (il) il.textContent = lines.length ? lines.join(', ') : '';
   }
@@ -1040,9 +1062,16 @@
     var grandTotal = 0;
     var summaryForForm = [];
     var hasAnything = false;
+    var addonItems = [];
+    var feeLines = [];
+    var hasPackage = orderType && packagePrices[orderType];
+    var isIndividual = orderType && orderType.indexOf('Individual') >= 0;
+    var isBuildYourOwn = orderType && orderType.indexOf('Build Your Own') >= 0;
+    var buildPricing = getBuildPricing();
+    var individualPricing = getIndividualPricing();
 
     // Package
-    if (orderType && packagePrices[orderType]) {
+    if (hasPackage) {
       var pkgAmt = packagePrices[orderType];
       grandTotal += pkgAmt;
       hasAnything = true;
@@ -1054,36 +1083,68 @@
       if (pkgLine) pkgLine.style.display = 'none';
     }
 
-    // Individual items from build-item selects
-    var addonItems = [];
-    var addonSubtotal = 0;
-    var hasPackage = orderType && packagePrices[orderType];
-    var isIndividual = orderType && orderType.indexOf('Individual') >= 0;
-
-    document.querySelectorAll('.build-select').forEach(function(sel) {
-      if (sel && parseInt(sel.value) > 0) {
-        var val = parseInt(sel.value);
-        addonSubtotal += val;
-        var item = sel.closest('.build-item');
-        var nameEl = item ? item.querySelector('.en-text') : null;
-        var name = nameEl ? nameEl.textContent.trim() : 'Item';
-        addonItems.push({ name: name, desc: sel.options[sel.selectedIndex].text, price: val, id: 'build_' + name.replace(/[^a-zA-Z0-9]/g,'_') });
-        summaryForForm.push((hasPackage ? 'ADD-ON: ' : '') + name + ': ' + sel.options[sel.selectedIndex].text);
+    if (hasPackage) {
+      addonItems = buildPricing.items.concat(individualPricing.items);
+      buildPricing.items.forEach(function(item) {
+        summaryForForm.push('ADD-ON: ' + item.name + ': ' + item.desc);
+      });
+      individualPricing.items.forEach(function(item) {
+        summaryForForm.push('INDIVIDUAL: ' + item.name + ' - ' + item.desc);
+      });
+      var packageAddonSubtotal = 0;
+      addonItems.forEach(function(item) { packageAddonSubtotal += item.price; });
+      var packageTax = packageAddonSubtotal > 0 ? Math.round(packageAddonSubtotal * 0.07) : 0;
+      if (packageTax > 0) {
+        feeLines.push('+$' + packageTax + ' est. tax (7%)');
+        summaryForForm.push('Est. tax (7%): $' + packageTax);
       }
-    });
-
-    // Check individual panel items
-    document.querySelectorAll('.ind-select').forEach(function(sel) {
-      if (sel && parseInt(sel.value) > 0) {
-        var val = parseInt(sel.value);
-        addonSubtotal += val;
-        var item = sel.closest('.ind-item');
-        var nameEl = item ? item.querySelector('.en-text') : null;
-        var name = nameEl ? nameEl.textContent.trim() : 'Item';
-        addonItems.push({ name: name, desc: sel.options[sel.selectedIndex].text, price: val, id: 'ind_' + name.replace(/[^a-zA-Z0-9]/g,'_') });
-        summaryForForm.push('INDIVIDUAL: ' + name + ' - ' + sel.options[sel.selectedIndex].text);
+      grandTotal += packageAddonSubtotal + packageTax;
+    } else if (isIndividual) {
+      addonItems = individualPricing.items;
+      addonItems.forEach(function(item) {
+        summaryForForm.push('INDIVIDUAL: ' + item.name + ' - ' + item.desc);
+      });
+      if (individualPricing.deliveryFee > 0) {
+        feeLines.push('+$10 delivery fee');
+        summaryForForm.push('Delivery fee: $10');
       }
-    });
+      grandTotal += individualPricing.grandTotal;
+    } else if (isBuildYourOwn) {
+      addonItems = buildPricing.items;
+      addonItems.forEach(function(item) {
+        summaryForForm.push('ADD-ON: ' + item.name + ': ' + item.desc);
+      });
+      if (buildPricing.setupFee > 0) {
+        feeLines.push('+$65 setup fee');
+        summaryForForm.push('Setup fee: $65');
+      }
+      if (buildPricing.tax > 0) {
+        feeLines.push('+$' + buildPricing.tax + ' est. tax (7%)');
+        summaryForForm.push('Est. tax (7%): $' + buildPricing.tax);
+      }
+      grandTotal += buildPricing.grandTotal;
+    } else {
+      addonItems = buildPricing.items.concat(individualPricing.items);
+      buildPricing.items.forEach(function(item) {
+        summaryForForm.push('ADD-ON: ' + item.name + ': ' + item.desc);
+      });
+      individualPricing.items.forEach(function(item) {
+        summaryForForm.push('INDIVIDUAL: ' + item.name + ' - ' + item.desc);
+      });
+      if (buildPricing.setupFee > 0) {
+        feeLines.push('+$65 setup fee');
+        summaryForForm.push('Setup fee: $65');
+      }
+      if (buildPricing.tax > 0) {
+        feeLines.push('+$' + buildPricing.tax + ' est. tax (7%)');
+        summaryForForm.push('Est. tax (7%): $' + buildPricing.tax);
+      }
+      if (individualPricing.deliveryFee > 0) {
+        feeLines.push('+$10 delivery fee');
+        summaryForForm.push('Delivery fee: $10');
+      }
+      grandTotal += buildPricing.grandTotal + individualPricing.grandTotal;
+    }
 
     if (addonItems.length > 0) {
       hasAnything = true;
@@ -1097,19 +1158,7 @@
             '</div>';
         }).join('');
       }
-      // Fees
-      var feeLines = [];
-      var setupFee = 0;
-      if (!hasPackage && !isIndividual) {
-        setupFee = 65;
-        feeLines.push('+$65 setup fee');
-        summaryForForm.push('Setup fee: $65');
-      }
-      var tax = Math.round((addonSubtotal + setupFee) * 0.07);
-      feeLines.push('+$' + tax + ' est. tax (7%)');
-      summaryForForm.push('Est. tax (7%): $' + tax);
       if (addonFees) addonFees.innerHTML = feeLines.join(' &nbsp;·&nbsp; ');
-      grandTotal += addonSubtotal + setupFee + tax;
     } else {
       if (addonLines) addonLines.style.display = 'none';
     }
@@ -1117,7 +1166,6 @@
     if (hasAnything) {
       if (box) box.style.display = 'block';
       if (totalEl) totalEl.textContent = '$' + grandTotal.toLocaleString();
-      // Update event details
       if (ta) ta.value = summaryForForm.join(' | ') + ' | TOTAL: $' + grandTotal;
     } else {
       if (box) box.style.display = 'none';
