@@ -505,12 +505,22 @@
             <option value="0">--</option><option value="45">12 pcs · $45</option><option value="78">24 pcs · $78</option><option value="110">36 pcs · $110</option>
           </select>
         </div>
-        <div class="ind-item" style="background:rgba(255,255,255,.9);border:1px solid var(--gold-lt);border-radius:6px;padding:16px;text-align:center;">
+        <div class="ind-item pastry-breakdown-item" style="background:rgba(255,255,255,.9);border:1px solid var(--gold-lt);border-radius:6px;padding:16px;text-align:center;">
           <div style="font-size:2rem;margin-bottom:8px;">🫓</div>
-          <div style="font-family:'Playfair Display',serif;font-size:.82rem;font-weight:600;color:var(--brown);margin-bottom:8px;"><span class="en-text">Quesitos & Guava Pastries</span><span class="es-text">Quesitos y Past. Guayaba</span></div>
-          <select class="ind-select" onchange="updateIndTotal(); var _ot=document.getElementById('orderType'); buildOrderSummary(_ot?_ot.value:'');" style="width:100%;background:#fff;border:1.5px solid var(--gold-lt);color:var(--brown);padding:7px 8px;border-radius:4px;font-size:.77rem;cursor:pointer;outline:none;">
+          <div style="font-family:'Playfair Display',serif;font-size:.82rem;font-weight:600;color:var(--brown);margin-bottom:8px;"><span class="en-text">Quesitos, Guava & Tornillos</span><span class="es-text">Quesitos, Guayaba y Tornillos</span></div>
+          <select id="mixedPastrySelect" class="ind-select" onchange="updatePastryBreakdown(); updateIndTotal(); var _ot=document.getElementById('orderType'); buildOrderSummary(_ot?_ot.value:'');" style="width:100%;background:#fff;border:1.5px solid var(--gold-lt);color:var(--brown);padding:7px 8px;border-radius:4px;font-size:.77rem;cursor:pointer;outline:none;">
             <option value="0">--</option><option value="18">20 pcs · $18</option><option value="35">40 pcs · $35</option><option value="53">60 pcs · $53</option><option value="85">100 pcs · $85</option>
           </select>
+          <div id="mixedPastryBreakdown" style="display:none;text-align:left;margin-top:10px;padding:10px;background:rgba(197,112,125,.08);border:1px solid rgba(197,112,125,.22);border-radius:6px;">
+            <div style="font-size:.68rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--brown);margin-bottom:6px;"><span class="en-text">Split your pastries</span><span class="es-text">Distribuye tus pastelitos</span></div>
+            <div style="font-size:.68rem;color:var(--text-lt);margin-bottom:8px;line-height:1.45;"><span class="en-text">Divide the selected quantity between Quesitos, Guava Pastries, and Tornillos.</span><span class="es-text">Divide la cantidad seleccionada entre Quesitos, Pastelitos de Guayaba y Tornillos.</span></div>
+            <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;">
+              <label style="font-size:.68rem;color:var(--brown);font-weight:600;">Quesitos<input id="pastryQuesitosCount" type="number" min="0" step="1" value="0" oninput="updatePastryBreakdown(); updateIndTotal(); var _ot=document.getElementById('orderType'); buildOrderSummary(_ot?_ot.value:'');" style="width:100%;margin-top:4px;background:#fff;border:1px solid var(--gold-lt);color:var(--brown);padding:6px;border-radius:4px;font-size:.76rem;"></label>
+              <label style="font-size:.68rem;color:var(--brown);font-weight:600;">Guava<input id="pastryGuavaCount" type="number" min="0" step="1" value="0" oninput="updatePastryBreakdown(); updateIndTotal(); var _ot=document.getElementById('orderType'); buildOrderSummary(_ot?_ot.value:'');" style="width:100%;margin-top:4px;background:#fff;border:1px solid var(--gold-lt);color:var(--brown);padding:6px;border-radius:4px;font-size:.76rem;"></label>
+              <label style="font-size:.68rem;color:var(--brown);font-weight:600;">Tornillos<input id="pastryTornillosCount" type="number" min="0" step="1" value="0" oninput="updatePastryBreakdown(); updateIndTotal(); var _ot=document.getElementById('orderType'); buildOrderSummary(_ot?_ot.value:'');" style="width:100%;margin-top:4px;background:#fff;border:1px solid var(--gold-lt);color:var(--brown);padding:6px;border-radius:4px;font-size:.76rem;"></label>
+            </div>
+            <div id="pastryBreakdownRemaining" style="font-size:.68rem;font-weight:700;margin-top:8px;color:var(--rose);"></div>
+          </div>
         </div>
       </div>
       <!-- Total -->
@@ -649,7 +659,7 @@
         </div>
         <div class="build-item" style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:6px;padding:16px;text-align:center;">
           <div style="font-size:2rem;margin-bottom:8px;">🫓</div>
-          <div style="font-family:'Playfair Display',serif;font-size:.82rem;font-weight:600;color:#fff;margin-bottom:8px;"><span class="en-text">Quesitos & Guava Pastries</span><span class="es-text">Quesitos y Past. Guayaba</span></div>
+          <div style="font-family:'Playfair Display',serif;font-size:.82rem;font-weight:600;color:#fff;margin-bottom:8px;"><span class="en-text">Quesitos, Guava & Tornillos</span><span class="es-text">Quesitos, Guayaba y Tornillos</span></div>
           <select class="build-select" onchange="updateTotal(); var _ot=document.getElementById('orderType'); buildOrderSummary(_ot?_ot.value:'');" style="width:100%;background:#3D2B1F;border:1px solid rgba(255,255,255,.2);color:#fff;padding:7px 8px;border-radius:4px;font-size:.77rem;cursor:pointer;outline:none;">
             <option value="0">--</option><option value="18">20 pcs · $18</option><option value="35">40 pcs · $35</option><option value="53">60 pcs · $53</option><option value="85">100 pcs · $85</option>
           </select>
@@ -882,15 +892,123 @@
         var item = sel.closest(itemSelector);
         var nameEl = item ? item.querySelector('.en-text') : null;
         var name = nameEl ? nameEl.textContent.trim() : 'Item';
+        var desc = sel.options[sel.selectedIndex].text;
+        if (sel.id === 'mixedPastrySelect') {
+          var pastryState = getPastryBreakdownState();
+          if (pastryState.selectedCount > 0) {
+            if (pastryState.summary) desc += ' — ' + pastryState.summary;
+            if (pastryState.remaining > 0) desc += ' (' + pastryState.remaining + ' left to assign)';
+            if (pastryState.remaining < 0) desc += ' (' + Math.abs(pastryState.remaining) + ' over selected total)';
+          }
+        }
         items.push({
           name: name,
-          desc: sel.options[sel.selectedIndex].text,
+          desc: desc,
           price: val,
           id: prefix + name.replace(/[^a-zA-Z0-9]/g, '_')
         });
       }
     });
     return { items: items, subtotal: subtotal };
+  }
+
+  function getPastryBreakdownState() {
+    var select = document.getElementById('mixedPastrySelect');
+    if (!select || !select.value || select.value === '0') {
+      return { selectedCount: 0, assigned: 0, remaining: 0, isValid: true, summary: '' };
+    }
+
+    var optionText = select.options[select.selectedIndex] ? select.options[select.selectedIndex].text : '';
+    var match = optionText.match(/(\d+)/);
+    var selectedCount = match ? parseInt(match[1], 10) || 0 : 0;
+
+    var qInput = document.getElementById('pastryQuesitosCount');
+    var gInput = document.getElementById('pastryGuavaCount');
+    var tInput = document.getElementById('pastryTornillosCount');
+
+    var quesitos = Math.max(0, parseInt(qInput && qInput.value ? qInput.value : '0', 10) || 0);
+    var guava = Math.max(0, parseInt(gInput && gInput.value ? gInput.value : '0', 10) || 0);
+    var tornillos = Math.max(0, parseInt(tInput && tInput.value ? tInput.value : '0', 10) || 0);
+
+    if (qInput) qInput.value = quesitos;
+    if (gInput) gInput.value = guava;
+    if (tInput) tInput.value = tornillos;
+
+    var assigned = quesitos + guava + tornillos;
+    var remaining = selectedCount - assigned;
+    var parts = [];
+    if (quesitos > 0) parts.push(quesitos + ' Quesitos');
+    if (guava > 0) parts.push(guava + ' Guava');
+    if (tornillos > 0) parts.push(tornillos + ' Tornillos');
+
+    return {
+      selectedCount: selectedCount,
+      assigned: assigned,
+      remaining: remaining,
+      isValid: remaining === 0,
+      summary: parts.join(', ')
+    };
+  }
+
+  function updatePastryBreakdown() {
+    var wrap = document.getElementById('mixedPastryBreakdown');
+    var remainingEl = document.getElementById('pastryBreakdownRemaining');
+    var submitBtn = document.getElementById('submitBtn');
+    var msg = document.getElementById('formMsg');
+    var state = getPastryBreakdownState();
+
+    if (wrap) wrap.style.display = state.selectedCount > 0 ? 'block' : 'none';
+
+    ['pastryQuesitosCount', 'pastryGuavaCount', 'pastryTornillosCount'].forEach(function(id) {
+      var input = document.getElementById(id);
+      if (input) input.max = state.selectedCount || '';
+    });
+
+    if (remainingEl) {
+      if (state.selectedCount === 0) {
+        remainingEl.textContent = '';
+      } else if (state.remaining > 0) {
+        remainingEl.textContent = state.remaining + ' pastries left to assign';
+        remainingEl.style.color = 'var(--rose)';
+      } else if (state.remaining < 0) {
+        remainingEl.textContent = Math.abs(state.remaining) + ' too many assigned';
+        remainingEl.style.color = '#c00';
+      } else {
+        remainingEl.textContent = 'All ' + state.selectedCount + ' pastries assigned ✓';
+        remainingEl.style.color = '#6a9e7a';
+      }
+    }
+
+    if (submitBtn && submitBtn.textContent !== 'Sending...') {
+      submitBtn.disabled = !state.isValid;
+      submitBtn.style.opacity = !state.isValid ? '0.65' : '1';
+    }
+
+    if (msg && msg.dataset && msg.dataset.source === 'pastry-breakdown' && state.isValid) {
+      msg.style.display = 'none';
+      msg.textContent = '';
+      delete msg.dataset.source;
+    }
+
+    return state.isValid;
+  }
+
+  function validatePastryBreakdown(showMessage) {
+    var state = getPastryBreakdownState();
+    if (!state.isValid) {
+      if (showMessage) {
+        var msg = document.getElementById('formMsg');
+        if (msg) {
+          msg.style.display = 'block';
+          msg.textContent = 'Please split the pastries so they add up to ' + state.selectedCount + ' pieces before submitting.';
+          msg.dataset.source = 'pastry-breakdown';
+        }
+        var wrap = document.getElementById('mixedPastryBreakdown');
+        if (wrap && wrap.scrollIntoView) wrap.scrollIntoView({behavior:'smooth', block:'center'});
+      }
+      return false;
+    }
+    return true;
   }
 
   function getBuildPricing() {
@@ -935,6 +1053,7 @@
   }
 
   function updateIndTotal() {
+    updatePastryBreakdown();
     var pricing = getIndividualPricing();
     var lines = pricing.items.map(function(item) { return item.name; });
 
@@ -1182,6 +1301,15 @@
     e.preventDefault();
     var btn = document.getElementById('submitBtn');
     var msg = document.getElementById('formMsg');
+
+    if (!validatePastryBreakdown(true)) {
+      if (btn) {
+        btn.disabled = true;
+        btn.style.opacity = '0.65';
+      }
+      return;
+    }
+
     var data = {};
     document.querySelectorAll('#order input, #order select, #order textarea').forEach(function(inp) {
       if (inp.name) data[inp.name] = inp.value;
