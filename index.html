@@ -135,11 +135,18 @@
     .form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
     .form-group{display:flex;flex-direction:column;margin-bottom:16px}
     .form-group label{font-size:.67rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--text-lt);margin-bottom:7px}
-    .form-group input,.form-group select,.form-group textarea{font-family:'Lato',sans-serif;font-size:.92rem;padding:11px 14px;border:1.5px solid var(--gold-lt);border-radius:3px;background:var(--cream);color:var(--brown);outline:none;transition:border-color .2s}
-    .form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--rose)}
-    .form-group textarea{resize:vertical;min-height:90px}
-    .form-submit{width:100%;padding:15px;background:var(--rose);color:#fff;border:none;border-radius:3px;font-family:'Lato',sans-serif;font-weight:700;font-size:.8rem;letter-spacing:.16em;text-transform:uppercase;cursor:pointer;transition:all .28s;margin-top:4px}
+    .form-group input,.form-group select,.form-group textarea{font-family:'Lato',sans-serif;font-size:.94rem;padding:12px 14px;border:1.5px solid var(--gold-lt);border-radius:6px;background:var(--cream);color:var(--brown);outline:none;transition:border-color .2s,box-shadow .2s;min-height:46px}
+    .form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--rose);box-shadow:0 0 0 3px rgba(197,112,125,.12)}
+    .form-group textarea{resize:vertical;min-height:110px}
+    .form-submit{width:100%;padding:15px 18px;background:var(--rose);color:#fff;border:none;border-radius:6px;font-family:'Lato',sans-serif;font-weight:700;font-size:.82rem;letter-spacing:.16em;text-transform:uppercase;cursor:pointer;transition:all .28s;margin-top:4px;min-height:48px;box-shadow:0 10px 22px rgba(197,112,125,.18)}
     .form-submit:hover{background:var(--deep-rose);transform:translateY(-2px)}
+    .ind-select,.build-select,#mixedPastrySelect{padding:9px 10px!important;border-radius:6px!important;font-size:.82rem!important;min-height:44px;font-weight:600}
+    #panelInd button[onclick*='prefillIndividual'],#panelBuild button[onclick*='prefillOrder']{min-height:46px;border-radius:6px!important;padding:12px 24px!important;font-size:.78rem!important;box-shadow:0 10px 22px rgba(61,43,31,.10)}
+    .review-mini-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin:0 0 24px}
+    .review-mini-card{background:var(--cream);border:1px solid var(--gold-lt);border-radius:8px;padding:16px 14px;text-align:left;box-shadow:0 6px 18px rgba(61,43,31,.05)}
+    .review-stars{color:var(--gold);font-size:.9rem;letter-spacing:.15em;margin-bottom:8px}
+    .review-mini-card p{font-size:.82rem;color:var(--text-lt);line-height:1.7;margin-bottom:8px}
+    .review-mini-card span{font-size:.68rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--rose)}
     footer{background:var(--brown);padding:56px 24px 32px;text-align:center}
     .footer-logo{font-family:'Great Vibes',cursive;font-size:3rem;color:var(--gold-lt);display:block;margin-bottom:4px}
     .footer-tagline{font-family:'Playfair Display',serif;font-size:.73rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:28px}
@@ -153,8 +160,8 @@
     @keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
     .reveal{opacity:1;transform:translateY(0);transition:opacity .75s ease,transform .75s ease}
     .reveal.visible{opacity:1;transform:translateY(0)}
-    @media(max-width:960px){.about-inner,.order-inner{grid-template-columns:1fr;gap:48px}.gallery-grid{grid-template-columns:repeat(2,1fr)}nav{padding:6px 20px}.nav-links{display:none}}
-    @media(max-width:560px){.gallery-grid{grid-template-columns:1fr}.form-row{grid-template-columns:1fr}.order-form{padding:28px 18px}.build-summary{flex-direction:column;align-items:flex-start}}
+    @media(max-width:960px){.about-inner,.order-inner{grid-template-columns:1fr;gap:48px}.gallery-grid{grid-template-columns:repeat(2,1fr)}nav{padding:6px 20px}.nav-links{display:none}.testimonial-main{padding:64px 28px}.review-mini-grid{grid-template-columns:1fr 1fr}}
+    @media(max-width:560px){section{padding:72px 18px}.hero{min-height:580px}.hero-content .btn{display:block;max-width:270px;margin:10px auto 0}.btn-outline{margin-left:0}.nav-logo-wrap img{width:74px;height:74px}.gallery-grid{grid-template-columns:1fr}.form-row{grid-template-columns:1fr}.order-form{padding:24px 16px}.build-summary{flex-direction:column;align-items:flex-start;padding:18px}.testimonial-main{padding:52px 20px}.review-mini-grid{grid-template-columns:1fr}.contact-item{padding:12px 14px}#panelInd,#panelBuild{padding:22px!important}.pastry-breakdown-item{grid-column:span 1!important;min-width:0!important}.pastry-split-grid{grid-template-columns:1fr!important}}
     .es-text{display:none}
     select.build-select option {
       background: #3D2B1F;
@@ -505,21 +512,21 @@
             <option value="0">--</option><option value="45">12 pcs · $45</option><option value="78">24 pcs · $78</option><option value="110">36 pcs · $110</option>
           </select>
         </div>
-        <div class="ind-item pastry-breakdown-item" style="background:rgba(255,255,255,.9);border:1px solid var(--gold-lt);border-radius:6px;padding:16px;text-align:center;">
+        <div class="ind-item pastry-breakdown-item" style="background:rgba(255,255,255,.9);border:1px solid var(--gold-lt);border-radius:6px;padding:18px;text-align:center;grid-column:span 2;min-width:260px;">
           <div style="font-size:2rem;margin-bottom:8px;">🫓</div>
-          <div style="font-family:'Playfair Display',serif;font-size:.82rem;font-weight:600;color:var(--brown);margin-bottom:8px;"><span class="en-text">Quesitos, Guava & Tornillos</span><span class="es-text">Quesitos, Guayaba y Tornillos</span></div>
-          <select id="mixedPastrySelect" class="ind-select" onchange="updatePastryBreakdown(); updateIndTotal(); var _ot=document.getElementById('orderType'); buildOrderSummary(_ot?_ot.value:'');" style="width:100%;background:#fff;border:1.5px solid var(--gold-lt);color:var(--brown);padding:7px 8px;border-radius:4px;font-size:.77rem;cursor:pointer;outline:none;">
+          <div style="font-family:'Playfair Display',serif;font-size:.86rem;font-weight:600;color:var(--brown);margin-bottom:8px;"><span class="en-text">Quesitos, Guava & Tornillos</span><span class="es-text">Quesitos, Guayaba y Tornillos</span></div>
+          <select id="mixedPastrySelect" class="ind-select" onchange="updatePastryBreakdown(); updateIndTotal(); var _ot=document.getElementById('orderType'); buildOrderSummary(_ot?_ot.value:'');" style="width:100%;background:#fff;border:1.5px solid var(--gold-lt);color:var(--brown);padding:9px 10px;border-radius:4px;font-size:.82rem;cursor:pointer;outline:none;font-weight:600;">
             <option value="0">--</option><option value="18">20 pcs · $18</option><option value="35">40 pcs · $35</option><option value="53">60 pcs · $53</option><option value="85">100 pcs · $85</option>
           </select>
-          <div id="mixedPastryBreakdown" style="display:none;text-align:left;margin-top:10px;padding:10px;background:rgba(197,112,125,.08);border:1px solid rgba(197,112,125,.22);border-radius:6px;">
-            <div style="font-size:.68rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--brown);margin-bottom:6px;"><span class="en-text">Split your pastries</span><span class="es-text">Distribuye tus pastelitos</span></div>
-            <div style="font-size:.68rem;color:var(--text-lt);margin-bottom:8px;line-height:1.45;"><span class="en-text">Divide the selected quantity between Quesitos, Guava Pastries, and Tornillos.</span><span class="es-text">Divide la cantidad seleccionada entre Quesitos, Pastelitos de Guayaba y Tornillos.</span></div>
-            <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;">
-              <label style="font-size:.68rem;color:var(--brown);font-weight:600;">Quesitos<input id="pastryQuesitosCount" type="number" min="0" step="1" value="0" oninput="updatePastryBreakdown(); updateIndTotal(); var _ot=document.getElementById('orderType'); buildOrderSummary(_ot?_ot.value:'');" style="width:100%;margin-top:4px;background:#fff;border:1px solid var(--gold-lt);color:var(--brown);padding:6px;border-radius:4px;font-size:.76rem;"></label>
-              <label style="font-size:.68rem;color:var(--brown);font-weight:600;">Guava<input id="pastryGuavaCount" type="number" min="0" step="1" value="0" oninput="updatePastryBreakdown(); updateIndTotal(); var _ot=document.getElementById('orderType'); buildOrderSummary(_ot?_ot.value:'');" style="width:100%;margin-top:4px;background:#fff;border:1px solid var(--gold-lt);color:var(--brown);padding:6px;border-radius:4px;font-size:.76rem;"></label>
-              <label style="font-size:.68rem;color:var(--brown);font-weight:600;">Tornillos<input id="pastryTornillosCount" type="number" min="0" step="1" value="0" oninput="updatePastryBreakdown(); updateIndTotal(); var _ot=document.getElementById('orderType'); buildOrderSummary(_ot?_ot.value:'');" style="width:100%;margin-top:4px;background:#fff;border:1px solid var(--gold-lt);color:var(--brown);padding:6px;border-radius:4px;font-size:.76rem;"></label>
+          <div id="mixedPastryBreakdown" style="display:none;text-align:left;margin-top:12px;padding:12px;background:rgba(197,112,125,.08);border:1px solid rgba(197,112,125,.22);border-radius:6px;">
+            <div style="font-size:.72rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--brown);margin-bottom:6px;"><span class="en-text">Split your pastries</span><span class="es-text">Distribuye tus pastelitos</span></div>
+            <div style="font-size:.72rem;color:var(--text-lt);margin-bottom:10px;line-height:1.5;"><span class="en-text">Divide the selected quantity between Quesitos, Guava Pastries, and Tornillos.</span><span class="es-text">Divide la cantidad seleccionada entre Quesitos, Pastelitos de Guayaba y Tornillos.</span></div>
+            <div class="pastry-split-grid" style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;">
+              <label style="font-size:.72rem;color:var(--brown);font-weight:600;">Quesitos<input id="pastryQuesitosCount" type="number" min="0" step="1" value="0" oninput="updatePastryBreakdown(); updateIndTotal(); var _ot=document.getElementById('orderType'); buildOrderSummary(_ot?_ot.value:'');" style="width:100%;margin-top:5px;background:#fff;border:1px solid var(--gold-lt);color:var(--brown);padding:8px 6px;border-radius:4px;font-size:.98rem;font-weight:700;text-align:center;min-height:40px;"></label>
+              <label style="font-size:.72rem;color:var(--brown);font-weight:600;">Guava<input id="pastryGuavaCount" type="number" min="0" step="1" value="0" oninput="updatePastryBreakdown(); updateIndTotal(); var _ot=document.getElementById('orderType'); buildOrderSummary(_ot?_ot.value:'');" style="width:100%;margin-top:5px;background:#fff;border:1px solid var(--gold-lt);color:var(--brown);padding:8px 6px;border-radius:4px;font-size:.98rem;font-weight:700;text-align:center;min-height:40px;"></label>
+              <label style="font-size:.72rem;color:var(--brown);font-weight:600;">Tornillos<input id="pastryTornillosCount" type="number" min="0" step="1" value="0" oninput="updatePastryBreakdown(); updateIndTotal(); var _ot=document.getElementById('orderType'); buildOrderSummary(_ot?_ot.value:'');" style="width:100%;margin-top:5px;background:#fff;border:1px solid var(--gold-lt);color:var(--brown);padding:8px 6px;border-radius:4px;font-size:.98rem;font-weight:700;text-align:center;min-height:40px;"></label>
             </div>
-            <div id="pastryBreakdownRemaining" style="font-size:.68rem;font-weight:700;margin-top:8px;color:var(--rose);"></div>
+            <div id="pastryBreakdownRemaining" style="font-size:.78rem;font-weight:700;margin-top:10px;color:var(--rose);"></div>
           </div>
         </div>
       </div>
@@ -783,6 +790,23 @@
       <span class="en-text">Loved your experience with Lala's Sweets? We'd be so grateful for a review — it helps other families find us!</span>
       <span class="es-text">¿Te encantó tu experiencia con Lala's Sweets? ¡Una reseña nos ayuda a llegar a más familias!</span>
     </p>
+    <div class="review-mini-grid">
+      <div class="review-mini-card">
+        <div class="review-stars">★★★★★</div>
+        <p><span class="en-text">“Everything looked beautiful and tasted amazing — our guests kept asking who made the table.”</span><span class="es-text">“Todo se veía hermoso y sabía delicioso — nuestros invitados no dejaban de preguntar quién hizo la mesa.”</span></p>
+        <span><span class="en-text">Baby Shower Client</span><span class="es-text">Cliente de Baby Shower</span></span>
+      </div>
+      <div class="review-mini-card">
+        <div class="review-stars">★★★★★</div>
+        <p><span class="en-text">“So easy to order, so professional, and the desserts were the first thing to disappear.”</span><span class="es-text">“Fue súper fácil ordenar, muy profesional, y los postres fueron lo primero que se acabó.”</span></p>
+        <span><span class="en-text">Birthday Party Client</span><span class="es-text">Cliente de Cumpleaños</span></span>
+      </div>
+      <div class="review-mini-card">
+        <div class="review-stars">★★★★★</div>
+        <p><span class="en-text">“The setup felt elegant and special without losing that homemade warmth we wanted.”</span><span class="es-text">“La presentación se sintió elegante y especial sin perder ese toque casero que queríamos.”</span></p>
+        <span><span class="en-text">Family Event Client</span><span class="es-text">Cliente de Evento Familiar</span></span>
+      </div>
+    </div>
     <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
       <a href="https://www.facebook.com/people/Lala-Sweets-Cake/61563190925813/" target="_blank" style="display:inline-flex;align-items:center;gap:8px;padding:12px 24px;background:#1877F2;color:#fff;border-radius:4px;text-decoration:none;font-weight:700;font-size:.78rem;letter-spacing:.08em;transition:opacity .2s;" onmouseover="this.style.opacity='.85'" onmouseout="this.style.opacity='1'">
         👥 <span class="en-text">Review on Facebook</span><span class="es-text">Reseña en Facebook</span>
