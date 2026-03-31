@@ -346,7 +346,7 @@
             <li style="display:flex;justify-content:space-between;padding-bottom:10px;border-bottom:1px solid var(--gold-lt);font-size:.88rem;"><span style="color:var(--text-lt)">Fresas con Chocolate</span><span style="font-weight:700;color:var(--brown)">24 pcs</span></li>
             <li style="display:flex;justify-content:space-between;font-size:.88rem;"><span style="color:var(--text-lt)">Dip a Escoger</span><span style="font-weight:700;color:var(--brown)">1</span></li>
           </ul>
-          <a href="#order" class="package-cta package-cta-rose"><span><span class="en-text">Book This Package ✦</span><span class="es-text">Reservar Este Paquete ✦</span></span></a>
+          <a href="#order" onclick="event.preventDefault(); selectPackage('15-20 Guests Package');" class="package-cta package-cta-rose"><span><span class="en-text">Book This Package ✦</span><span class="es-text">Reservar Este Paquete ✦</span></span></a>
         </div>
       </div>
       <div class="reveal" style="background:#fff;border:2px solid var(--gold);border-radius:4px;overflow:hidden;box-shadow:0 8px 40px rgba(201,168,76,.15);transition:transform .3s;position:relative;" onmouseover="this.style.transform='translateY(-6px)'" onmouseout="this.style.transform=''">
@@ -372,7 +372,7 @@
             <li style="display:flex;justify-content:space-between;padding-bottom:10px;border-bottom:1px solid var(--gold-lt);font-size:.88rem;"><span style="color:var(--text-lt)">Bandejas de Charcutería</span><span style="font-weight:700;color:var(--brown)">2</span></li>
             <li style="display:flex;justify-content:space-between;font-size:.88rem;"><span style="color:var(--text-lt)">Sandwich de Mezcla</span><span style="font-weight:700;color:var(--brown)">36 pcs</span></li>
           </ul>
-          <a href="#order" class="package-cta package-cta-gold"><span><span class="en-text">Book This Package ✦</span><span class="es-text">Reservar Este Paquete ✦</span></span></a>
+          <a href="#order" onclick="event.preventDefault(); selectPackage('25-30 Guests Package');" class="package-cta package-cta-gold"><span><span class="en-text">Book This Package ✦</span><span class="es-text">Reservar Este Paquete ✦</span></span></a>
         </div>
       </div>
     </div>
@@ -778,6 +778,7 @@
           <option>25-30 Guests Package</option>
         </select>
       </div>
+      <input type="hidden" name="order_summary" id="orderSummaryField" value="" />
       <div id="orderSummaryBox" style="display:none;background:var(--cream);border:2px solid var(--gold-lt);border-radius:6px;padding:18px 20px;margin-bottom:16px;">
         <div style="font-family:'Playfair Display',serif;font-weight:600;color:var(--brown);font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;margin-bottom:12px;display:flex;align-items:center;gap:8px;">
           📋 <span class="en-text">Your Order Summary</span><span class="es-text">Resumen de Tu Pedido</span>
@@ -1280,7 +1281,8 @@
     }
     buildOrderSummary(pkgName);
     setTimeout(function() {
-      document.getElementById('order').scrollIntoView({behavior:'smooth'});
+      var target = document.getElementById('orderSummaryBox') || document.getElementById('order');
+      if (target && target.scrollIntoView) target.scrollIntoView({behavior:'smooth', block:'center'});
     }, 150);
   }
 
@@ -1344,7 +1346,7 @@
     var addonList = document.getElementById('summaryAddonList');
     var addonFees = document.getElementById('summaryAddonFees');
     var totalEl = document.getElementById('orderSummaryTotal');
-    var ta = document.getElementById('eventDetails');
+    var summaryField = document.getElementById('orderSummaryField');
 
     var grandTotal = 0;
     var summaryForForm = [];
@@ -1462,9 +1464,10 @@
     if (hasAnything) {
       if (box) box.style.display = 'block';
       if (totalEl) totalEl.textContent = '$' + grandTotal.toLocaleString();
-      if (ta) ta.value = summaryForForm.join(' | ') + ' | TOTAL: $' + grandTotal;
+      if (summaryField) summaryField.value = summaryForForm.join(' | ') + ' | TOTAL: $' + grandTotal;
     } else {
       if (box) box.style.display = 'none';
+      if (summaryField) summaryField.value = '';
     }
   }
 
