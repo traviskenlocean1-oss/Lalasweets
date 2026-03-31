@@ -19,20 +19,22 @@
     .nav-links{display:flex;gap:32px;list-style:none}
     .nav-links a{font-size:.75rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--brown);text-decoration:none;transition:color .25s}
     .nav-links a:hover{color:var(--rose)}
-    .nav-cta{background:var(--rose);color:#fff!important;padding:10px 22px;border-radius:2px}
-    .nav-cta:hover{background:var(--deep-rose)!important}
-    .hero{height:100vh;min-height:640px;position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden}
-    .hero-bg{position:absolute;inset:0;background-size:cover;background-position:center 30%;filter:brightness(.42)}
-    .hero-overlay{position:absolute;inset:0;background:linear-gradient(160deg,rgba(197,112,125,.35) 0%,rgba(61,43,31,.58) 60%,rgba(61,43,31,.72) 100%)}
-    .hero-content{position:relative;text-align:center;color:#fff;padding:0 24px}
+    .nav-cta{background:linear-gradient(135deg,var(--rose),var(--deep-rose));color:#fff!important;padding:12px 22px;border-radius:999px;box-shadow:0 10px 24px rgba(197,112,125,.28)}
+    .nav-cta:hover{background:linear-gradient(135deg,var(--deep-rose),#7e3944)!important;transform:translateY(-1px)}
+    .hero{height:100vh;min-height:640px;position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden;padding-top:88px}
+    .hero-bg{position:absolute;inset:0;background-size:cover;background-position:center 24%;filter:brightness(.4);will-change:transform}
+    .hero-overlay{position:absolute;inset:0;background:linear-gradient(160deg,rgba(197,112,125,.28) 0%,rgba(61,43,31,.58) 58%,rgba(61,43,31,.78) 100%)}
+    .hero-content{position:relative;text-align:center;color:#fff;padding:0 24px;max-width:760px}
     .hero-script{font-family:'Great Vibes',cursive;font-size:clamp(3.5rem,8vw,7rem);color:var(--gold-lt);line-height:1;text-shadow:0 2px 30px rgba(0,0,0,.4)}
     .hero-subtitle{font-family:'Playfair Display',serif;font-size:clamp(.95rem,2vw,1.25rem);letter-spacing:.25em;text-transform:uppercase;color:rgba(255,255,255,.85);margin-top:12px}
     .hero-divider{width:80px;height:1px;background:var(--gold);margin:24px auto}
-    .hero-tagline{font-weight:300;font-size:clamp(.95rem,1.8vw,1.1rem);color:rgba(255,255,255,.78);max-width:480px;margin:0 auto 36px;line-height:1.8}
-    .btn{display:inline-block;padding:14px 38px;font-weight:700;font-size:.76rem;letter-spacing:.16em;text-transform:uppercase;text-decoration:none;border-radius:2px;transition:all .3s}
+    .hero-note{display:inline-flex;align-items:center;gap:8px;padding:7px 14px;border:1px solid rgba(232,213,163,.45);border-radius:999px;background:rgba(61,43,31,.28);font-size:.67rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gold-lt);margin-bottom:14px}
+    .hero-tagline{font-weight:300;font-size:clamp(1rem,1.9vw,1.15rem);color:rgba(255,255,255,.9);max-width:640px;margin:0 auto 18px;line-height:1.75}
+    .hero-actions{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:18px}
+    .btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:14px 26px;font-weight:700;font-size:.76rem;letter-spacing:.16em;text-transform:uppercase;text-decoration:none;border-radius:999px;transition:all .3s;box-shadow:0 10px 24px rgba(0,0,0,.14)}
     .btn-gold{background:var(--gold);color:var(--brown)}.btn-gold:hover{background:#b8932e;transform:translateY(-3px)}
-    .btn-outline{border:2px solid #fff;color:#fff;margin-left:12px}.btn-outline:hover{background:rgba(255,255,255,.18);transform:translateY(-3px)}
-    .hero-scroll{position:absolute;bottom:36px;left:50%;transform:translateX(-50%);color:rgba(255,255,255,.45);font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;cursor:pointer}
+    .btn-outline{border:2px solid rgba(255,255,255,.8);color:#fff;margin-left:0;background:rgba(255,255,255,.04)}.btn-outline:hover{background:rgba(255,255,255,.18);transform:translateY(-3px)}
+    .hero-scroll{position:absolute;bottom:36px;left:50%;transform:translateX(-50%);color:rgba(255,255,255,.55);font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;cursor:pointer}
     section{padding:96px 24px}
     .section-header{text-align:center;margin-bottom:64px}
     .section-kicker{font-size:.7rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
@@ -75,6 +77,25 @@
     .pricing-table td:first-child{font-weight:700;color:var(--brown)}
     .pricing-table td:last-child{text-align:right;font-weight:700;color:var(--rose)}
     .pricing-note{font-size:.65rem;color:var(--text-lt);margin-top:8px;text-align:center;font-style:italic}
+    .package-cta{display:block;margin-top:24px;text-align:center;padding:14px;border-radius:6px;font-weight:700;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;transition:all .25s}
+    .package-cta-rose{background:var(--rose);color:#fff}
+    .package-cta-rose:hover{background:var(--deep-rose)}
+    .package-cta-gold{background:var(--gold);color:var(--brown)}
+    .package-cta-gold:hover{background:#b8932e}
+    .featured-badge{position:absolute;top:18px;right:18px;background:var(--gold);color:var(--brown);font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:4px 12px;border-radius:20px;z-index:1;box-shadow:0 8px 18px rgba(201,168,76,.22)}
+    .build-category{grid-column:1/-1;display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 14px;margin-top:4px;border-top:1px solid rgba(201,168,76,.35);border-bottom:1px solid rgba(201,168,76,.18);font-size:.72rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-lt)}
+    .build-category span:last-child{font-size:.68rem;letter-spacing:.08em;text-transform:none;color:rgba(255,255,255,.58)}
+    .ind-item.selected,.build-item.selected{border-color:var(--rose)!important;box-shadow:0 12px 24px rgba(197,112,125,.18);transform:translateY(-2px)}
+    .form-helper{margin-top:6px;font-size:.73rem;color:var(--text-lt);line-height:1.55}
+    .form-required{color:var(--deep-rose);margin-left:4px}
+    .field-error{border-color:var(--deep-rose)!important;box-shadow:0 0 0 3px rgba(197,112,125,.16)!important}
+    .form-status-success{color:#6a9e7a!important}
+    .form-status-error{color:var(--rose)!important}
+    .contact-links-row{display:flex;gap:12px;margin-top:4px;flex-wrap:wrap}
+    .social-link{flex:1;display:flex;align-items:center;justify-content:center;gap:8px;padding:13px;border-radius:6px;text-decoration:none;font-weight:700;font-size:.78rem;letter-spacing:.08em;color:#fff;transition:opacity .2s,transform .2s}
+    .social-link:hover{opacity:.9;transform:translateY(-1px)}
+    .social-link.instagram{background:linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888)}
+    .social-link.facebook{background:#1877F2}
     #gallery{background:#fff;position:relative;overflow:hidden;padding-left:0;padding-right:0}
     .gallery-bg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:0.055;overflow:hidden}
     .gallery-grid{display:flex;gap:0px;position:relative;z-index:1;overflow:hidden;width:100%}
@@ -160,8 +181,8 @@
     @keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
     .reveal{opacity:1;transform:translateY(0);transition:opacity .75s ease,transform .75s ease}
     .reveal.visible{opacity:1;transform:translateY(0)}
-    @media(max-width:960px){.about-inner,.order-inner{grid-template-columns:1fr;gap:48px}.gallery-grid{grid-template-columns:repeat(2,1fr)}nav{padding:6px 20px}.nav-links{display:none}.testimonial-main{padding:64px 28px}.review-mini-grid{grid-template-columns:1fr 1fr}}
-    @media(max-width:560px){section{padding:72px 18px}.hero{min-height:580px}.hero-content .btn{display:block;max-width:270px;margin:10px auto 0}.btn-outline{margin-left:0}.nav-logo-wrap img{width:74px;height:74px}.gallery-grid{grid-template-columns:1fr}.form-row{grid-template-columns:1fr}.order-form{padding:24px 16px}.build-summary{flex-direction:column;align-items:flex-start;padding:18px}.testimonial-main{padding:52px 20px}.review-mini-grid{grid-template-columns:1fr}.contact-item{padding:12px 14px}#panelInd,#panelBuild{padding:22px!important}.pastry-breakdown-item{grid-column:span 1!important;min-width:0!important}.pastry-split-grid{grid-template-columns:1fr!important}}
+    @media(max-width:960px){.about-inner,.order-inner{grid-template-columns:1fr;gap:48px}.gallery-grid{grid-template-columns:repeat(2,1fr)}nav{padding:10px 16px;gap:10px}.nav-links{display:none}.nav-cta{padding:10px 16px;font-size:.68rem}.hero-actions{flex-direction:column;align-items:center}.testimonial-main{padding:64px 28px}.review-mini-grid{grid-template-columns:1fr 1fr}.contact-links-row{flex-direction:column}}
+    @media(max-width:560px){section{padding:72px 18px}.hero{min-height:580px;padding-top:72px}.hero-content .btn{display:flex;max-width:290px;width:100%;margin:10px auto 0}.hero-note{font-size:.62rem}.btn-outline{margin-left:0}.nav-logo-wrap img{width:74px;height:74px}.nav-logo-wrap span{font-size:.58rem}.nav-cta{padding:10px 14px}.gallery-grid{grid-template-columns:1fr}.form-row{grid-template-columns:1fr}.order-form{padding:24px 16px}.build-summary{flex-direction:column;align-items:flex-start;padding:18px}.testimonial-main{padding:52px 20px}.review-mini-grid{grid-template-columns:1fr}.contact-item{padding:12px 14px}#panelInd,#panelBuild{padding:22px!important}.pastry-breakdown-item{grid-column:span 1!important;min-width:0!important}.pastry-split-grid{grid-template-columns:1fr!important}}
     .es-text{display:none}
     select.build-select option {
       background: #3D2B1F;
@@ -203,9 +224,12 @@
     <div class="hero-script">Lala's Sweets</div>
     <div class="hero-subtitle"><span><span class="en-text">Spring Hill, Florida &nbsp;·&nbsp; Handcrafted with Amor</span><span class="es-text">Spring Hill, Florida &nbsp;·&nbsp; Hecho con Amor</span></span></div>
     <div class="hero-divider"></div>
-    <p class="hero-tagline"><span>Elegant desserts &amp; grazing tables for every celebration.</span></p>
-    <a href="#gallery" class="btn btn-gold"><span><span class="en-text">See Our Work</span><span class="es-text">Ver Nuestro Trabajo</span></span></a>
-    <a href="#order" class="btn btn-outline"><span>Order Now</span></a>
+    <div class="hero-note"><span class="en-text">Pickup, delivery &amp; full event tables</span><span class="es-text">Recogido, entrega y mesas completas</span></div>
+    <p class="hero-tagline"><span><span class="en-text">Elegant pastries, desserts, and grazing tables styled to make every celebration feel special.</span><span class="es-text">Pastelitos, postres y mesas de charcutería elegantes para hacer cada celebración aún más especial.</span></span></p>
+    <div class="hero-actions">
+      <a href="#order" class="btn btn-gold"><span><span class="en-text">Start My Order ✦</span><span class="es-text">Comenzar Pedido ✦</span></span></a>
+      <a href="#menu" class="btn btn-outline"><span><span class="en-text">View Menu</span><span class="es-text">Ver Menú</span></span></a>
+    </div>
   </div>
   <div class="hero-scroll" onclick="document.getElementById('about').scrollIntoView({behavior:'smooth'})">↓ &nbsp; Scroll</div>
 </section>
@@ -300,7 +324,7 @@
       <div class="section-kicker"><span><span class="en-text">Ready-Made Events</span><span class="es-text">Eventos Listos</span></span></div>
       <div class="section-title"><span><span class="en-text">Event Packages</span><span class="es-text">Paquetes de Eventos</span></span></div>
       <hr class="section-rule"/>
-      <p class="section-text"><span><span class="en-text">Everything you need — bundled and priced for your group.</span><span class="es-text">Todo lo que necesitas para una celebración perfecta.</span></span></p>
+      <p class="section-text"><span><span class="en-text">Pick your guest count and let Lala handle the sweet spread.</span><span class="es-text">Escoge la cantidad de invitados y deja que Lala se encargue de todo.</span></span></p>
     </div>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:32px;">
       <div class="reveal" style="background:#fff;border:1px solid var(--gold-lt);border-radius:4px;overflow:hidden;box-shadow:0 8px 40px rgba(197,112,125,.1);transition:transform .3s;" onmouseover="this.style.transform='translateY(-6px)'" onmouseout="this.style.transform=''">
@@ -322,11 +346,11 @@
             <li style="display:flex;justify-content:space-between;padding-bottom:10px;border-bottom:1px solid var(--gold-lt);font-size:.88rem;"><span style="color:var(--text-lt)">Fresas con Chocolate</span><span style="font-weight:700;color:var(--brown)">24 pcs</span></li>
             <li style="display:flex;justify-content:space-between;font-size:.88rem;"><span style="color:var(--text-lt)">Dip a Escoger</span><span style="font-weight:700;color:var(--brown)">1</span></li>
           </ul>
-          <a href="#order" style="display:block;margin-top:24px;background:var(--rose);color:#fff;text-align:center;padding:14px;border-radius:2px;font-weight:700;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;" onmouseover="this.style.background='var(--deep-rose)'" onmouseout="this.style.background='var(--rose)'"><span><span class="en-text">Book This Package ✦</span><span class="es-text">Reservar Este Paquete ✦</span></span></a>
+          <a href="#order" class="package-cta package-cta-rose"><span><span class="en-text">Book This Package ✦</span><span class="es-text">Reservar Este Paquete ✦</span></span></a>
         </div>
       </div>
       <div class="reveal" style="background:#fff;border:2px solid var(--gold);border-radius:4px;overflow:hidden;box-shadow:0 8px 40px rgba(201,168,76,.15);transition:transform .3s;position:relative;" onmouseover="this.style.transform='translateY(-6px)'" onmouseout="this.style.transform=''">
-        <div style="position:absolute;top:18px;right:18px;background:var(--gold);color:var(--brown);font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:4px 12px;border-radius:20px;z-index:1;"><span>Most Popular</span></div>
+        <div class="featured-badge"><span><span class="en-text">Most Popular</span><span class="es-text">Más Popular</span></span></div>
         <div style="background:linear-gradient(135deg,var(--brown),#5A3A28);padding:28px 32px;text-align:center;">
           <div style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:.85rem;letter-spacing:.15em;color:rgba(255,255,255,.75);margin-bottom:6px;"><span>Perfect for</span></div>
           <div style="font-family:'Great Vibes',cursive;font-size:2.8rem;color:var(--gold-lt);"><span><span class="en-text">25–30 Guests</span><span class="es-text">25–30 Personas</span></span></div>
@@ -348,7 +372,7 @@
             <li style="display:flex;justify-content:space-between;padding-bottom:10px;border-bottom:1px solid var(--gold-lt);font-size:.88rem;"><span style="color:var(--text-lt)">Bandejas de Charcutería</span><span style="font-weight:700;color:var(--brown)">2</span></li>
             <li style="display:flex;justify-content:space-between;font-size:.88rem;"><span style="color:var(--text-lt)">Sandwich de Mezcla</span><span style="font-weight:700;color:var(--brown)">36 pcs</span></li>
           </ul>
-          <a href="#order" style="display:block;margin-top:24px;background:var(--gold);color:var(--brown);text-align:center;padding:14px;border-radius:2px;font-weight:700;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;" onmouseover="this.style.background='#b8932e'" onmouseout="this.style.background='var(--gold)'"><span>Book This Package ✦</span></a>
+          <a href="#order" class="package-cta package-cta-gold"><span><span class="en-text">Book This Package ✦</span><span class="es-text">Reservar Este Paquete ✦</span></span></a>
         </div>
       </div>
     </div>
@@ -566,6 +590,7 @@
 
       <!-- Items Grid -->
       <div id="buildGrid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:24px;">
+        <div class="build-category"><span><span class="en-text">Savory Favorites</span><span class="es-text">Favoritos Salados</span></span><span><span class="en-text">boxes, trays, sandwiches &amp; canapés</span><span class="es-text">boxes, bandejas, sándwiches y canapés</span></span></div>
         <div class="build-item" style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:6px;padding:16px;text-align:center;">
           <div style="font-size:2rem;margin-bottom:8px;">🫶</div>
           <div style="font-family:'Playfair Display',serif;font-size:.82rem;font-weight:600;color:#fff;margin-bottom:8px;"><span class="en-text">Charcuterie Trays</span><span class="es-text">Bandejas de Charcutería</span></div>
@@ -629,6 +654,7 @@
             <option value="0">--</option><option value="14">Cold Pasta · $14</option><option value="28">Grain Salad 4lbs · $28</option>
           </select>
         </div>
+        <div class="build-category"><span><span class="en-text">Sweet Treats</span><span class="es-text">Postres Dulces</span></span><span><span class="en-text">desserts, cups &amp; brunch sweets</span><span class="es-text">postres, vasitos y dulces</span></span></div>
         <div class="build-item" style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:6px;padding:16px;text-align:center;">
           <div style="font-size:2rem;margin-bottom:8px;">🍰</div>
           <div style="font-family:'Playfair Display',serif;font-size:.82rem;font-weight:600;color:#fff;margin-bottom:8px;"><span class="en-text">Cheesecake</span><span class="es-text">Cheesecake Individual</span></div>
@@ -664,6 +690,7 @@
             <option value="0">--</option><option value="45">12 pcs · $45</option><option value="78">24 pcs · $78</option><option value="110">36 pcs · $110</option>
           </select>
         </div>
+        <div class="build-category"><span><span class="en-text">Pastry Favorites</span><span class="es-text">Pastelitos Favoritos</span></span><span><span class="en-text">split your count your way</span><span class="es-text">divide tu cantidad a tu manera</span></span></div>
         <div class="build-item pastry-breakdown-item" style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:6px;padding:18px;text-align:center;grid-column:span 2;min-width:260px;">
           <div style="font-size:2rem;margin-bottom:8px;">🫓</div>
           <div style="font-family:'Playfair Display',serif;font-size:.82rem;font-weight:600;color:#fff;margin-bottom:8px;"><span class="en-text">Quesitos, Guava & Tornillos</span><span class="es-text">Quesitos, Guayaba y Tornillos</span></div>
@@ -723,26 +750,26 @@
       <p><span class="en-text">We'd love to be part of your next celebration!</span><span class="es-text">¡Nos encantaría ser parte de tu próxima celebración!</span></p>
       
       <div class="contact-block">
-        <div class="contact-item"><div class="contact-icon">📞</div><div><a href="tel:+17876195486">(787) 619-5486</a><p><span><span class="en-text"><span class="en-text">Call or text</span><span class="es-text">Llama o escribe</span></span><span class="es-text">Llama o escribe</span></span></p></div></div>
-        <div class="contact-item"><div class="contact-icon">📍</div><div><a href="#">Spring Hill, Florida</a><p><span><span class="en-text"><span class="en-text">Serving greater Tampa Bay area</span><span class="es-text">Sirviendo el área de Tampa</span></span><span class="es-text">Sirviendo el área de Tampa</span></span></p></div></div>
-        <div class="contact-item"><div class="contact-icon">📸</div><div><a href="https://www.instagram.com/lalasweetscakes/" target="_blank">@lalasweetscakes</a><p><span><span class="en-text"><span class="en-text">Follow on Instagram</span><span class="es-text">Síguenos en Instagram</span></span><span class="es-text">Síguenos en Instagram</span></span></p></div></div>
-        <div class="contact-item"><div class="contact-icon">👥</div><div><a href="https://www.facebook.com/people/Lala-Sweets-Cake/61563190925813/" target="_blank">Lala Sweet's &amp; Cake</a><p><span><span class="en-text"><span class="en-text">Follow on Facebook</span><span class="es-text">Síguenos en Facebook</span></span><span class="es-text">Síguenos en Facebook</span></span></p></div></div>
-        <div style="display:flex;gap:12px;margin-top:4px;">
-          <a href="https://www.instagram.com/lalasweetscakes/" target="_blank" style="flex:1;display:flex;align-items:center;justify-content:center;gap:8px;padding:13px;background:linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);color:#fff;border-radius:6px;text-decoration:none;font-weight:700;font-size:.78rem;letter-spacing:.08em;">📸 Instagram</a>
-          <a href="https://www.facebook.com/people/Lala-Sweets-Cake/61563190925813/" target="_blank" style="flex:1;display:flex;align-items:center;justify-content:center;gap:8px;padding:13px;background:#1877F2;color:#fff;border-radius:6px;text-decoration:none;font-weight:700;font-size:.78rem;letter-spacing:.08em;">👥 Facebook</a>
+        <div class="contact-item"><div class="contact-icon">📞</div><div><a href="tel:+17876195486">(787) 619-5486</a><p><span class="en-text">Call or text anytime</span><span class="es-text">Llama o escribe cuando quieras</span></p></div></div>
+        <div class="contact-item"><div class="contact-icon">📍</div><div><a href="#">Spring Hill, Florida</a><p><span class="en-text">Serving the greater Tampa Bay area</span><span class="es-text">Sirviendo el área de Tampa Bay</span></p></div></div>
+        <div class="contact-item"><div class="contact-icon">📸</div><div><a href="https://www.instagram.com/lalasweetscakes/" target="_blank">@lalasweetscakes</a><p><span class="en-text">See new tables, pastries, and dessert drops</span><span class="es-text">Mira nuevas mesas, pastelitos y postres</span></p></div></div>
+        <div class="contact-item"><div class="contact-icon">👥</div><div><a href="https://www.facebook.com/people/Lala-Sweets-Cake/61563190925813/" target="_blank">Lala Sweet's &amp; Cake</a><p><span class="en-text">Follow along for updates and reviews</span><span class="es-text">Síguenos para ver novedades y reseñas</span></p></div></div>
+        <div class="contact-links-row">
+          <a href="https://www.instagram.com/lalasweetscakes/" target="_blank" class="social-link instagram">📸 Instagram</a>
+          <a href="https://www.facebook.com/people/Lala-Sweets-Cake/61563190925813/" target="_blank" class="social-link facebook">👥 Facebook</a>
         </div>
       </div>
     </div>
     <div class="order-form reveal">
-      <h3><span><span class="en-text">Send a Request</span><span class="es-text">Envía tu Pedido</span></span> <span>Envía tu Pedido</span></h3>
-      <p class="form-note"><span><span class="en-text">We'll get back to you within 24 hours.</span><span class="es-text">Te respondemos en 24 horas.</span></span></p>
+      <h3><span class="en-text">Send a Request</span><span class="es-text">Envía tu Pedido</span></h3>
+      <p class="form-note"><span class="en-text">Share your date, guest count, and favorite picks — we’ll reply within 24 hours.</span><span class="es-text">Comparte tu fecha, cantidad de invitados y favoritos — te respondemos dentro de 24 horas.</span></p>
       <div class="form-row">
-        <div class="form-group"><label><span><span class="en-text">First Name</span><span class="es-text">Nombre</span></span></label><input type="text" name="first_name" placeholder="María"/></div>
+        <div class="form-group"><label><span><span class="en-text">First Name</span><span class="es-text">Nombre</span></span><span class="form-required">*</span></label><input type="text" name="first_name" placeholder="María" required/></div>
         <div class="form-group"><label><span><span class="en-text">Last Name</span><span class="es-text">Apellido</span></span></label><input type="text" name="last_name" placeholder="García"/></div>
       </div>
-      <div class="form-group"><label><span><span class="en-text">Phone or Email</span><span class="es-text">Teléfono o Correo</span></span></label><input type="text" name="contact" placeholder="(555) 000-0000 or email@example.com"/></div>
-      <div class="form-group"><label><span><span class="en-text">Type of Order</span><span class="es-text">Tipo de Pedido</span></span></label>
-        <select name="order_type" id="orderType" onchange="updateOrderSummary()">
+      <div class="form-group"><label><span><span class="en-text">Phone or Email</span><span class="es-text">Teléfono o Correo</span></span><span class="form-required">*</span></label><input type="text" name="contact" placeholder="(555) 000-0000 or email@example.com" required/><div class="form-helper"><span class="en-text">Please enter a phone number or email so Lala can confirm your order.</span><span class="es-text">Escribe un teléfono o correo para confirmar tu pedido.</span></div></div>
+      <div class="form-group"><label><span><span class="en-text">Type of Order</span><span class="es-text">Tipo de Pedido</span></span><span class="form-required">*</span></label>
+        <select name="order_type" id="orderType" onchange="updateOrderSummary()" required>
           <option value="">Select / Selecciona...</option>
           <option>Individual Order / Pedido Individual</option>
           <option>Build Your Own / Crea Tu Pedido</option>
@@ -779,9 +806,9 @@
         </div>
         <div style="font-size:.65rem;color:var(--text-lt);text-align:right;margin-top:2px;"><span class="en-text">*Final price confirmed at booking</span><span class="es-text">*Precio final confirmado al reservar</span></div>
       </div>
-      <div class="form-group"><label><span><span class="en-text">Event Details</span><span class="es-text">Detalles del Evento</span></span></label><textarea id="eventDetails" name="event_details" placeholder="Event date, guests, theme..."></textarea></div>
-      <button class="form-submit" id="submitBtn" onclick="handleSubmit(event)"><span><span class="en-text">Send My Request ✦</span><span class="es-text">Enviar Pedido ✦</span></span></button>
-      <p id="formMsg" style="display:none;text-align:center;margin-top:14px;font-family:'Playfair Display',serif;font-style:italic;color:var(--rose);font-size:.95rem;"></p>
+      <div class="form-group"><label><span><span class="en-text">Event Details</span><span class="es-text">Detalles del Evento</span></span></label><textarea id="eventDetails" name="event_details" placeholder="Event date, guests, theme..."></textarea><div class="form-helper"><span class="en-text">Helpful details: date, guest count, pickup or delivery, and any flavor notes.</span><span class="es-text">Detalles útiles: fecha, cantidad de invitados, recogido o entrega, y sabores deseados.</span></div></div>
+      <button class="form-submit" id="submitBtn" onclick="handleSubmit(event)"><span><span class="en-text">Send My Sweet Request ✦</span><span class="es-text">Enviar Pedido Dulce ✦</span></span></button>
+      <p id="formMsg" class="form-status-error" aria-live="polite" style="display:none;text-align:center;margin-top:14px;font-family:'Playfair Display',serif;font-style:italic;color:var(--rose);font-size:.95rem;"></p>
     </div>
   </div>
     </div><!-- end panelBuild -->
@@ -894,8 +921,16 @@
     var tb = document.getElementById('tabBuild');
     if (ti) ti.addEventListener('click', function() { showTab('ind'); });
     if (tb) tb.addEventListener('click', function() { showTab('build'); });
+
+    document.querySelectorAll('#order input, #order select, #order textarea').forEach(function(el) {
+      el.addEventListener('input', function() { el.classList.remove('field-error'); });
+      el.addEventListener('change', function() { el.classList.remove('field-error'); });
+    });
+
     updatePastryBreakdown('individual');
     updatePastryBreakdown('build');
+    updateIndTotal();
+    updateTotal();
   });
 
   window.addEventListener('scroll', function() {
@@ -923,9 +958,10 @@
     var subtotal = 0;
     document.querySelectorAll(selectSelector).forEach(function(sel) {
       var val = parseInt(sel.value, 10) || 0;
+      var item = sel.closest(itemSelector);
+      if (item) item.classList.toggle('selected', val > 0);
       if (val > 0) {
         subtotal += val;
-        var item = sel.closest(itemSelector);
         var nameEl = item ? item.querySelector('.en-text') : null;
         var name = nameEl ? nameEl.textContent.trim() : 'Item';
         var desc = sel.options[sel.selectedIndex].text;
@@ -1073,15 +1109,59 @@
 
       if (!state.isValid) {
         if (showMessage) {
-          var msg = document.getElementById('formMsg');
-          if (msg) {
-            msg.style.display = 'block';
-            msg.textContent = 'Please split the pastries so they add up to ' + state.selectedCount + ' pieces before submitting.';
-            msg.dataset.source = 'pastry-breakdown';
-          }
+          setFormMessage('Please complete your pastry split so it matches ' + state.selectedCount + ' pieces before submitting. / Completa la división de pastelitos para que sume ' + state.selectedCount + ' piezas.', 'error', 'pastry-breakdown');
           var wrap = document.getElementById(config.wrapId);
           if (wrap && wrap.scrollIntoView) wrap.scrollIntoView({behavior:'smooth', block:'center'});
         }
+        return false;
+      }
+    }
+
+    return true;
+  }
+
+  function clearFieldErrors() {
+    document.querySelectorAll('.field-error').forEach(function(el) {
+      el.classList.remove('field-error');
+    });
+  }
+
+  function setFormMessage(message, tone, source) {
+    var msg = document.getElementById('formMsg');
+    if (!msg) return;
+    msg.style.display = 'block';
+    msg.textContent = message;
+    msg.className = tone === 'success' ? 'form-status-success' : 'form-status-error';
+    msg.dataset.source = source || tone || 'error';
+  }
+
+  function validateRequiredFields(showMessage) {
+    clearFieldErrors();
+
+    var requiredFields = [
+      {
+        element: document.querySelector('input[name="first_name"]'),
+        message: 'Please enter your first name before sending your request. / Escribe tu nombre antes de enviar tu pedido.'
+      },
+      {
+        element: document.querySelector('input[name="contact"]'),
+        message: 'Please enter phone or email so Lala can confirm your order. / Escribe un teléfono o correo para confirmar tu pedido.'
+      },
+      {
+        element: document.getElementById('orderType'),
+        message: 'Please choose an order type before sending your request. / Selecciona el tipo de pedido antes de enviarlo.'
+      }
+    ];
+
+    for (var i = 0; i < requiredFields.length; i++) {
+      var field = requiredFields[i];
+      var value = field.element && field.element.value ? field.element.value.trim() : '';
+      if (!value) {
+        if (field.element) {
+          field.element.classList.add('field-error');
+          if (field.element.focus) field.element.focus();
+        }
+        if (showMessage) setFormMessage(field.message, 'error', 'required-fields');
         return false;
       }
     }
@@ -1379,7 +1459,10 @@
   function handleSubmit(e) {
     e.preventDefault();
     var btn = document.getElementById('submitBtn');
-    var msg = document.getElementById('formMsg');
+
+    if (!validateRequiredFields(true)) {
+      return;
+    }
 
     if (!validatePastryBreakdown(true)) {
       if (btn) {
@@ -1391,11 +1474,18 @@
 
     var data = {};
     document.querySelectorAll('#order input, #order select, #order textarea').forEach(function(inp) {
-      if (inp.name) data[inp.name] = inp.value;
+      if (!inp.name) return;
+      if (inp.type === 'radio') {
+        if (inp.checked) data[inp.name] = inp.value;
+      } else {
+        data[inp.name] = inp.value;
+      }
     });
+
     btn.textContent = 'Sending...';
     btn.style.opacity = '0.7';
     btn.disabled = true;
+
     fetch('https://formspree.io/f/mwvwvazd', {
       method: 'POST',
       headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},
@@ -1405,14 +1495,25 @@
         btn.textContent = 'Request Sent!';
         btn.style.background = '#6a9e7a';
         btn.style.opacity = '1';
-        if (msg) { msg.style.display = 'block'; msg.textContent = 'Thank you! We will be in touch within 24 hours.'; }
-        document.querySelectorAll('#order input, #order textarea').forEach(function(i) { i.value = ''; });
-      } else { throw new Error('fail'); }
+        setFormMessage('Thank you — your sweet request is on the way ✨ We’ll be in touch within 24 hours. / ¡Gracias! Tu pedido va en camino ✨ Te escribiremos en menos de 24 horas.', 'success', 'success');
+
+        document.querySelectorAll('#order input[type="text"], #order textarea').forEach(function(i) { i.value = ''; });
+        document.querySelectorAll('#order select').forEach(function(sel) { sel.value = ''; });
+
+        var pickup = document.querySelector('input[name="indDelivery"][value="pickup"]');
+        if (pickup) pickup.checked = true;
+
+        updateIndTotal();
+        updateTotal();
+        buildOrderSummary('');
+      } else {
+        throw new Error('fail');
+      }
     }).catch(function() {
-      btn.textContent = 'Send My Request';
+      btn.textContent = 'Send My Sweet Request ✦';
       btn.style.opacity = '1';
       btn.disabled = false;
-      if (msg) { msg.style.display = 'block'; msg.textContent = 'Something went wrong. Please call or DM us directly!'; }
+      setFormMessage('Something went wrong — please call or DM us directly and we’ll take care of you. / Algo salió mal — llámanos o escríbenos y te ayudamos rápido.', 'error', 'submit-error');
     });
   }
 </script>
