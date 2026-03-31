@@ -560,10 +560,11 @@
           <div style="font-size:.72rem;color:var(--text-lt);font-weight:700;letter-spacing:.1em;text-transform:uppercase;"><span class="en-text">Your Estimate</span><span class="es-text">Tu Estimado</span></div>
           <div id="indItemsList" style="font-size:.74rem;color:var(--text-lt);margin-top:4px;font-style:italic;max-width:280px;"></div>
           <div id="indDeliveryLine" style="display:none;font-size:.74rem;color:var(--rose);font-weight:700;margin-top:2px;">+$10 <span class="en-text">delivery fee</span><span class="es-text">cargo de entrega</span></div>
+          <div id="indTaxLine" style="display:none;font-size:.74rem;color:var(--rose);font-weight:700;margin-top:2px;"></div>
         </div>
         <div style="text-align:right;">
           <div id="indTotal" style="font-family:'Playfair Display',serif;font-size:2rem;font-weight:700;color:var(--rose);">$0</div>
-          <div style="font-size:.65rem;color:var(--text-lt);">*<span class="en-text">no setup fee</span><span class="es-text">sin cargo de montaje</span></div>
+          <div style="font-size:.65rem;color:var(--text-lt);">*<span class="en-text">7% tax added · no setup fee</span><span class="es-text">7% impuesto añadido · sin cargo de montaje</span></div>
         </div>
         <button onclick="selectOrderType('Individual Order / Pedido Individual'); prefillIndividual();" style="padding:12px 24px;background:var(--rose);color:#fff;border:none;border-radius:4px;font-weight:700;font-size:.76rem;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;">
           <span class="en-text">Send This Order ✦</span><span class="es-text">Enviar Pedido ✦</span>
@@ -1187,12 +1188,14 @@
     var deliveryRadio = document.querySelector('input[name="indDelivery"]:checked');
     var isDelivery = deliveryRadio && deliveryRadio.value === 'delivery';
     var deliveryFee = (isDelivery && selection.subtotal > 0) ? 10 : 0;
+    var tax = selection.subtotal > 0 ? Math.round(selection.subtotal * 0.07) : 0;
     return {
       items: selection.items,
       itemsTotal: selection.subtotal,
       isDelivery: isDelivery,
       deliveryFee: deliveryFee,
-      grandTotal: selection.subtotal + deliveryFee
+      tax: tax,
+      grandTotal: selection.subtotal + deliveryFee + tax
     };
   }
 
@@ -1237,9 +1240,15 @@
       }
     }
 
-    // Show delivery line
+    // Show delivery and tax lines
     var dl = document.getElementById('indDeliveryLine');
     if (dl) dl.style.display = (pricing.isDelivery && pricing.itemsTotal > 0) ? 'block' : 'none';
+
+    var taxLine = document.getElementById('indTaxLine');
+    if (taxLine) {
+      taxLine.style.display = pricing.tax > 0 ? 'block' : 'none';
+      taxLine.textContent = pricing.tax > 0 ? '+$' + pricing.tax + ' est. tax (7%)' : '';
+    }
 
     document.getElementById('indTotal').textContent = pricing.grandTotal > 0 ? '$' + pricing.grandTotal.toLocaleString() : '$0';
     var il = document.getElementById('indItemsList');
@@ -1371,7 +1380,8 @@
       });
       var packageAddonSubtotal = 0;
       addonItems.forEach(function(item) { packageAddonSubtotal += item.price; });
-      var packageTax = packageAddonSubtotal > 0 ? Math.round(packageAddonSubtotal * 0.07) : 0;
+      var packageTaxableTotal = pkgAmt + packageAddonSubtotal;
+      var packageTax = packageTaxableTotal > 0 ? Math.round(packageTaxableTotal * 0.07) : 0;
       if (packageTax > 0) {
         feeLines.push('+$' + packageTax + ' est. tax (7%)');
         summaryForForm.push('Est. tax (7%): $' + packageTax);
@@ -1385,6 +1395,10 @@
       if (individualPricing.deliveryFee > 0) {
         feeLines.push('+$10 delivery fee');
         summaryForForm.push('Delivery fee: $10');
+      }
+      if (individualPricing.tax > 0) {
+        feeLines.push('+$' + individualPricing.tax + ' est. tax (7%)');
+        summaryForForm.push('Est. tax (7%): $' + individualPricing.tax);
       }
       grandTotal += individualPricing.grandTotal;
     } else if (isBuildYourOwn) {
@@ -1420,6 +1434,10 @@
       if (individualPricing.deliveryFee > 0) {
         feeLines.push('+$10 delivery fee');
         summaryForForm.push('Delivery fee: $10');
+      }
+      if (individualPricing.tax > 0) {
+        feeLines.push('+$' + individualPricing.tax + ' est. tax (7%)');
+        summaryForForm.push('Est. tax (7%): $' + individualPricing.tax);
       }
       grandTotal += buildPricing.grandTotal + individualPricing.grandTotal;
     }
