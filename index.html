@@ -78,6 +78,7 @@
     .menu-card:hover .menu-hover-hint{opacity:0}
     .menu-pricing{position:absolute;bottom:0;left:0;right:0;background:rgba(250,247,242,.98);border-top:2px solid var(--gold-lt);padding:18px 22px;transform:translateY(100%);transition:transform .4s cubic-bezier(.22,.61,.36,1);z-index:3}
     .menu-card:hover .menu-pricing{transform:translateY(0)}
+    @media(hover:none){.menu-pricing{transform:translateY(0)!important}.menu-hover-hint{display:none!important}.menu-card{cursor:default}.hover-only-text{display:none!important}.touch-only-text{display:inline!important}}
     .pricing-title{font-family:'Playfair Display',serif;font-size:.78rem;font-weight:600;color:var(--brown);text-transform:uppercase;letter-spacing:.1em;margin-bottom:10px;text-align:center}
     .pricing-table{width:100%;border-collapse:collapse}
     .pricing-table tr{border-bottom:1px solid var(--gold-lt)}
@@ -260,7 +261,7 @@
     <div class="hero-script">Lala's Sweets</div>
     <div class="hero-subtitle"><span><span class="en-text">Spring Hill, Florida &nbsp;·&nbsp; Handcrafted with Amor</span><span class="es-text">Spring Hill, Florida &nbsp;·&nbsp; Hecho con Amor</span></span></div>
     <div class="hero-divider"></div>
-    <div class="hero-note"><span class="en-text">Pickup, delivery &amp; full event tables</span><span class="es-text">Recogido, entrega y mesas completas</span></div>
+    <div class="hero-note"><span class="en-text">Pickup · Delivery up to 30 mi · Full event tables</span><span class="es-text">Recogido · Entrega hasta 30 mi · Mesas completas</span></div>
     <p class="hero-tagline"><span><span class="en-text">Elegant pastries, desserts, and grazing tables styled to make every celebration feel special.</span><span class="es-text">Pastelitos, postres y mesas de charcutería elegantes para hacer cada celebración aún más especial.</span></span></p>
     <div class="hero-actions">
       <a href="#order" class="btn btn-gold"><span><span class="en-text">Start My Order ✦</span><span class="es-text">Comenzar Pedido ✦</span></span></a>
@@ -299,7 +300,7 @@
     <div class="section-kicker"><span><span class="en-text">What We Make</span><span class="es-text">Lo Que Hacemos</span></span></div>
     <div class="section-title"><span><span class="en-text">Our Full Menu</span><span class="es-text">Nuestro Menú Completo</span></span></div>
     <hr class="section-rule"/>
-    <p class="section-text"><span><span class="en-text">Hover any item to see full pricing.</span><span class="es-text">Pasa el cursor para ver precios completos.</span></span></p>
+    <p class="section-text"><span><span class="en-text"><span class="hover-only-text">Hover any item to see full pricing.</span><span class="touch-only-text" style="display:none">Tap any item to see full pricing.</span></span><span class="es-text"><span class="hover-only-text">Pasa el cursor para ver precios completos.</span><span class="touch-only-text" style="display:none">Toca cualquier artículo para ver los precios.</span></span></span></p>
   </div>
   <div class="menu-grid">
     <div class="menu-card reveal"><div class="menu-card-front"><span class="menu-icon">🫶</span><h3><span class="en-text">Charcuterie Trays</span><span class="es-text">Bandejas de Charcutería</span></h3><p><span class="en-text">Stunning grazing trays — meats, cheeses, fruits &amp; more.</span><span class="es-text">Bandejas de charcutería — embutidos, quesos, frutas y más.</span></p><span class="menu-tag"><span class="en-text">Most Popular</span><span class="es-text">Más Popular</span></span><div class="menu-hover-hint"><span class="en-text">&#8593; Hover for pricing</span><span class="es-text">&#8593; Ver precios</span></div></div><div class="menu-pricing"><div class="pricing-title">Sizes · Tamaños</div><table class="pricing-table"><tr><td>10–12 personas</td><td>$75</td></tr><tr><td>15–20 personas</td><td>$100</td></tr><tr><td>25–30 personas</td><td>$125</td></tr></table></div></div>
@@ -1581,7 +1582,10 @@
         btn.textContent = 'Request Sent!';
         btn.style.background = '#6a9e7a';
         btn.style.opacity = '1';
-        setFormMessage('Thank you — your sweet request is on the way ✨ We’ll be in touch within 24 hours. / ¡Gracias! Tu pedido va en camino ✨ Te escribiremos en menos de 24 horas.', 'success', 'success');
+        var sentName = (data.first_name || '').trim();
+        var sentContact = (data.contact || '').trim();
+        var confirmMsg = 'Thank you' + (sentName ? ', ' + sentName : '') + '! ✨ Your sweet request is on its way to Lala.' + (sentContact ? ' We\'ll reach out to ' + sentContact + ' within 24 hours to confirm your order.' : ' We\'ll be in touch within 24 hours.') + ' / ¡Gracias' + (sentName ? ', ' + sentName : '') + '! ✨ Tu pedido está en camino.' + (sentContact ? ' Te contactaremos a ' + sentContact + ' en menos de 24 horas para confirmar.' : ' Te escribiremos en menos de 24 horas.');
+        setFormMessage(confirmMsg, 'success', 'success');
 
         document.querySelectorAll('#order input[type="text"], #order textarea').forEach(function(i) { i.value = ''; });
         document.querySelectorAll('#order select').forEach(function(sel) { sel.value = ''; });
@@ -1599,7 +1603,7 @@
       btn.textContent = 'Send My Sweet Request ✦';
       btn.style.opacity = '1';
       btn.disabled = false;
-      setFormMessage('Something went wrong — please call or DM us directly and we’ll take care of you. / Algo salió mal — llámanos o escríbenos y te ayudamos rápido.', 'error', 'submit-error');
+      setFormMessage("Something went wrong — please call or DM us directly. We will take care of you. / Algo salió mal — llámanos o escríbenos directamente y te ayudamos.", "error", "submit-error");
     });
   }
 </script>
